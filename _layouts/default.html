@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{ page.title }} | {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+  {% if site.theme %}
+  <meta name="color-scheme" content="light dark">
+  {% endif %}
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+      <a href="{{ '/portfolio/' | relative_url }}">Portfolio</a>
+      <a href="{{ '/home' | relative_url }}">About</a>
+    </nav>
+  </header>
+  <main>
+    {{ content }}
+  </main>
+  <footer>
+    <small>&copy; {{ "now" | date: "%Y" }} {{ site.author }}</small>
+  </footer>
+</body>
+</html>

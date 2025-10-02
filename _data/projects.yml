@@ -1,0 +1,15 @@
+- title: Unity Sandbox Demo
+  description: Physics sandbox with interactable objects and simple AI.
+  cover: /assets/images/placeholder.jpg
+  media:
+    - type: image
+      src: /assets/images/placeholder.jpg
+  tags: [Unity, C#, Gameplay]
+
+- title: Pathfinding Visualizer
+  description: A* and Dijkstra visualized with grid obstacles.
+  cover: /assets/images/placeholder.jpg
+  media:
+    - type: image
+      src: /assets/images/placeholder.jpg
+  tags: [Algorithms, Visualization, C#]
