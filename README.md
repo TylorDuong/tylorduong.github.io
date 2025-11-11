@@ -1,33 +1,41 @@
 
-## Portfolio Site
+## Portfolio Site (React + Tailwind + Vite)
 
-This repository hosts my GitHub Pages portfolio at https://tylorduong.github.io.
+This repository hosts my portfolio at https://tylorduong.github.io, now powered by React and Tailwind, built with Vite and deployed via GitHub Actions.
 
-### Structure
+### Structure (key files)
 
-| File | Purpose |
-|------|---------|
-| `_config.yml` | Jekyll + site metadata and plugins |
-| `index.md` | Home page |
-| `about.md` | About page |
-| `projects.md` | Projects showcase |
-| `assets/css/style.css` | Custom styles |
-| `404.html` | Not found page |
+- `index.html` – Vite entry HTML
+- `src/` – React app (pages and components)
+	- `src/components/NavBar.jsx` – top navigation
+	- `src/pages/{Home,About,Projects,Contact}.jsx` – routed pages
+- `tailwind.config.js`, `postcss.config.js`, `src/index.css` – Tailwind setup
+- `vite.config.js` – Vite config
+- `.github/workflows/deploy.yml` – builds and deploys to GitHub Pages
+- `public/.nojekyll` – disables Jekyll processing on Pages
 
-### Editing Content
-Modify the markdown files (`index.md`, `about.md`, `projects.md`) and push to `main`. GitHub Pages will auto-build.
+Legacy Jekyll files (`_config.yml`, markdown pages) can be removed later; the GitHub Action publishes the built `dist` only.
 
-### Local Preview (Optional)
-Install Ruby + Jekyll (one time):
+### Run locally (Windows PowerShell)
+1) Install Node.js LTS (https://nodejs.org/) if needed
+2) Install deps and start dev server
+```powershell
+npm install
+npm run dev
 ```
-gem install bundler jekyll
-```
-Run locally:
-```
-jekyll serve --livereload
-```
-Then visit: http://localhost:4000
+Then open the URL shown (typically http://localhost:5173).
 
-### Next Improvements
-Add real project entries, analytics (e.g. Plausible), and favicon.
+### Build
+```powershell
+npm run build
+```
+Output goes to `dist/`. A `404.html` is generated for SPA routing on GitHub Pages.
+
+### Deploy (GitHub Pages via Actions)
+Push to `main`. The workflow in `.github/workflows/deploy.yml` builds and deploys automatically. In GitHub Settings → Pages, set the Source to “GitHub Actions”.
+
+### Customize
+- Update contact links in `src/pages/Contact.jsx`
+- Add real projects in `src/pages/Projects.jsx`
+- Adjust colors/spacing via Tailwind classes in components
 
