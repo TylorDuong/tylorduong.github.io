@@ -1,4 +1,9 @@
 title: Tylor Duong
 description: Portfolio
 theme: jekyll-theme-minimal
-author: Your Name
+author: Tylor Duong
+url: https://tylorduong.github.io
+baseurl: ""
+plugins:
+	- jekyll-seo-tag
+	- jekyll-sitemap
