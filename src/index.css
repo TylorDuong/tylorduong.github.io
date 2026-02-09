@@ -19,6 +19,8 @@
 
   --radius: 0.75rem;
 
+  --color-ambience: #ffffff;
+
   --color-highlight: #f5a623;
   --color-surface: #1a2329;
 }
@@ -50,6 +52,10 @@
     backdrop-filter: blur(24px);
     border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
   }
+  .glow-text{
+    text-shadow: 0 0 30px
+    color-mix(in srgb, var(--color-primary) 50%, transparent);
+  }
 }
 
 @layer utilities{
@@ -65,7 +71,47 @@
       filter: blur(0);
     }
   }
+  @keyframes slow-drift{
+    0%,
+    100%{
+      transform: translate(0,0);
+    }
+    25%{
+      transform: translate(20px, -30px);
+    }
+    50%{
+      transform: translate(-15px, -20px);
+    }
+    75%{
+      transform: translate(30px, 10px);
+    }
+  }
   .animate-fade-in {
     animation: fade-in 0.8s ease-out both;
+  }
+
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+  .animation-delay-400 {
+    animation-delay: 400ms;
+  }
+  .animation-delay-500 {
+    animation-delay: 500ms;
+  }
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+  .animation-delay-700 {
+    animation-delay: 700ms;
+  }
+  .animation-delay-800 {
+    animation-delay: 800ms;
   }
 }
