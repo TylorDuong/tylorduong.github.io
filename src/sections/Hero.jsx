@@ -1,25 +1,9 @@
 import { Button } from "@/components/Button";
-import {ArrowRight, Download, Github, Linkedin, ChevronDown} from "lucide-react";
-import { AnimatedBorderButton } from "../components/AnimatedBorderButton";
-
-const skills = [
-    "C#",
-    "C/C++",
-    "Java",
-    "Python",
-    "JavaScript",
-    "HTML",
-    "CSS",
-    "React",
-    "TailwindCSS",
-    "Node.js",
-    "Git",
-    "GitHub",
-    "Unity",
-    "Docker",
-    "Data Structures",
-    "Algorithms",
-];
+import { ArrowRight, Download, ChevronDown } from "lucide-react";
+import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+import skills from "@/data/skills";
+import socialLinks from "@/data/socialLinks";
+import hero from "@/data/hero";
 
 export const Hero = () =>{
     return <section className="relative min-h-screen flex items-center overflow-hidden">
@@ -57,7 +41,7 @@ export const Hero = () =>{
                     <div className="animate-fade-in">
                         <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                             <span className="w-2 h-2 bg-primary rounded-full animate-pulse "/>
-                                Studying Computer Science at Arizona State University                        
+                                {hero.badge}                        
                             </span>
                     </div>
                 {/* Headline*/}
@@ -70,17 +54,14 @@ export const Hero = () =>{
                         <span className="font-serif italic font-normal text-white">performance and design</span>
                     </h1>
                     <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
-                        Hi, I'm Tylor Duong -- a passionate full-stack developer with a knack for crafting high-performance web applications. 
-                        With a strong foundation in both front-end and back-end technologies, I specialize in creating seamless user experiences while optimizing for speed and efficiency. 
-                        Whether it's building responsive interfaces or designing robust server-side solutions, I thrive on delivering code that not only works but excels in performance. 
-                        Let's connect and build something amazing together!
+                        {hero.summary}
                     </p>
                 </div>
 
                 {/* Call to Action CTAs*/}
                 <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-300">
-                    <Button size="lg">Contact Me <ArrowRight className="w-5 h-5" /></Button>
-                    <AnimatedBorderButton>
+                    <Button size="lg" href="#contact">Contact Me <ArrowRight className="w-5 h-5" /></Button>
+                    <AnimatedBorderButton href="https://drive.google.com/file/d/1mPAFaC18GQo6RkEi8rYPYC5cGysHmfSd/view?usp=sharing" target="_blank">
                         <Download className="w-5 h-5" />
                         Download CV
                     </AnimatedBorderButton>
@@ -90,12 +71,16 @@ export const Hero = () =>{
                     <span className="text-sm text-muted-foreground">
                         Connect with me: 
                     </span>
-                    {[
-                        {icon: Github, href: "https://github.com/TylorDuong"},
-                        {icon: Linkedin, href: "https://www.linkedin.com/in/tylor-duong/"},
-                    ].map((social, idx) => (
-                        <a key={idx} href={social.href} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full glass hover:gb-primary/10 hover:text-primary transition-all duration-300"
-                        >{<social.icon className="w-5 h-5"/>}</a>
+                    {socialLinks.map((social, idx) => (
+                        <a
+                          key={idx}
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                                                    className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                        >
+                          <social.icon className="w-5 h-5" />
+                        </a>
                     ))}
                 </div>
             </div>
@@ -124,8 +109,8 @@ export const Hero = () =>{
                         </div>
                         {/* Stats Badge */}
                         <div className="absolute -top-4 -left-4 glass rounded-xl px-4 py-3 animate-float animation-delay-500">
-                            <div className="text-2xl font-bold text-primary">5+</div>
-                            <div className="text-xs text-muted-foreground">Years Exp.</div>
+                            <div className="text-2xl font-bold text-primary">{hero.stats.value}</div>
+                            <div className="text-xs text-muted-foreground">{hero.stats.label}</div>
                         </div>
                     </div>
                 </div>

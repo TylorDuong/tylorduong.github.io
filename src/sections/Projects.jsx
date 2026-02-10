@@ -1,48 +1,6 @@
 import { ArrowUpRight, Github } from "lucide-react";
-import {AnimatedBorderButton} from "@/components/AnimatedBorderButton";
-
-const projects = [
-    {
-        title: "Project 1",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        image: "projects/project1.jpg",
-        tags: ["React", "Node.js", "MongoDB"],
-        link: "#",
-        github: "#",
-    },
-    {
-        title: "Project 2",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        image: "projects/project2.jpg",
-        tags: ["React", "Node.js", "MongoDB"],
-        link: "#",
-        github: "#",
-    },
-    {
-        title: "Project 3",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        image: "projects/project3.jpg",
-        tags: ["React", "Node.js", "MongoDB"],
-        link: "#",
-        github: "#",
-    },
-    {
-        title: "Project 4",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        image: "projects/project4.jpg",
-        tags: ["React", "Node.js", "MongoDB"],
-        link: "#",
-        github: "#",
-    },
-    {
-        title: "Project 5",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        image: "projects/project5.jpg",
-        tags: ["React", "Node.js", "MongoDB"],
-        link: "#",
-        github: "#",
-    },
-]
+import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
+import projects from "@/data/projects";
 
 export const Projects = () =>{
     return <section id="projects" className="py-32 relative overflow-hidden">
@@ -64,7 +22,9 @@ export const Projects = () =>{
                         </span>
                     </h2>
                     <p className="text-muted-foreground animate-fade-in animation-delay-200">
-                        A selection of projects that showcase my skills and experience as a full-stack developer. Each project is a testament to my commitment to quality, innovation, and user-centric design. From web applications to open-source contributions, these projects reflect my passion for creating impactful software solutions.
+                        A selection of projects that showcase my skills and experience as a software developer. 
+                        Each project is a testament to my commitment to quality, innovation, and user-centric design. 
+                        From web applications to simulations, these projects reflect my versatility and passion for creating impactful software solutions.
                     </p>
                 </div>
                 {/* Projects Grid */}
@@ -107,13 +67,15 @@ export const Projects = () =>{
                     ))}
                 </div>
 
-                {/* View All Projects Button */}
+                {/* View All Projects Button
                 <div className="text-center mt-12 animate-fade-in animation-delay-500">
-                    <AnimatedBorderButton>
+                    <AnimatedBorderButton href="@/sections/ProjectGallery">
                         View All Projects
                         <ArrowUpRight className="w-5 h-5" />
                     </AnimatedBorderButton>
                 </div>
+                */}
+
             </div>
     </section>;
 };

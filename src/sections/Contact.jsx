@@ -1,35 +1,8 @@
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Send,
-  CheckCircle,
-  AlertCircle,
-} from "lucide-react";
+import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import { Button } from "@/components/Button";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-
-const contactInfo =[
-    {
-        icon: Mail,
-        label: "Email",
-        value: "tylorduong1@gmail.com",
-        href: "mailto:tylorduong1@gmail.com"
-    },
-    {
-        icon: Phone,
-        label: "Phone",
-        value: "+1 (480) 208-5234",
-        href: "tel:+14802085234"
-    },
-    {
-        icon: MapPin,
-        label: "Location",
-        value: "Tempe, Arizona",
-        href: "https://www.google.com/maps/place/Tempe,+Arizona"
-    },
-];
+import contactInfo from "@/data/contactInfo";
 export const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -75,11 +48,11 @@ export const Contact = () => {
       });
       setFormData({ name: "", email: "", message: "" });
     } catch (err) {
-      console.error("EmailJS error:", error);
+      console.error("EmailJS error:", err);
       setSubmitStatus({
         type: "error",
         message:
-          error.text || "Failed to send message. Please try again later.",
+          err?.text || "Failed to send message. Please try again later.",
       });
     } finally {
       setIsLoading(false);
@@ -242,7 +215,7 @@ export const Contact = () => {
               </div>
               <p className="text-muted-foreground text-sm">
                 I'm currently open to new opportunities and exciting projects.
-                Whether you need a full-time engineer or a freelance consultant,
+                Whether you need an engineer or a project collaborator,
                 let's talk!
               </p>
             </div>

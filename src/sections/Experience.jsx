@@ -1,37 +1,4 @@
-const experiences = [
-    {
-        period: "2020 - present",
-        role: "Software Engineer Intern",
-        company: "Tech Company A",
-        description: "Worked on developing and maintaining web applications using React and Node.js. Collaborated with cross-functional teams to design and implement new features, resulting in a 20% increase in user engagement.",
-        technologies: ["React", "Node.js", "MongoDB"],
-        current: true,
-    },
-    {
-        period: "2021 - 2024",
-        role: "Software Engineer Intern",
-        company: "Tech Company A",
-        description: "Worked on developing and maintaining web applications using React and Node.js. Collaborated with cross-functional teams to design and implement new features, resulting in a 20% increase in user engagement.",
-        technologies: ["React", "Node.js", "MongoDB"],
-        current: false,
-    },
-    {
-        period: "2020 - 2021",
-        role: "Software Engineer Intern",
-        company: "Tech Company A",
-        description: "Worked on developing and maintaining web applications using React and Node.js. Collaborated with cross-functional teams to design and implement new features, resulting in a 20% increase in user engagement.",
-        technologies: ["React", "Node.js", "MongoDB"],
-        current: false,
-    },
-    {
-        period: "2018 - 2020",
-        role: "Software Engineer Intern",
-        company: "Tech Company A",
-        description: "Worked on developing and maintaining web applications using React and Node.js. Collaborated with cross-functional teams to design and implement new features, resulting in a 20% increase in user engagement.",
-        technologies: ["React", "Node.js", "MongoDB"],
-        current: false,
-    },
-]
+import experiences from "@/data/experiences";
 
 
 export const Experience = () =>{
@@ -41,7 +8,7 @@ export const Experience = () =>{
             {/* Section Header */}
             <div className="max-w-3xl mb-16">
                 <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
-                    Carrer Journey
+                    Career Journey
                 </span>
                 <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
                     Experience that {" "}
@@ -49,7 +16,7 @@ export const Experience = () =>{
                     speaks volumes.</span>
                 </h2>
                 <p className="text-muted-foreground animate-fade-in animation-delay-200">
-                    A snapshot of my professional journey, showcasing the roles and projects that have shaped my career.
+                    An overview of my journey thus far, showcasing the roles and projects that have shaped my career.
                 </p>
             </div>
 
