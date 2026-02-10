@@ -15,10 +15,10 @@ function App() {
       <main>
         <Hero />
         <About />
-        <Contact />
-        <Experience />
         <Projects />
+        <Experience />
         <Testimonials />
+        <Contact />
       </main>
     </div>
   );
