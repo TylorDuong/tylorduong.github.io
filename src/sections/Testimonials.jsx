@@ -1,32 +1,6 @@
 import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import { use, useState } from "react";
-
-const testimonials = [
-    {
-        quote:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        author: "John Doe",
-        role: "CEO, Company A",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        quote:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        author: "John Doe",
-        role: "CEO, Company B",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        quote:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        author: "John Doe",
-        role: "CEO, Company C",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-    {
-        quote:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-        author: "John Doe",
-        role: "CEO, Company D",
-        avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    },
-]
+import { useState } from "react";
+import testimonials from "@/data/testimonials";
 
 export const Testimonials = () =>{
     const [activeIdx, setActiveIdx] = useState(0);
@@ -45,12 +19,12 @@ export const Testimonials = () =>{
             {/* Section Header */}
             <div className="text-center max-w-3xl mx-auto mb-16">
 <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
-                    What people say
+                    My teammates say
                 </span>
                 <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
                     Kind words from {""}
                     <span className="font-serif italic font-normal text-white"> 
-                        amazing people.
+                        my fellow peers.
                     </span>
                 </h2>
             </div>
