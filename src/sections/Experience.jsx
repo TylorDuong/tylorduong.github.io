@@ -44,8 +44,9 @@ export const Experience = () =>{
                     Carrer Journey
                 </span>
                 <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
-                    Experience that
-                    <span className="font-serif italic font-normal text-white"> speaks volumes.</span>
+                    Experience that {" "}
+                    <span className="font-serif italic font-normal text-white"> 
+                    speaks volumes.</span>
                 </h2>
                 <p className="text-muted-foreground animate-fade-in animation-delay-200">
                     A snapshot of my professional journey, showcasing the roles and projects that have shaped my career.
