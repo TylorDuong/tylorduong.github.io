@@ -1,117 +1,193 @@
 @import "tailwindcss";
 
-@theme {
-  --color-background: #0f1418;
-  --color-foreground: #f0f2f5;
+/* ============================================================
+   Deckplate Portfolio — global styles
+   Paper (#f1ede2) / ink (#16190f) / rust (#a8571c) system.
+   Section-level styling lives inline in the components; this
+   file carries the globals, links, keyframes and the responsive
+   layer that mirrors the design's [data-r] breakpoints.
+   ============================================================ */
 
-  --color-card: #141a1f;
-
-  --color-primary: #20b2a6;
-  --color-primary-foreground: #ffffff;
-
-  --color-secondary: #1f2830;
-  --color-secondary-foreground: #20b2a6;
-
-  --color-muted: #252e37;
-  --color-muted-foreground: #7a8491;
-
-  --color-border: #242b32;
-
-  --radius: 0.75rem;
-
-  --color-ambience: #ffffff;
-
-  --color-highlight: #f5a623;
-  --color-surface: #1a2329;
+html {
+  scroll-behavior: smooth;
 }
 
-@layer base {
+body {
+  margin: 0;
+  background: #f1ede2;
+  color: #16190f;
+  font-family: Inter, sans-serif;
+  font-size: 15px;
+  line-height: 21.75px;
+}
+
+a {
+  color: #a8571c;
+  text-decoration: underline 1px;
+  text-underline-offset: 3px;
+}
+a:hover {
+  color: #7d3f12;
+  text-decoration-thickness: 2px;
+}
+
+::selection {
+  background: rgba(168, 87, 28, 0.18);
+}
+
+input,
+textarea,
+button {
+  font: inherit;
+}
+input:focus,
+textarea:focus,
+button:focus-visible {
+  outline: 3px solid #a8571c;
+  outline-offset: 0;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
   html {
-    scroll-behavior: smooth;
-  }
-
-  body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
-    font-family: "Inter", sans-serif;
-  }
-
-  .font-serif {
-    font-family: "Player Display", serif;
+    scroll-behavior: auto;
   }
 }
 
-@layer components {
-  .glass {
-    background: color-mix(in srgb, var(--color-surface) 50%, transparent);
-    backdrop-filter: blur(16px);
-    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+.dp-carousel {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.dp-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============ RESPONSIVE LAYER (desktop unchanged) ============ */
+/* Breakpoint mirrors the design: md-class stacking at ~860px,
+   phone refinements at ~560px. */
+@media (max-width: 860px) {
+  [data-r="hero"] {
+    grid-template-columns: 1fr !important;
+    padding-top: 96px !important;
   }
-  .glass-strong {
-    background: color-mix(in srgb, var(--color-surface) 80%, transparent);
-    backdrop-filter: blur(24px);
-    border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+  [data-r="hero-media"] {
+    max-width: 440px !important;
   }
-  .glow-text{
-    text-shadow: 0 0 30px
-    color-mix(in srgb, var(--color-primary) 50%, transparent);
+  [data-r="metrics-grid"] {
+    grid-template-columns: 1fr !important;
+  }
+  [data-r="about-grid"] {
+    grid-template-columns: 1fr !important;
+  }
+  [data-r="work-grid"] {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+  }
+  [data-r="testi-grid"] {
+    grid-template-columns: 1fr !important;
+    align-items: start !important;
+  }
+  [data-r="pd-grid"] {
+    grid-template-columns: 1fr !important;
+  }
+  [data-r="contact-grid"] {
+    grid-template-columns: 1fr !important;
+  }
+  [data-r="exp-head"],
+  [data-r="idx-head"] {
+    display: none !important;
+  }
+  [data-r="exp-row"] {
+    grid-template-columns: 1fr !important;
+    gap: 6px 0 !important;
+    padding: 18px 0 !important;
+  }
+  [data-r="idx-row"] {
+    grid-template-columns: 1fr !important;
+    gap: 4px 0 !important;
+    padding: 18px 0 !important;
+    align-items: start !important;
+  }
+  [data-r="about-orb"],
+  [data-r="pd-orb"],
+  [data-r="idx-orb"],
+  [data-r="contact-orb"] {
+    display: none !important;
+  }
+  [data-r="nav-links"] {
+    display: none !important;
+  }
+  [data-r="nav-hamburger"] {
+    display: flex !important;
+  }
+  [data-r="nav"] {
+    flex-wrap: nowrap !important;
   }
 }
 
-@layer utilities{
-  @keyframes fade-in{
-    from{
-      opacity: 0;
-      transform: translateY(20px);
-      filter: blur(10px);
-    }
-    to{
-      opacity: 1;
-      transform: translateY(0);
-      filter: blur(0);
-    }
+@media (max-width: 560px) {
+  [data-r="wrap"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
-  @keyframes slow-drift{
-    0%,
-    100%{
-      transform: translate(0,0);
-    }
-    25%{
-      transform: translate(20px, -30px);
-    }
-    50%{
-      transform: translate(-15px, -20px);
-    }
-    75%{
-      transform: translate(30px, 10px);
-    }
+  [data-r="hero"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
-  .animate-fade-in {
-    animation: fade-in 0.8s ease-out both;
+  [data-r="nav"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
+  [data-r="footer"] {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  [data-r="nav-logo"] {
+    font-size: 18px !important;
+  }
+  [data-r="nav-links"] {
+    gap: 16px !important;
+  }
+  [data-r="nav-links"] button {
+    font-size: 14px !important;
+  }
+  [data-r="h2"] {
+    font-size: 44px !important;
+    line-height: 0.98 !important;
+    letter-spacing: -1.4px !important;
+  }
+  [data-r="lead"] {
+    font-size: 19px !important;
+    line-height: 1.35 !important;
+  }
+  [data-r="bigquote"] {
+    font-size: 30px !important;
+    line-height: 1.06 !important;
+    letter-spacing: -0.8px !important;
+    min-height: 0 !important;
+  }
+  [data-r="hl-grid"] {
+    grid-template-columns: 1fr !important;
+  }
+  [data-r="hud-box"] {
+    bottom: 16px !important;
+    right: 16px !important;
+  }
+}
 
-  .animation-delay-100 {
-    animation-delay: 100ms;
-  }
-  .animation-delay-200 {
-    animation-delay: 200ms;
-  }
-  .animation-delay-300 {
-    animation-delay: 300ms;
-  }
-  .animation-delay-400 {
-    animation-delay: 400ms;
-  }
-  .animation-delay-500 {
-    animation-delay: 500ms;
-  }
-  .animation-delay-600 {
-    animation-delay: 600ms;
-  }
-  .animation-delay-700 {
-    animation-delay: 700ms;
-  }
-  .animation-delay-800 {
-    animation-delay: 800ms;
-  }
+/* Hover helpers that would otherwise need JS. */
+.dp-underline-hover:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
