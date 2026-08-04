@@ -10,6 +10,7 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
 }
 
 body {
@@ -19,6 +20,7 @@ body {
   font-family: Inter, sans-serif;
   font-size: 15px;
   line-height: 21.75px;
+  overflow-x: clip;
 }
 
 a {
@@ -73,6 +75,33 @@ button:focus-visible {
   display: none;
 }
 
+/* Grid/flex children default to min-width:auto, sized to their content's
+   intrinsic minimum — so a nowrap-truncated line (e.g. project summaries)
+   can force a card wider than its track instead of shrinking to fit, most
+   visibly once columns collapse to 1fr on narrow screens. Letting every
+   [data-r] grid/row item shrink to 0 makes width:100% + ellipsis actually
+   truncate instead of overflow. */
+[data-r$="-grid"] > *,
+[data-r="idx-row"] > * {
+  min-width: 0;
+}
+
+/* The catalog table's fixed-width columns (No./Thumb/Category/Stack/Year)
+   plus the Project column's own minmax(220px,1fr) floor add up to more
+   than the shared 860px breakpoint leaves room for — stack it earlier so
+   the row never gets clipped/squeezed in that gap. */
+@media (max-width: 1100px) {
+  [data-r="idx-head"] {
+    display: none !important;
+  }
+  [data-r="idx-row"] {
+    grid-template-columns: 1fr !important;
+    gap: 4px 0 !important;
+    padding: 18px 0 !important;
+    align-items: start !important;
+  }
+}
+
 /* ============ RESPONSIVE LAYER (desktop unchanged) ============ */
 /* Breakpoint mirrors the design: md-class stacking at ~860px,
    phone refinements at ~560px. */
@@ -104,20 +133,13 @@ button:focus-visible {
   [data-r="contact-grid"] {
     grid-template-columns: 1fr !important;
   }
-  [data-r="exp-head"],
-  [data-r="idx-head"] {
+  [data-r="exp-head"] {
     display: none !important;
   }
   [data-r="exp-row"] {
     grid-template-columns: 1fr !important;
     gap: 6px 0 !important;
     padding: 18px 0 !important;
-  }
-  [data-r="idx-row"] {
-    grid-template-columns: 1fr !important;
-    gap: 4px 0 !important;
-    padding: 18px 0 !important;
-    align-items: start !important;
   }
   [data-r="about-orb"],
   [data-r="pd-orb"],

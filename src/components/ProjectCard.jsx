@@ -17,6 +17,7 @@ export function ProjectCard({ proj }) {
         background: C.paper,
         display: "flex",
         flexDirection: "column",
+        minWidth: 0,
       }}
       hoverStyle={{ background: C.tint }}
     >

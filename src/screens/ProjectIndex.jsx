@@ -2,7 +2,7 @@ import { F, C, mono } from "@/lib/theme";
 import { Mark } from "@/lib/Mark";
 import { Hover } from "@/lib/Hover";
 
-const GRID = "52px 96px 1fr 200px 260px 64px";
+const GRID = "52px 96px minmax(220px,1fr) 200px 260px 64px";
 
 function IndexHead() {
   return (
@@ -38,7 +38,7 @@ function IndexRow({ proj }) {
         aria-label={proj.title}
         style={{ width: 96, aspectRatio: "16/9", border: `1px solid ${C.ink}`, borderLeft: `4px solid ${proj.accent}`, backgroundColor: C.tan, backgroundImage: `url(${proj.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
       />
-      <div>
+      <div style={{ minWidth: 0 }}>
         <div style={{ fontFamily: F.tight, fontSize: 33.28, fontWeight: 500, lineHeight: "33.28px", letterSpacing: "-0.832px" }}>{proj.title}</div>
         <div style={{ fontFamily: F.body, fontSize: 14, lineHeight: "19px", color: C.muted, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 4 }}>{proj.summary}</div>
       </div>

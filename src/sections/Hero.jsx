@@ -89,7 +89,7 @@ function MetricCard({ label, value, sub, expanded, breakdown, onToggle, ariaLabe
   );
 }
 
-export function Hero({ go, goIndex, metrics, unitCount, tickerDur }) {
+export function Hero({ go, goIndex, metrics, metricsRef, unitCount, tickerDur }) {
   return (
     <div>
       {/* HERO */}
@@ -100,7 +100,7 @@ export function Hero({ go, goIndex, metrics, unitCount, tickerDur }) {
           margin: "0 auto",
           padding: "112px 40px 0",
           display: "grid",
-          gridTemplateColumns: "1fr 380px",
+          gridTemplateColumns: "1fr clamp(240px,32vw,380px)",
           gap: 24,
           alignItems: "start",
         }}
@@ -112,7 +112,7 @@ export function Hero({ go, goIndex, metrics, unitCount, tickerDur }) {
           <h1
             style={{
               fontFamily: F.tight,
-              fontSize: "clamp(56px,8.5vw,128px)",
+              fontSize: "clamp(52px,7vw,104px)",
               fontWeight: 600,
               lineHeight: 0.86,
               letterSpacing: "-0.04em",
@@ -228,6 +228,7 @@ export function Hero({ go, goIndex, metrics, unitCount, tickerDur }) {
           Combined Impact — Live Readout
         </div>
         <div
+          ref={metricsRef}
           data-r="metrics-grid"
           style={{ border: `1px solid ${C.ink}`, background: C.ink, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1 }}
         >

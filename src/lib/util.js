@@ -14,19 +14,22 @@ export function makeLines(count, wMax, wMin) {
 
 const easeOutExpo = (t) => (t >= 1 ? 1 : 1 - Math.pow(2, -10 * t));
 
-// Animates 0 → 1 over `dur` ms, restarting whenever `key` changes. Respects
+// Animates 0 → 1 over `dur` ms once `active` first becomes true, then holds
+// at 1 — it never restarts, even if `active` flips off and back on. Respects
 // prefers-reduced-motion (jumps straight to 1).
-export function useCountUp(key, dur = 1700) {
+export function useCountUp(active, dur = 1700) {
   const [t, setT] = useState(0);
   const raf = useRef(0);
+  const started = useRef(false);
 
   useEffect(() => {
+    if (!active || started.current) return;
+    started.current = true;
+
     const reduce =
       window.matchMedia &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const t0 = performance.now();
-    // All state updates happen inside the rAF callback (never synchronously in
-    // the effect body), so the animation restarts cleanly whenever `key` changes.
     const tick = (now) => {
       if (reduce) {
         setT(1);
@@ -38,9 +41,29 @@ export function useCountUp(key, dur = 1700) {
     };
     raf.current = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(raf.current);
-  }, [key, dur]);
+  }, [active, dur]);
 
   return easeOutExpo(t);
+}
+
+// Fires `onEnter` once, the first time `el` intersects the viewport, then
+// disconnects. Re-supplying the same el after it's already fired is a no-op.
+export function useOnceInView(el, onEnter) {
+  useEffect(() => {
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        if (entries[0]?.isIntersecting) {
+          onEnter();
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [el]);
 }
 
 // Procedural paper grain (SVG turbulence) as a data URI — no external asset,

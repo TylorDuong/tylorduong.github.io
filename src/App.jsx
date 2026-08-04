@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { C } from "@/lib/theme";
-import { useCountUp } from "@/lib/util";
+import { useCountUp, useOnceInView } from "@/lib/util";
 import { Navbar } from "@/layout/Navbar";
 import { HudCorners, PaperGrain } from "@/components/Chrome";
 import { Hero } from "@/sections/Hero";
@@ -25,7 +25,6 @@ export default function App() {
   const [savedExpanded, setSavedExpanded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [countKey, setCountKey] = useState(0); // bump to replay the count-up
   const pendingScroll = useRef(null); // section to scroll to after returning home
 
   // DOM nodes of the home sections, collected via callback refs so we never
@@ -35,7 +34,12 @@ export default function App() {
     sectionEls.current[key] = el;
   }, []);
 
-  const eased = useCountUp(countKey);
+  // Metrics count-up plays once, the first time the metrics grid scrolls
+  // into view — not on every mount, so it doesn't replay on nav back home.
+  const [metricsEl, setMetricsEl] = useState(null);
+  const [metricsInView, setMetricsInView] = useState(false);
+  useOnceInView(metricsEl, useCallback(() => setMetricsInView(true), []));
+  const eased = useCountUp(metricsInView);
 
   // ---- navigation ----
   const performScroll = useCallback((key) => {
@@ -56,7 +60,6 @@ export default function App() {
       if (screen !== "home") {
         pendingScroll.current = key;
         setScreen("home");
-        setCountKey((n) => n + 1);
         return;
       }
       performScroll(key);
@@ -68,7 +71,6 @@ export default function App() {
     setScreen(next);
     if (typeof idx === "number") setProjectIdx(idx);
     window.scrollTo(0, 0);
-    if (next === "home") setCountKey((n) => n + 1);
   }, []);
 
   // After switching back to home, run the deferred scroll once mounted.
@@ -152,7 +154,7 @@ export default function App() {
   const goIndex = () => toScreen("index");
 
   return (
-    <div style={{ position: "relative", zIndex: 0, minHeight: "100vh", background: C.paper, color: C.ink, overflowX: "hidden" }}>
+    <div style={{ position: "relative", zIndex: 0, minHeight: "100vh", background: C.paper, color: C.ink }}>
       <Navbar
         active={screen === "home" ? activeSection : null}
         go={scrollToSection}
@@ -169,6 +171,7 @@ export default function App() {
             go={scrollToSection}
             goIndex={goIndex}
             metrics={metrics}
+            metricsRef={setMetricsEl}
             unitCount={derived.unitCount}
             tickerDur="48s"
           />
