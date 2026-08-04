@@ -1,72 +1,54 @@
-import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
-import testimonials from "@/data/testimonials";
+import { F, C, mono, sectionH2 } from "@/lib/theme";
+import { Mark } from "@/lib/Mark";
+import { Hover } from "@/lib/Hover";
 
-export const Testimonials = () =>{
-    const [activeIdx, setActiveIdx] = useState(0);
+function ArrowButton({ label, onClick, children }) {
+  return (
+    <Hover as="button" onClick={onClick} aria-label={label}
+      style={{ width: 44, height: 44, background: C.card, border: `1px solid ${C.ink}`, cursor: "pointer", fontFamily: F.mono, fontSize: 15, color: C.ink }}
+      hoverStyle={{ background: C.tint }}>
+      {children}
+    </Hover>
+  );
+}
 
-    const next = () =>{
-        setActiveIdx((prev) => (prev + 1) % testimonials.length);
-    }
+export function Testimonials({ innerRef, t, counter, onPrev, onNext }) {
+  return (
+    <div ref={innerRef} data-r="wrap" style={{ maxWidth: 1400, margin: "0 auto", padding: "96px 40px 0" }}>
+      <div style={mono({ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 })}>
+        <Mark name="twins" size={14} color={C.rust} />
+        SEC.04
+      </div>
+      <h2 data-r="h2" style={{ ...sectionH2, margin: "0 0 48px" }}>Testimonials</h2>
 
-    const prev = () =>{
-        setActiveIdx((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    }
-
-    return <section id="testimonials" className="py-32 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="container mx-auto px-6 relative z-10">
-            {/* Section Header */}
-            <div className="text-center max-w-3xl mx-auto mb-16">
-<span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
-                    My teammates say
-                </span>
-                <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
-                    Kind words from {""}
-                    <span className="font-serif italic font-normal text-white"> 
-                        my fellow peers.
-                    </span>
-                </h2>
+      <div data-r="testi-grid" style={{ display: "grid", gridTemplateColumns: "1fr 220px", gap: 24, alignItems: "end" }}>
+        <div>
+          <blockquote
+            data-r="bigquote"
+            style={{ fontFamily: F.tight, fontSize: 44, fontWeight: 600, lineHeight: "42px", letterSpacing: "-1.32px", margin: 0, maxWidth: 960, minHeight: 170 }}
+          >
+            “{t.quote}”
+          </blockquote>
+          <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 32 }}>
+            <div
+              role="img"
+              aria-label={t.author}
+              style={{ width: 56, height: 56, border: `1px solid ${C.ink}`, backgroundColor: C.tan, backgroundImage: `url(${t.avatar})`, backgroundSize: "cover", backgroundPosition: "center" }}
+            />
+            <div>
+              <div style={{ fontFamily: F.body, fontSize: 15, fontWeight: 600, letterSpacing: "-0.15px" }}>{t.author}</div>
+              <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", color: C.muted, marginTop: 2 })}>{t.role}</div>
             </div>
-            {/* Testimonial Carousel */}
-            <div className="max-w-4xl mx-auto">
-                <div className="relative">
-                    {/* Main Testimonial */}
-                    <div className="glass p-8 rounded-3xl md:p-12 glow-border animate-fade-in animation-delay-200">
-                        <div className="absolute -top-4 left-8 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                            <Quote className="w-6 h-6 text-primary-foreground"/>
-                        </div>
-                        <blockquote className="text-xl md:text-2xl font-medium leading-relaxed mb-8 pt-4">"{testimonials[activeIdx].quote}"</blockquote>
-                        <div className="flex item-center gap-4">
-                            <img className="w-14 h-14 rounded-full object-cover ring-2 ring-primary/20" src={testimonials[activeIdx].avatar} alt={testimonials[activeIdx].author} />
-                            <div>
-                                <div className="font-semibold">{testimonials[activeIdx].author}</div>
-                                <div className="text-sm text-muted-foreground">{testimonials[activeIdx].role}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {/* Testimonials Navigations */}
-                <div className="flex items-center justify-center gap-4 mt-8">
-                    <button 
-                    onClick={prev}
-                    className="p-3 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all">
-                        <ChevronLeft/>
-                    </button>
-                    <div className="flex gap-2">
-                        {testimonials.map((_, idx) => (
-                        <button 
-                        onClick={() => setActiveIdx(idx)}
-                        className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === activeIdx ? "w-8 bg-primary" : "bg-muted-foreground/30 hover:bg-muted-foreground/50"}`}/>
-                    ))}
-                    </div>
-                    <button 
-                    onClick={next}
-                    className="p-3 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all">
-                        <ChevronRight/>
-                    </button>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>;
-};
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 16 }}>
+          <div style={mono({})}>{counter}</div>
+          <div style={{ display: "flex", gap: 8 }}>
+            <ArrowButton label="Previous report" onClick={onPrev}>←</ArrowButton>
+            <ArrowButton label="Next report" onClick={onNext}>→</ArrowButton>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

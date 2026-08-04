@@ -1,54 +1,60 @@
-import experiences from "@/data/experiences";
+import { F, C, mono, sectionH2 } from "@/lib/theme";
+import { Mark } from "@/lib/Mark";
+import { Hover } from "@/lib/Hover";
+import { experiences } from "@/data";
 
+const GRID = "60px 220px 1fr 280px";
 
-export const Experience = () =>{
-    return <section id="experience" className="py-32 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2" />
-        <div className="container mx-auto px-6 relative z-10">
-            {/* Section Header */}
-            <div className="max-w-3xl mb-16">
-                <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
-                    Career Journey
-                </span>
-                <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
-                    Experience that {" "}
-                    <span className="font-serif italic font-normal text-white"> 
-                    speaks volumes.</span>
-                </h2>
-                <p className="text-muted-foreground animate-fade-in animation-delay-200">
-                    An overview of my journey thus far, showcasing the roles and projects that have shaped my career.
-                </p>
-            </div>
+export function Experience({ innerRef }) {
+  return (
+    <div ref={innerRef} data-r="wrap" style={{ maxWidth: 1400, margin: "0 auto", padding: "96px 40px 0" }}>
+      <div style={mono({ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 })}>
+        <Mark name="cross" size={14} color={C.rust} />
+        SEC.03
+      </div>
+      <h2 data-r="h2" style={{ ...sectionH2, margin: "0 0 48px" }}>Experience</h2>
 
-            {/* Timeline */}
-            <div className="relative">
-                <div className="timeline-glow absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/70 via-primary/30 to-transparent md:-translate-x-1/2 shadow-[0_0_25px_rgba(32,178,166,0.8)]" />
-                {/* Experience Items */}
-                <div className="space-y-12">
-                    {experiences.map((exp,idx) => (
-                        <div 
-                        key={idx} 
-                        className="relative grid md:grid-cols-2 gap-8 animate-fade-in"
-                        style={{animationDelay: `${(idx + 1) * 100}ms`}}>
-                            {/* Timeline Dot */}
-                            <div className="absolute left-0 md:left-1/2 top-0 w-3 h-3 bg-primary rounded-full -translate-x-1/2 ring-4 ring-background z-10">
-                            {exp.current && (<span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75"/>)}
-                            </div>
-                            {/* Content */}
-                            <div className={`pl-8 md:pl-0 ${idx % 2 === 0 ? "md:pr-16 md:text-right" : "md:col-start-2 md:pl-16"}`}>
-                                <div className={'glass p-6 rounded-2xl border border-primary/30 hover:border-primary/50 transition all duration-500'}>
-                                    <span className="text-sm text-primary font-medium">{exp.period}</span>
-                                    <h3 className="text-xl font-semibold mt-2">{exp.role}</h3>
-                                    <p className="text-muted-foreground">{exp.company}</p>
-                                    <p className="text-sm text-muted-foreground mt-4">{exp.description}</p>
-                                    <div className={`flex flex-wrap gap-2 mt-4 ${idx % 2 === 0 ? "md:justify-end" : ""}`}>{exp.technologies.map((tech, techIdx) =>(
-                                    <span className="px-3 py-1 bg-surface text-xs rounded-full text-muted-foreground" key={techIdx}>{tech}</span>))}</div>
-                                </div>
-                            </div> 
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </div>
-    </section>;
-};
+      <div
+        data-r="exp-head"
+        style={{ display: "grid", gridTemplateColumns: GRID, gap: "0 24px", paddingBottom: 12, borderBottom: `3px solid ${C.ink}`, ...mono({}) }}
+      >
+        <div>No.</div>
+        <div>Period</div>
+        <div>Role / Unit</div>
+        <div>Stack</div>
+      </div>
+
+      {experiences.map((exp, i) => (
+        <Hover
+          key={i}
+          as="div"
+          data-r="exp-row"
+          style={{ display: "grid", gridTemplateColumns: GRID, gap: "0 24px", padding: "20px 0", borderBottom: "1px solid rgba(22,25,15,0.18)", background: "transparent" }}
+          hoverStyle={{ background: C.tint }}
+        >
+          <div style={mono({ fontSize: 12, fontWeight: 400, letterSpacing: "0.6px", color: C.muted, textTransform: "none" })}>
+            {String(i + 1).padStart(2, "0")}
+          </div>
+          <div style={mono({ fontSize: 12, fontWeight: 400, letterSpacing: "0.6px", lineHeight: "17.4px", textTransform: "none" })}>
+            {exp.period}
+            {exp.current && (
+              <span style={{ display: "block", color: C.rust, fontWeight: 700, marginTop: 4 }}>● ACTIVE</span>
+            )}
+          </div>
+          <div>
+            <div style={{ fontFamily: F.body, fontSize: 15, fontWeight: 600, letterSpacing: "-0.15px", lineHeight: "21.75px" }}>{exp.role}</div>
+            <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", color: C.muted, margin: "4px 0 8px" })}>{exp.company}</div>
+            <p style={{ fontFamily: F.body, fontSize: 15, lineHeight: "21.75px", color: C.muted, margin: 0, maxWidth: 560 }}>{exp.description}</p>
+          </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignContent: "flex-start" }}>
+            {exp.technologies.map((tech) => (
+              <span key={tech} style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", textTransform: "none", border: "1px solid rgba(22,25,15,0.42)", borderRadius: 2, padding: "3px 7px", height: "fit-content" })}>
+                {tech}
+              </span>
+            ))}
+          </div>
+        </Hover>
+      ))}
+    </div>
+  );
+}

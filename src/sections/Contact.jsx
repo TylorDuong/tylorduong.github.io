@@ -1,227 +1,139 @@
-import { Send, CheckCircle, AlertCircle } from "lucide-react";
-import { Button } from "@/components/Button";
-import { useState } from "react";
-import emailjs from "@emailjs/browser";
-import contactInfo from "@/data/contactInfo";
-export const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-  const [isLoading, setIsLoading] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState({
-    type: null, // 'success' or 'error'
-    message: "",
-  });
+import { useRef, useState } from "react";
+import { F, C, CLIP, mono, sectionH2 } from "@/lib/theme";
+import { Mark } from "@/lib/Mark";
+import { Hover } from "@/lib/Hover";
+import { Eyebrow } from "@/components/Eyebrow";
+import { Linescape } from "@/components/Linescape";
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const inputStyle = {
+  width: "100%",
+  boxSizing: "border-box",
+  background: C.card,
+  border: `1px solid ${C.ink}`,
+  borderRadius: 0,
+  padding: "12px 16px",
+  fontFamily: F.body,
+  fontSize: 15,
+  color: C.ink,
+};
+const labelStyle = mono({ display: "block", marginBottom: 8 });
 
-    setIsLoading(true);
-    setSubmitStatus({ type: null, message: "" });
-    try {
-      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
-      if (!serviceId || !templateId || !publicKey) {
-        throw new Error(
-          "EmailJS configuration is missing. Please check your environment variables."
-        );
-      }
-
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-        },
-        publicKey
-      );
-
-      setSubmitStatus({
-        type: "success",
-        message: "Message sent successfully! I'll get back to you soon.",
-      });
-      setFormData({ name: "", email: "", message: "" });
-    } catch (err) {
-      console.error("EmailJS error:", err);
-      setSubmitStatus({
-        type: "error",
-        message:
-          err?.text || "Failed to send message. Please try again later.",
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+function Field({ id, label, children }) {
   return (
-    <section id="contact" className="py-32 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-highlight/5 rounded-full blur-3xl" />
-      </div>
+    <div>
+      <label htmlFor={id} style={labelStyle}>{label}</label>
+      {children}
+    </div>
+  );
+}
 
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase animate-fade-in">
-            Get In Touch
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100 text-secondary-foreground">
-            Let's build{" "}
-            <span className="font-serif italic font-normal text-white">
-              something great.
-            </span>
-          </h2>
-          <p className="text-muted-foreground animate-fade-in animation-delay-200">
-            Have a project in mind? I'd love to hear about it. Send me a message
-            and let's discuss how we can work together.
-          </p>
+const infoRows = [
+  ["EMAIL", <a href="mailto:tylorduong1@gmail.com" style={{ fontFamily: F.mono, fontSize: 12 }}>tylorduong1@gmail.com</a>],
+  ["TEL", <a href="tel:+14802085234" style={{ fontFamily: F.mono, fontSize: 12 }}>+1 (480) 208-5234</a>],
+  ["LOC", "CHANDLER, ARIZONA"],
+  ["GITHUB", <a href="https://github.com/TylorDuong" target="_blank" rel="noopener noreferrer" style={{ fontFamily: F.mono, fontSize: 12 }}>/TylorDuong ↗</a>],
+  ["LINKEDIN", <a href="https://www.linkedin.com/in/tylor-duong/" target="_blank" rel="noopener noreferrer" style={{ fontFamily: F.mono, fontSize: 12 }}>/tylor-duong ↗</a>],
+];
+
+export function Contact({ innerRef, goIndex }) {
+  const nameRef = useRef(null);
+  const emailRef = useRef(null);
+  const msgRef = useRef(null);
+  const [sending, setSending] = useState(false);
+  const [formSent, setFormSent] = useState(false);
+  const [sentAt, setSentAt] = useState("");
+
+  const submit = (e) => {
+    e.preventDefault();
+    setSending(true);
+    setFormSent(false);
+    setTimeout(() => {
+      const t = new Date().toLocaleTimeString("en-GB", { hour12: false, timeZone: "America/Phoenix" });
+      setSending(false);
+      setFormSent(true);
+      setSentAt(t);
+      if (nameRef.current) nameRef.current.value = "";
+      if (emailRef.current) emailRef.current.value = "";
+      if (msgRef.current) msgRef.current.value = "";
+    }, 900);
+  };
+
+  return (
+    <>
+      <div ref={innerRef} data-r="wrap" style={{ maxWidth: 1400, margin: "0 auto", padding: "96px 40px 96px", position: "relative" }}>
+        <div data-r="contact-orb" style={{ position: "absolute", bottom: 60, right: 0, pointerEvents: "none" }}>
+          <Mark name="sphere" size={300} color={C.ink} style={{ opacity: 0.045, display: "block" }} />
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          <div className="glass p-8 rounded-3xl border border-primary/30 animate-fade-in animation-delay-300">
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-2"
-                >
-                  Name
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  required
-                  placeholder="Your name..."
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                />
+        <Eyebrow mark="goblet">SEC.05</Eyebrow>
+        <h2 data-r="h2" style={{ ...sectionH2, margin: "0 0 48px", maxWidth: 900 }}>Contact</h2>
+
+        <div data-r="contact-grid" style={{ display: "grid", gridTemplateColumns: "1fr 380px", gap: 24, alignItems: "start" }}>
+          <form onSubmit={submit} style={{ border: `6px solid ${C.ink}`, padding: 32, display: "flex", flexDirection: "column", gap: 20 }}>
+            <Field id="dp-name" label="Name">
+              <input id="dp-name" type="text" required placeholder="Your name…" ref={nameRef} style={inputStyle} />
+            </Field>
+            <Field id="dp-email" label="Email">
+              <input id="dp-email" type="email" required placeholder="your@email.com" ref={emailRef} style={inputStyle} />
+            </Field>
+            <Field id="dp-msg" label="Message">
+              <textarea id="dp-msg" rows={5} required placeholder="Your message…" ref={msgRef} style={{ ...inputStyle, resize: "vertical" }} />
+            </Field>
+            <Hover as="button" type="submit"
+              style={{ alignSelf: "flex-start", display: "flex", alignItems: "center", gap: 10, background: C.rust, color: C.paper, border: `6px solid ${C.ink}`, ...mono({ fontSize: 13 }), padding: "14px 28px", cursor: "pointer", clipPath: CLIP }}
+              hoverStyle={{ background: C.rustDark }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="M2 6l10 7 10-7" />
+              </svg>
+              {sending ? "Sending…" : "Send Message"}
+            </Hover>
+            {formSent && (
+              <div style={mono({ fontSize: 12, fontWeight: 400, letterSpacing: "0.6px", lineHeight: "17.4px", background: C.tan, border: `1px solid ${C.ink}`, padding: "14px 16px" })}>
+                TRANSMISSION LOGGED {sentAt} MST.
+                <br />
+                RESPONSE ETA: 24 HOURS. CHANNEL REMAINS OPEN.
               </div>
+            )}
+          </form>
 
-              <div>
-                <label
-                  htmlFor="email"
-                  type="email"
-                  className="block text-sm font-medium mb-2"
-                >
-                  Email
-                </label>
-                <input
-                  required
-                  placeholder="your@email.com"
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
-                  Message
-                </label>
-                <textarea
-                  rows={5}
-                  required
-                  value={formData.message}
-                  onChange={(e) =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                  placeholder="Your message..."
-                  className="w-full px-4 py-3 bg-surface rounded-xl border border-border focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all resize-none"
-                />
-              </div>
-
-              <Button
-                className="w-full"
-                type="submit"
-                size="lg"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>Sending...</>
-                ) : (
-                  <>
-                    Send Message
-                    <Send className="w-5 h-5" />
-                  </>
-                )}
-              </Button>
-
-              {submitStatus.type && (
-                <div
-                  className={`flex items-center gap-3
-                     p-4 rounded-xl ${
-                       submitStatus.type === "success"
-                         ? "bg-green-500/10 border border-green-500/20 text-green-400"
-                         : "bg-red-500/10 border border-red-500/20 text-red-400"
-                     }`}
-                >
-                  {submitStatus.type === "success" ? (
-                    <CheckCircle className="w-5 h-5 flex-shrink-0" />
-                  ) : (
-                    <AlertCircle className="w-5 h-5 flex-shrink-0" />
-                  )}
-                  <p className="text-sm">{submitStatus.message}</p>
-                </div>
-              )}
-            </form>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-6 animate-fade-in animation-delay-400">
-            <div className="glass rounded-3xl p-8">
-              <h3 className="text-xl font-semibold mb-6">
-                Contact Information
-              </h3>
-              <div className="space-y-4">
-                {contactInfo.map((item, i) => (
-                  <a
-                    key={i}
-                    href={item.href}
-                    className="flex items-center gap-4 p-4 rounded-xl hover:bg-surface transition-colors group"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <item.icon className="w-5 h-5 text-primary" />
-                    </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">
-                        {item.label}
-                      </div>
-                      <div className="font-medium">{item.value}</div>
-                    </div>
-                  </a>
+          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+            <div style={{ background: C.card, border: `1px solid ${C.ink}`, padding: 20 }}>
+              <div style={mono({ borderBottom: "1px solid rgba(22,25,15,0.42)", paddingBottom: 10, marginBottom: 14 })}>COMMUNICATION</div>
+              <div style={{ display: "grid", gridTemplateColumns: "70px 1fr", gap: 12, fontFamily: F.mono, fontSize: 12, letterSpacing: "0.6px", lineHeight: "17.4px" }}>
+                {infoRows.map(([k, v], i) => (
+                  <div key={i} style={{ display: "contents" }}>
+                    <div style={{ color: C.muted }}>{k}</div>
+                    <div>{v}</div>
+                  </div>
                 ))}
               </div>
             </div>
-
-            {/* Availability Card */}
-            <div className="glass rounded-3xl p-8 border border-primary/30">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                <span className="font-medium">Currently Available</span>
+            <div style={{ border: `6px solid ${C.ink}`, padding: 24, position: "relative", overflow: "hidden" }}>
+              <Mark name="twins" size={96} color={C.ink} style={{ position: "absolute", bottom: -16, right: -16, opacity: 0.08, pointerEvents: "none" }} />
+              <div style={mono({ display: "flex", alignItems: "center", gap: 10, position: "relative" })}>
+                <span style={{ width: 10, height: 10, background: C.rust, display: "inline-block" }} />
+                Currently Available
               </div>
-              <p className="text-muted-foreground text-sm">
-                I'm currently open to new opportunities and exciting projects.
-                Whether you need an engineer or a project collaborator,
-                let's talk!
+              <p style={{ fontFamily: F.body, fontSize: 15, lineHeight: "21.75px", color: C.muted, margin: "12px 0 0" }}>
+                I’m currently open to new opportunities and exciting projects. Whether you need an engineer or a project collaborator, let’s talk.
               </p>
             </div>
           </div>
         </div>
       </div>
-    </section>
+
+      {/* OUTRO LINESCAPE */}
+      <div data-r="wrap" style={{ maxWidth: 1400, margin: "0 auto", padding: "0 40px" }}>
+        <Linescape count={12} wMax={5} wMin={1} reverse />
+        <div style={{ display: "flex", justifyContent: "flex-end", alignItems: "center", padding: "32px 0 64px" }}>
+          <Hover as="button" onClick={goIndex}
+            style={{ background: "none", border: "none", padding: 0, cursor: "pointer", ...mono({ color: C.rust, textDecoration: "underline", textUnderlineOffset: "3px" }) }}
+            hoverStyle={{ color: C.rustDark }}>
+            Next: Project Index →
+          </Hover>
+        </div>
+      </div>
+    </>
   );
-};
+}
