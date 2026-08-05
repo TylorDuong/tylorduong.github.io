@@ -1,0 +1,39 @@
+{
+  "name": "Tylor Duong",
+  "lead": "Computer Science 2028 early graduate with project experience in full-stack development, object-oriented programming, and game development.",
+  "resumeSummary": "Versatile Software Engineer and startup founder specializing in full-stack development, AI integration, and interactive software. Proven ability to rapidly prototype and deploy robust applications, automate enterprise workflows, and engineer end-to-end IoT solutions.",
+  "resumeUrl": "/resume/",
+  "contact": {
+    "email": "tylorduong1@gmail.com",
+    "phone": "+1 (480) 208-5234",
+    "phoneHref": "tel:+14802085234",
+    "phoneDotted": "+1.480.208.5234",
+    "location": "Chandler, Arizona",
+    "locationShort": "CHANDLER.AZ",
+    "locationResume": "Chandler, AZ, 85249",
+    "github": { "url": "https://github.com/TylorDuong", "handle": "/TylorDuong", "resumeLabel": "github.com/TylorDuong" },
+    "linkedin": { "url": "https://www.linkedin.com/in/tylor-duong/", "handle": "/tylor-duong", "resumeLabel": "linkedin.com/in/TylorDuong" },
+    "website": { "url": "https://tylorduong.dev", "handle": "tylorduong.dev", "resumeLabel": "TylorDuong.dev" }
+  },
+  "education": [
+    {
+      "school": "Arizona State University",
+      "location": "Tempe, AZ",
+      "degree": "B.S. Computer Science",
+      "minor": "Media Arts & Sciences",
+      "certificate": "Computer Gaming",
+      "start": "2024-08",
+      "end": "2028-05",
+      "expected": true,
+      "coursework": [
+        "Data Structures and Algorithms",
+        "Object Oriented Programming",
+        "Software Engineering",
+        "Cybersecurity",
+        "Operating Systems",
+        "Programming Languages",
+        "Computing Ethics"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "categories": [
+    {
+      "id": "languages",
+      "label": "Languages",
+      "items": ["Python", "JavaScript", "TypeScript", "C/C++", "C#", "Java", "SQL", "HTML", "CSS"]
+    },
+    {
+      "id": "frontend",
+      "label": "Frontend & Mobile",
+      "items": ["React", "Next.js", "React Native", "Tailwind CSS", "Styled Components", "Figma"]
+    },
+    {
+      "id": "backend",
+      "label": "Backend & Databases",
+      "items": ["Node.js", "Express.js", "FastAPI", "PostgreSQL", "MySQL", "MongoDB", "Supabase", "Firebase"]
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud & DevOps",
+      "items": ["AWS", "GCP", "Azure", "Vercel", "Docker", "Git", "GitHub"]
+    },
+    {
+      "id": "ai",
+      "label": "AI & Data",
+      "items": ["PyTorch", "OpenCV", "Pandas", "NumPy", "Gemini API", "OpenRouter", "LLMs"]
+    },
+    {
+      "id": "hardware",
+      "label": "Hardware & Design",
+      "items": ["Unity", "Arduino", "Raspberry Pi", "Altium Designer", "AutoCAD", "Blender"]
+    },
+    {
+      "id": "enterprise",
+      "label": "Enterprise Tools",
+      "items": ["Power Platform", "Power BI", "Power Apps", "n8n", "SharePoint"]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "paragraphs": [
+    "I'm Tylor Duong, a Computer Science student at Arizona State University and an early graduate specializing in full-stack development, AI integration, and interactive software.",
+    "My work spans founding an IoT startup (ShelfSmart), shipping a neuroinclusive edtech platform to 40,000+ students (Yber), and automating enterprise workflows at Yazaki—alongside computer-vision, game, and VR projects. I have a proven ability to rapidly prototype and deploy robust applications from web to VR.",
+    "I enjoy shipping features end-to-end and iterating quickly based on real user needs, whether that's a real-time CV pipeline, an agentic grading system, or an enterprise dashboard resolving network bottlenecks instantly."
+  ],
+  "quote": "My mission is to build software that feels great to use—clean UI, solid engineering, and measurable impact.",
+  "highlights": [
+    {
+      "code": "FS",
+      "title": "Full-Stack + AI Integration",
+      "description": "Ships responsive products end-to-end with React/Next.js, Node, FastAPI, and multi-layer agentic AI architectures."
+    },
+    {
+      "code": "IOT",
+      "title": "IoT & Hardware Systems",
+      "description": "Founder-level work engineering end-to-end IoT ecosystems—sensors, forecasting models, and the software around them."
+    },
+    {
+      "code": "CV",
+      "title": "AI + Computer Vision",
+      "description": "Real-time form-correction and tracking pipelines using webcam input and CV models (YOLOv8, ViTPose++, OpenCV)."
+    },
+    {
+      "code": "ENT",
+      "title": "Enterprise Automation",
+      "description": "Award-winning automation and reporting tooling on Power Platform, Azure, and SharePoint for 2,000+ enterprise users."
+    }
+  ]
+}

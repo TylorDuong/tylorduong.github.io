@@ -7,6 +7,15 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 export default defineConfig([
   globalIgnores(['dist']),
   {
+    // Node-side files: build config and the local admin tooling. These run in
+    // Node, not the browser, so they need __dirname/process/Buffer.
+    files: ['vite.config.js', 'eslint.config.js', 'tools/**/*.js'],
+    languageOptions: {
+      globals: globals.node,
+      parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+    },
+  },
+  {
     files: ['**/*.{js,jsx}'],
     extends: [
       js.configs.recommended,
