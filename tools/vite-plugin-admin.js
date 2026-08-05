@@ -404,6 +404,9 @@ export function adminIsolationGuard() {
   return {
     name: "portfolio-admin-isolation",
     apply: "build",
+    // Must be 'pre': resolveId hooks run in order until one returns a result,
+    // and Vite's own resolver would otherwise handle the id before this sees it.
+    enforce: "pre",
     resolveId(source, importer) {
       if (!importer) return null;
       const from = importer.replace(/\\/g, "/");

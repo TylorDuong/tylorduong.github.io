@@ -18,7 +18,13 @@ export function Publish({ dirty, onSaveAll }) {
   const logRef = useRef(null);
 
   const refresh = () => api.status().then(setStatus).catch(() => {});
-  useEffect(refresh, []);
+
+  // Must not be `useEffect(refresh, [])`: refresh returns a promise, React
+  // takes an effect's return value to be the cleanup function, and calls it on
+  // unmount — "destroy is not a function".
+  useEffect(() => {
+    refresh();
+  }, []);
 
   useEffect(() => {
     logRef.current?.scrollTo(0, logRef.current.scrollHeight);
