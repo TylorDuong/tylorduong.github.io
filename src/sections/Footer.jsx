@@ -1,8 +1,6 @@
 import { F, C, mono } from "@/lib/theme";
 import { Hover } from "@/lib/Hover";
-
-const CV_URL =
-  "https://drive.google.com/file/d/1mPAFaC18GQo6RkEi8rYPYC5cGysHmfSd/view?usp=sharing";
+import { contact, profile } from "@/data";
 
 export function Footer({ go }) {
   return (
@@ -13,12 +11,12 @@ export function Footer({ go }) {
       >
         <div>
           <div style={{ fontFamily: F.tight, fontSize: 20, fontWeight: 600, letterSpacing: "-0.4px", color: C.paper, marginBottom: 12 }}>
-            TYLOR DUONG
+            {profile.name.toUpperCase()}
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 4, fontFamily: F.mono, fontSize: 12, letterSpacing: "0.6px", lineHeight: "17.4px" }}>
-            <a href="mailto:tylorduong1@gmail.com" style={{ color: "rgba(241,237,226,0.55)" }}>tylorduong1@gmail.com</a>
-            <a href="tel:+14802085234" style={{ color: "rgba(241,237,226,0.55)" }}>+1 (480) 208-5234</a>
-            <span style={{ color: "rgba(241,237,226,0.55)" }}>CHANDLER, ARIZONA</span>
+            <a href={`mailto:${contact.email}`} style={{ color: "rgba(241,237,226,0.55)" }}>{contact.email}</a>
+            <a href={contact.phoneHref} style={{ color: "rgba(241,237,226,0.55)" }}>{contact.phone}</a>
+            <span style={{ color: "rgba(241,237,226,0.55)" }}>{contact.location.toUpperCase()}</span>
           </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 8, ...mono({ fontSize: 12, letterSpacing: "0.6px", lineHeight: "17.4px" }) }}>
@@ -27,9 +25,9 @@ export function Footer({ go }) {
             hoverStyle={{ color: C.rust }}>
             Contact
           </Hover>
-          <a href={CV_URL} target="_blank" rel="noopener noreferrer" style={{ color: C.paper }}>Download CV ↗</a>
-          <a href="https://github.com/TylorDuong" target="_blank" rel="noopener noreferrer" style={{ color: C.paper }}>GitHub ↗</a>
-          <a href="https://www.linkedin.com/in/tylor-duong/" target="_blank" rel="noopener noreferrer" style={{ color: C.paper }}>LinkedIn ↗</a>
+          <a href={profile.resumeUrl} style={{ color: C.paper }}>Résumé ↗</a>
+          <a href={contact.github.url} target="_blank" rel="noopener noreferrer" style={{ color: C.paper }}>GitHub ↗</a>
+          <a href={contact.linkedin.url} target="_blank" rel="noopener noreferrer" style={{ color: C.paper }}>LinkedIn ↗</a>
         </div>
       </div>
     </div>

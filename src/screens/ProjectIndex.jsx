@@ -1,6 +1,7 @@
 import { F, C, mono } from "@/lib/theme";
 import { Mark } from "@/lib/Mark";
 import { Hover } from "@/lib/Hover";
+import { contact } from "@/data";
 
 const GRID = "52px 96px minmax(220px,1fr) 200px 260px 64px";
 
@@ -91,7 +92,7 @@ export function ProjectIndex({ personalProjects, enterpriseProjects, personalCou
       ))}
 
       <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", color: C.muted, marginTop: 24 })}>
-        SELECT A ROW TO OPEN THE UNIT FILE. SOURCE: GITHUB.COM/TYLORDUONG
+        SELECT A ROW TO OPEN THE UNIT FILE. SOURCE: {contact.github.resumeLabel.toUpperCase()}
       </div>
     </div>
   );

@@ -2,10 +2,8 @@ import { F, C, CLIP, mono } from "@/lib/theme";
 import { Mark } from "@/lib/Mark";
 import { Hover } from "@/lib/Hover";
 import { Linescape } from "@/components/Linescape";
-import { skills } from "@/data";
+import { skills, profile, contact, educationLine } from "@/data";
 
-const CV_URL =
-  "https://drive.google.com/file/d/1mPAFaC18GQo6RkEi8rYPYC5cGysHmfSd/view?usp=sharing";
 const SKILLS_LINE = skills.map((s) => s.toUpperCase()).join(" · ");
 
 function MetricCard({ label, value, sub, expanded, breakdown, onToggle, ariaLabel }) {
@@ -107,7 +105,7 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount, tickerDur })
       >
         <div>
           <div style={mono({ color: C.ink, marginBottom: 32, lineHeight: "18.2px" })}>
-            B.S. COMPUTER SCIENCE — ARIZONA STATE UNIVERSITY — MAY 2028
+            {educationLine}
           </div>
           <h1
             data-r="hero-h1"
@@ -140,8 +138,7 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount, tickerDur })
               margin: "40px 0 0",
             }}
           >
-            Computer Science 2028 early graduate with project experience in full-stack
-            development, object-oriented programming, and game development.
+            {profile.lead}
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 20, marginTop: 48 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 16, flexWrap: "wrap" }}>
@@ -163,9 +160,7 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount, tickerDur })
               </Hover>
               <Hover
                 as="a"
-                href={CV_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                href={profile.resumeUrl}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -180,7 +175,7 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount, tickerDur })
                 }}
                 hoverStyle={{ background: "rgba(22,25,15,0.08)" }}
               >
-                Download CV
+                Résumé
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 3v12" />
                   <path d="M7 10l5 5 5-5" />
@@ -189,13 +184,13 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount, tickerDur })
               </Hover>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-              <Hover as="a" href="https://github.com/TylorDuong" target="_blank" rel="noopener noreferrer"
+              <Hover as="a" href={contact.github.url} target="_blank" rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F.body, fontSize: 15, color: C.ink, textDecoration: "none" }}
                 hoverStyle={{ color: C.rust }}>
                 <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path fillRule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z" /></svg>
                 GitHub
               </Hover>
-              <Hover as="a" href="https://www.linkedin.com/in/tylor-duong/" target="_blank" rel="noopener noreferrer"
+              <Hover as="a" href={contact.linkedin.url} target="_blank" rel="noopener noreferrer"
                 style={{ display: "inline-flex", alignItems: "center", gap: 8, fontFamily: F.body, fontSize: 15, color: C.ink, textDecoration: "none" }}
                 hoverStyle={{ color: C.rust }}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.446-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 11.001-4.124 2.062 2.062 0 010 4.124zM7.114 20.452H3.558V9h3.556v11.452z" /></svg>
@@ -217,7 +212,7 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount, tickerDur })
             <img src="/profile-photo.png" alt="Tylor Duong" style={{ display: "block", width: "100%", aspectRatio: "4/5", objectFit: "cover" }} />
           </div>
           <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", lineHeight: "15.95px", color: C.muted, textAlign: "right", marginTop: 48 })}>
-            LOCATION: CHANDLER.AZ
+            LOCATION: {contact.locationShort}
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { Mark } from "@/lib/Mark";
 import { Hover } from "@/lib/Hover";
 import { Eyebrow } from "@/components/Eyebrow";
 import { Linescape } from "@/components/Linescape";
+import { contact } from "@/data";
 
 const inputStyle = {
   width: "100%",
@@ -27,12 +28,14 @@ function Field({ id, label, children }) {
   );
 }
 
+const linkStyle = { fontFamily: F.mono, fontSize: 12 };
+
 const infoRows = [
-  ["EMAIL", <a href="mailto:tylorduong1@gmail.com" style={{ fontFamily: F.mono, fontSize: 12 }}>tylorduong1@gmail.com</a>],
-  ["TEL", <a href="tel:+14802085234" style={{ fontFamily: F.mono, fontSize: 12 }}>+1 (480) 208-5234</a>],
-  ["LOC", "CHANDLER, ARIZONA"],
-  ["GITHUB", <a href="https://github.com/TylorDuong" target="_blank" rel="noopener noreferrer" style={{ fontFamily: F.mono, fontSize: 12 }}>/TylorDuong ↗</a>],
-  ["LINKEDIN", <a href="https://www.linkedin.com/in/tylor-duong/" target="_blank" rel="noopener noreferrer" style={{ fontFamily: F.mono, fontSize: 12 }}>/tylor-duong ↗</a>],
+  ["EMAIL", <a href={`mailto:${contact.email}`} style={linkStyle}>{contact.email}</a>],
+  ["TEL", <a href={contact.phoneHref} style={linkStyle}>{contact.phone}</a>],
+  ["LOC", contact.location.toUpperCase()],
+  ["GITHUB", <a href={contact.github.url} target="_blank" rel="noopener noreferrer" style={linkStyle}>{contact.github.handle} ↗</a>],
+  ["LINKEDIN", <a href={contact.linkedin.url} target="_blank" rel="noopener noreferrer" style={linkStyle}>{contact.linkedin.handle} ↗</a>],
 ];
 
 export function Contact({ innerRef, goIndex }) {

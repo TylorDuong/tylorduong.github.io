@@ -1,5 +1,6 @@
 import { F, C } from "@/lib/theme";
 import { PAPER_GRAIN } from "@/lib/util";
+import { contact } from "@/data";
 
 // Fixed HUD corner readout (contact ID), bottom-right.
 export function HudCorners({ show = true }) {
@@ -30,9 +31,9 @@ export function HudCorners({ show = true }) {
           padding: "2px 6px",
         }}
       >
-        ID: TYLORDUONG1@GMAIL.COM
+        ID: {contact.email}
         <br />
-        TEL: +1.480.208.5234
+        TEL: {contact.phoneDotted}
       </div>
     </div>
   );

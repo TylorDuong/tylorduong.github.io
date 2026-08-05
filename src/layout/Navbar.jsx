@@ -1,5 +1,6 @@
 import { F, C } from "@/lib/theme";
 import { Hover } from "@/lib/Hover";
+import { contact } from "@/data";
 
 const LINKS = [
   ["home", "Home"],
@@ -192,9 +193,9 @@ export function Navbar({ active, go, menuOpen, openMenu, closeMenu }) {
             color: "rgba(241,237,226,0.5)",
           }}
         >
-          TYLORDUONG1@GMAIL.COM
+          {contact.email}
           <br />
-          +1.480.208.5234
+          {contact.phoneDotted}
         </div>
       </div>
     </>
