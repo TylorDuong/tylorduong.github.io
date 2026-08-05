@@ -49,15 +49,6 @@ button:focus-visible {
   outline-offset: 0;
 }
 
-@keyframes ticker-scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
@@ -140,6 +131,11 @@ button:focus-visible {
     grid-template-columns: 1fr !important;
     gap: 6px 0 !important;
     padding: 18px 0 !important;
+  }
+  [data-r="skill-row"] {
+    grid-template-columns: 1fr !important;
+    gap: 6px 0 !important;
+    padding: 14px 0 !important;
   }
   [data-r="about-orb"],
   [data-r="pd-orb"],

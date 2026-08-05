@@ -173,7 +173,6 @@ export default function App() {
             metrics={metrics}
             metricsRef={setMetricsEl}
             unitCount={derived.unitCount}
-            tickerDur="48s"
           />
           <About innerRef={setSectionEl("about")} />
           <Projects

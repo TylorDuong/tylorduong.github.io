@@ -2,9 +2,24 @@ import { F, C, CLIP, mono } from "@/lib/theme";
 import { Mark } from "@/lib/Mark";
 import { Hover } from "@/lib/Hover";
 import { Linescape } from "@/components/Linescape";
-import { skills, profile, contact, educationLine } from "@/data";
+import { skillGroups, profile, contact, educationLine } from "@/data";
 
-const SKILLS_LINE = skills.map((s) => s.toUpperCase()).join(" · ");
+// Mirrors the Experience section's table so the two read as one system:
+// index / label / chips / count.
+const SKILL_GRID = "60px 220px 1fr 90px";
+
+// The chip style is lifted verbatim from sections/Experience.jsx — new visual
+// vocabulary here would make the two tables look like different components.
+const CHIP = mono({
+  fontSize: 11,
+  fontWeight: 400,
+  letterSpacing: "0.88px",
+  textTransform: "none",
+  border: "1px solid rgba(22,25,15,0.42)",
+  borderRadius: 2,
+  padding: "3px 7px",
+  height: "fit-content",
+});
 
 function MetricCard({ label, value, sub, expanded, breakdown, onToggle, ariaLabel }) {
   return (
@@ -87,7 +102,7 @@ function MetricCard({ label, value, sub, expanded, breakdown, onToggle, ariaLabe
   );
 }
 
-export function Hero({ go, goIndex, metrics, metricsRef, unitCount, tickerDur }) {
+export function Hero({ go, goIndex, metrics, metricsRef, unitCount }) {
   return (
     <div>
       {/* HERO */}
@@ -286,7 +301,7 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount, tickerDur })
         <Linescape count={16} wMax={7} wMin={1} masked />
       </div>
 
-      {/* SKILLS READOUT (scrolling) */}
+      {/* CAPABILITY MATRIX */}
       <div
         data-r="wrap"
         style={{
@@ -295,25 +310,49 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount, tickerDur })
           padding: "32px 40px",
           borderTop: "1px solid rgba(22,25,15,0.18)",
           borderBottom: "1px solid rgba(22,25,15,0.18)",
-          display: "flex",
-          gap: 24,
-          alignItems: "baseline",
-          overflow: "hidden",
         }}
       >
-        <span style={mono({ whiteSpace: "nowrap", flexShrink: 0 })}>Tools /</span>
-        <div style={{ overflow: "hidden", flex: 1, minWidth: 0 }}>
-          <Hover
-            style={{ display: "flex", width: "max-content", whiteSpace: "nowrap", animation: `ticker-scroll ${tickerDur} linear infinite` }}
-            hoverStyle={{ animationPlayState: "paused" }}
-          >
-            {[0, 1].map((n) => (
-              <span key={n} style={mono({ fontSize: 12, fontWeight: 400, letterSpacing: "0.6px", lineHeight: "17.4px", color: C.muted, paddingRight: 48 })}>
-                {SKILLS_LINE}
-              </span>
-            ))}
-          </Hover>
+        <div style={mono({ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 })}>
+          <Mark name="dotgrid" size={14} color={C.rust} />
+          Tools — Capability Matrix
         </div>
+
+        <div style={{ borderBottom: `3px solid ${C.ink}` }} />
+
+        {skillGroups.map((group, i) => (
+          <Hover
+            key={group.id}
+            as="div"
+            data-r="skill-row"
+            style={{
+              display: "grid",
+              gridTemplateColumns: SKILL_GRID,
+              gap: "0 24px",
+              padding: "16px 0",
+              alignItems: "start",
+              borderBottom: "1px solid rgba(22,25,15,0.18)",
+              background: "transparent",
+            }}
+            hoverStyle={{ background: C.tint }}
+          >
+            <div style={mono({ fontSize: 12, fontWeight: 400, letterSpacing: "0.6px", color: C.muted, textTransform: "none" })}>
+              {String(i + 1).padStart(2, "0")}
+            </div>
+            <div style={mono({ fontSize: 12, letterSpacing: "0.6px", lineHeight: "17.4px" })}>
+              {group.label}
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignContent: "flex-start" }}>
+              {group.items.map((item) => (
+                <span key={item} style={CHIP}>
+                  {item}
+                </span>
+              ))}
+            </div>
+            <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", color: C.muted, textAlign: "right" })}>
+              {group.items.length} ITEMS
+            </div>
+          </Hover>
+        ))}
       </div>
     </div>
   );
