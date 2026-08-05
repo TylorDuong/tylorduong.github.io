@@ -167,6 +167,9 @@ button:focus-visible {
     padding-left: 20px !important;
     padding-right: 20px !important;
   }
+  [data-r="hero-h1"] {
+    font-size: 36px !important;
+  }
   [data-r="nav"] {
     padding-left: 20px !important;
     padding-right: 20px !important;

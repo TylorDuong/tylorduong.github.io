@@ -110,6 +110,7 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount, tickerDur })
             B.S. COMPUTER SCIENCE — ARIZONA STATE UNIVERSITY — MAY 2028
           </div>
           <h1
+            data-r="hero-h1"
             style={{
               fontFamily: F.tight,
               fontSize: "clamp(52px,7vw,104px)",
