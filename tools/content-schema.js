@@ -138,6 +138,9 @@ export function validate(entity, doc) {
       if (!Array.isArray(doc?.categories)) {
         return [err("categories", "skills.categories must be an array")];
       }
+      if (doc.ignored != null && !Array.isArray(doc.ignored)) {
+        out.push(err("ignored", "ignored must be an array of strings"));
+      }
       const ids = new Set();
       const items = new Set();
       doc.categories.forEach((c, i) => {

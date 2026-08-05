@@ -35,4 +35,16 @@ export default defineConfig([
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
   },
+  {
+    // The shipped site must never reach into the local admin tool. The
+    // dependency runs one way only: admin/ may import from src/.
+    files: ['src/**/*.{js,jsx}'],
+    rules: {
+      'no-restricted-imports': ['error', {
+        patterns: [
+          { group: ['**/admin/**', 'admin/*', '../admin/*'], message: 'src/ must not import from admin/ — it would ship the editor to production.' },
+        ],
+      }],
+    },
+  },
 ])

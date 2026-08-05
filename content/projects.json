@@ -16,10 +16,22 @@
       "Built a multi-layer agentic architecture that autonomously grades student submissions, delivers feedback, creates lessons, and announces milestones on social media."
     ],
     "image": "/projects/yber.png",
-    "tech": ["React", "Node.js", "Supabase", "GCP", "Gemini Agents", "n8n", "OpenRouter", "Vercel"],
+    "tech": [
+      "React",
+      "Node.js",
+      "Supabase",
+      "GCP",
+      "Gemini Agents",
+      "n8n",
+      "OpenRouter",
+      "Vercel"
+    ],
     "link": "https://yber.ai",
     "github": "https://github.com/TylorDuong",
-    "resume": { "include": false, "order": null }
+    "resume": {
+      "include": false,
+      "order": null
+    }
   },
   {
     "id": "shelfsmart",
@@ -38,10 +50,22 @@
       "Designed a scalable platform to reduce manual labor, eliminate human ordering errors, and protect venue profit margins."
     ],
     "image": "/projects/shelfsmart.png",
-    "tech": ["React", "Next.js", "Node.js", "Python", "OpenCV", "IoT Sensors", "Supabase", "Vercel"],
+    "tech": [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Python",
+      "OpenCV",
+      "IoT Sensors",
+      "Supabase",
+      "Vercel"
+    ],
     "link": "https://github.com/TylorDuong",
     "github": "https://github.com/TylorDuong",
-    "resume": { "include": false, "order": null }
+    "resume": {
+      "include": false,
+      "order": null
+    }
   },
   {
     "id": "wifi-portal",
@@ -60,10 +84,20 @@
       "Enabled IT to instantly locate and resolve network bottlenecks for 2,000+ office users."
     ],
     "image": "/projects/wifi-portal.png",
-    "tech": ["Python", "Power Platform", "Power BI", "SQL", "Azure", "SharePoint"],
+    "tech": [
+      "Python",
+      "Power Platform",
+      "Power BI",
+      "SQL",
+      "Azure",
+      "SharePoint"
+    ],
     "link": "https://github.com/TylorDuong",
     "github": "https://github.com/TylorDuong",
-    "resume": { "include": false, "order": null }
+    "resume": {
+      "include": false,
+      "order": null
+    }
   },
   {
     "id": "quotation-engine",
@@ -82,10 +116,20 @@
       "Precisely calculated labor, cost, and factory-layout requirements from parsed specifications."
     ],
     "image": "/projects/quotation-engine.png",
-    "tech": ["Python", "LLMs", "SQL", "Azure", "Power Platform", "SharePoint"],
+    "tech": [
+      "Python",
+      "LLMs",
+      "SQL",
+      "Azure",
+      "Power Platform",
+      "SharePoint"
+    ],
     "link": "https://github.com/TylorDuong",
     "github": "https://github.com/TylorDuong",
-    "resume": { "include": false, "order": null }
+    "resume": {
+      "include": false,
+      "order": null
+    }
   },
   {
     "id": "moveright",
@@ -104,10 +148,21 @@
       "Created a custom data-annotation tool and dataset of human exercises for more accurate models."
     ],
     "image": "/projects/moveright.jpg",
-    "tech": ["Next.js", "React", "Tailwind CSS", "React Webcam", "FastAPI", "YOLOv8", "ViTPose++"],
+    "tech": [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "React Webcam",
+      "FastAPI",
+      "YOLOv8",
+      "ViTPose++"
+    ],
     "link": "https://github.com/MoveRightRepo/MoveRight",
     "github": "https://github.com/MoveRightRepo/MoveRight",
-    "resume": { "include": true, "order": 2 }
+    "resume": {
+      "include": true,
+      "order": 2
+    }
   },
   {
     "id": "assemblisim",
@@ -126,10 +181,19 @@
       "Implemented camera scanning of existing factory environments, creating an interactive environment to edit, modify, and monitor layout discrepancies in real time."
     ],
     "image": "/projects/assemblisim.jpg",
-    "tech": ["Unity2D", "React", "TypeScript", "Tailwind CSS", "Hardware Sensors"],
+    "tech": [
+      "Unity2D",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Hardware Sensors"
+    ],
     "link": "https://docs.google.com/presentation/d/1Gslpy-Woiyh7mWuhrddabi2MkOElpCHZ0_Is534DKYw/edit?usp=sharing",
     "github": "https://github.com/TylorDuong/factory-sim.git",
-    "resume": { "include": true, "order": 1 }
+    "resume": {
+      "include": true,
+      "order": 1
+    }
   },
   {
     "id": "oratori",
@@ -148,10 +212,20 @@
       "Integrated speech-to-text processing and generative AI to retrieve curated, engaging responses and error feedback."
     ],
     "image": "/projects/oratori.jpg",
-    "tech": ["Unity2D", "C#", "Vosk", "Gemini API", "AI Agent", "Blender"],
+    "tech": [
+      "Unity2D",
+      "C#",
+      "Vosk",
+      "Gemini API",
+      "AI Agent",
+      "Blender"
+    ],
     "link": "https://devpost.com/software/oratori",
     "github": "https://github.com/TylorDuong/oratori",
-    "resume": { "include": true, "order": 3 }
+    "resume": {
+      "include": true,
+      "order": 3
+    }
   },
   {
     "id": "fit2u",
@@ -170,10 +244,18 @@
       "Connects to local donation centers and other users, offering secondhand alternatives for any clothing item."
     ],
     "image": "/projects/fit2u.jpg",
-    "tech": ["React", "Tailwind CSS", "Weather APIs", "SQL"],
+    "tech": [
+      "React",
+      "Tailwind CSS",
+      "Weather APIs",
+      "SQL"
+    ],
     "link": "https://devpost.com/software/fit2u",
     "github": "https://github.com/TylorDuong/Fit2U",
-    "resume": { "include": true, "order": 4 }
+    "resume": {
+      "include": true,
+      "order": 4
+    }
   },
   {
     "id": "vibe",
@@ -192,10 +274,19 @@
       "Enabled fully interactive 3D models and integrated a real-time accuracy assessment system to score trainee performance."
     ],
     "image": "/projects/project5.jpg",
-    "tech": ["Unity3D", "C#", "VR", "AR", "Blender"],
+    "tech": [
+      "Unity3D",
+      "C#",
+      "VR",
+      "AR",
+      "Blender"
+    ],
     "link": "https://github.com/TylorDuong/aerospace-sample",
     "github": "https://github.com/TylorDuong/aerospace-sample",
-    "resume": { "include": true, "order": 5 }
+    "resume": {
+      "include": true,
+      "order": 5
+    }
   },
   {
     "id": "sir-model",
@@ -214,10 +305,17 @@
       "First place at HISEF; AZSEF participant."
     ],
     "image": "/projects/sirmodel.jpg",
-    "tech": ["Unity2D", "Simulation", "Research"],
+    "tech": [
+      "Unity2D",
+      "Simulation",
+      "Research"
+    ],
     "link": "https://underscoreturt.itch.io/pandemic-simulation-sir-model",
     "github": "https://github.com/TylorDuong",
-    "resume": { "include": false, "order": null }
+    "resume": {
+      "include": false,
+      "order": null
+    }
   },
   {
     "id": "mud",
@@ -236,9 +334,17 @@
       "Collaborated via GitHub to implement a shared map system."
     ],
     "image": "/projects/mud.jpg",
-    "tech": ["C", "C#", "OOP", "Git"],
+    "tech": [
+      "C",
+      "C#",
+      "OOP",
+      "Git"
+    ],
     "link": "https://github.com/etrickel/mud_spring25",
     "github": "https://github.com/etrickel/mud_spring25",
-    "resume": { "include": false, "order": null }
+    "resume": {
+      "include": false,
+      "order": null
+    }
   }
 ]
