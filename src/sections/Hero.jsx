@@ -8,20 +8,40 @@ import { skillGroups, profile, contact, educationLine } from "@/data";
 // index / label / chips / count.
 const SKILL_GRID = "60px 220px 1fr 90px";
 
+// One accent per category, tuned to sit alongside paper/ink/rust rather than
+// compete with it — same tonal depth as C.rust, spread across hue instead.
+const CATEGORY_COLORS = {
+  languages: C.rust,
+  frontend: "#2b6e6b",
+  backend: "#5c6b28",
+  cloud: "#33587a",
+  ai: "#6b3566",
+  hardware: "#8a660f",
+  enterprise: "#8a3f30",
+};
+
+function withAlpha(hex, alpha) {
+  const n = parseInt(hex.slice(1), 16);
+  const r = (n >> 16) & 255, g = (n >> 8) & 255, b = n & 255;
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
 // The chip style is lifted verbatim from sections/Experience.jsx — new visual
 // vocabulary here would make the two tables look like different components.
-const CHIP = mono({
+const chipStyle = (color) => mono({
   fontSize: 11,
   fontWeight: 400,
   letterSpacing: "0.88px",
   textTransform: "none",
-  border: "1px solid rgba(22,25,15,0.42)",
+  color,
+  border: `1px solid ${withAlpha(color, 0.45)}`,
+  background: withAlpha(color, 0.08),
   borderRadius: 2,
   padding: "3px 7px",
   height: "fit-content",
 });
 
-function MetricCard({ label, value, sub, expanded, breakdown, onToggle, ariaLabel }) {
+function MetricCard({ label, value, sub, expanded, breakdown, onToggle, ariaLabel, onOpenProject }) {
   return (
     <div style={{ padding: "28px 24px", background: C.paper, display: "flex", flexDirection: "column" }}>
       <div style={mono({ fontSize: 11, letterSpacing: "0.88px", color: C.muted, display: "flex", alignItems: "center", gap: 8 })}>
@@ -55,15 +75,41 @@ function MetricCard({ label, value, sub, expanded, breakdown, onToggle, ariaLabe
             gap: 10,
           }}
         >
-          {breakdown.map((b) => (
-            <div
-              key={b.label}
-              style={{ display: "flex", justifyContent: "space-between", gap: 16, fontFamily: F.mono, fontSize: 12, letterSpacing: "0.4px" }}
-            >
-              <span style={{ color: C.muted }}>{b.label}</span>
-              <span style={{ fontWeight: 700, whiteSpace: "nowrap" }}>{b.value}</span>
-            </div>
-          ))}
+          {breakdown.map((b) =>
+            b.projectId ? (
+              <Hover
+                key={b.label}
+                as="button"
+                onClick={() => onOpenProject(b.projectId)}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: 16,
+                  fontFamily: F.mono,
+                  fontSize: 12,
+                  letterSpacing: "0.4px",
+                  background: "none",
+                  border: "none",
+                  padding: 0,
+                  width: "100%",
+                  cursor: "pointer",
+                  textAlign: "left",
+                }}
+                hoverStyle={{ opacity: 0.65 }}
+              >
+                <span style={{ color: C.rust, textDecoration: "underline", textUnderlineOffset: "2px" }}>{b.label}</span>
+                <span style={{ fontWeight: 700, whiteSpace: "nowrap" }}>{b.value}</span>
+              </Hover>
+            ) : (
+              <div
+                key={b.label}
+                style={{ display: "flex", justifyContent: "space-between", gap: 16, fontFamily: F.mono, fontSize: 12, letterSpacing: "0.4px" }}
+              >
+                <span style={{ color: C.muted }}>{b.label}</span>
+                <span style={{ fontWeight: 700, whiteSpace: "nowrap" }}>{b.value}</span>
+              </div>
+            )
+          )}
         </div>
       )}
       <Hover
@@ -102,7 +148,7 @@ function MetricCard({ label, value, sub, expanded, breakdown, onToggle, ariaLabe
   );
 }
 
-export function Hero({ go, goIndex, metrics, metricsRef, unitCount }) {
+export function Hero({ go, goIndex, openProject, metrics, metricsRef, unitCount }) {
   return (
     <div>
       {/* HERO */}
@@ -248,22 +294,24 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount }) {
           style={{ border: `1px solid ${C.ink}`, background: C.ink, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1 }}
         >
           <MetricCard
-            label="People Impacted"
+            label="People Impacted*"
             value={metrics.peopleHelpedValue}
             sub="Students + Users Reached"
             expanded={metrics.peopleExpanded}
             breakdown={metrics.peopleHelpedBreakdown}
             onToggle={metrics.togglePeople}
             ariaLabel="Toggle people helped breakdown"
+            onOpenProject={openProject}
           />
           <MetricCard
-            label="Saved / Year"
+            label="Saved / Year*"
             value={metrics.savedValue}
             sub="Enterprise Ops Savings"
             expanded={metrics.savedExpanded}
             breakdown={metrics.savedBreakdown}
             onToggle={metrics.toggleSaved}
             ariaLabel="Toggle savings breakdown"
+            onOpenProject={openProject}
           />
           <Hover
             as="button"
@@ -298,6 +346,9 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount }) {
             </div>
           </Hover>
         </div>
+        <div style={mono({ fontSize: 10, fontWeight: 400, letterSpacing: "0.4px", textTransform: "none", color: C.muted, marginTop: 10 })}>
+          *estimated
+        </div>
       </div>
 
       {/* HERO LINESCAPE */}
@@ -323,40 +374,45 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount }) {
 
         <div style={{ borderBottom: `3px solid ${C.ink}` }} />
 
-        {skillGroups.map((group, i) => (
-          <Hover
-            key={group.id}
-            as="div"
-            data-r="skill-row"
-            style={{
-              display: "grid",
-              gridTemplateColumns: SKILL_GRID,
-              gap: "0 24px",
-              padding: "16px 0",
-              alignItems: "start",
-              borderBottom: "1px solid rgba(22,25,15,0.18)",
-              background: "transparent",
-            }}
-            hoverStyle={{ background: C.tint }}
-          >
-            <div style={mono({ fontSize: 12, fontWeight: 400, letterSpacing: "0.6px", color: C.muted, textTransform: "none" })}>
-              {String(i + 1).padStart(2, "0")}
-            </div>
-            <div style={mono({ fontSize: 12, letterSpacing: "0.6px", lineHeight: "17.4px" })}>
-              {group.label}
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignContent: "flex-start" }}>
-              {group.items.map((item) => (
-                <span key={item} style={CHIP}>
-                  {item}
-                </span>
-              ))}
-            </div>
-            <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", color: C.muted, textAlign: "right" })}>
-              {group.items.length} ITEMS
-            </div>
-          </Hover>
-        ))}
+        {skillGroups.map((group, i) => {
+          const color = CATEGORY_COLORS[group.id] ?? C.rust;
+          return (
+            <Hover
+              key={group.id}
+              as="div"
+              data-r="skill-row"
+              style={{
+                display: "grid",
+                gridTemplateColumns: SKILL_GRID,
+                gap: "0 24px",
+                padding: "16px 0",
+                alignItems: "start",
+                borderBottom: "1px solid rgba(22,25,15,0.18)",
+                boxShadow: `inset 3px 0 0 ${color}`,
+                background: "transparent",
+              }}
+              hoverStyle={{ background: withAlpha(color, 0.1) }}
+            >
+              <div style={mono({ fontSize: 12, fontWeight: 700, letterSpacing: "0.6px", color, textTransform: "none" })}>
+                {String(i + 1).padStart(2, "0")}
+              </div>
+              <div style={mono({ fontSize: 12, letterSpacing: "0.6px", lineHeight: "17.4px", display: "flex", alignItems: "center", gap: 8 })}>
+                <span style={{ width: 8, height: 8, background: color, display: "inline-block", flexShrink: 0 }} />
+                {group.label}
+              </div>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignContent: "flex-start" }}>
+                {group.items.map((item) => (
+                  <span key={item} style={chipStyle(color)}>
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", color: C.muted, textAlign: "right" })}>
+                {group.items.length} ITEMS
+              </div>
+            </Hover>
+          );
+        })}
       </div>
     </div>
   );

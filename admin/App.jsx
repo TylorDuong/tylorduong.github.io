@@ -534,9 +534,10 @@ function MetricsPane({ doc, setDoc }) {
   const rows = (key) => (
     <Field label={key === "peopleHelpedBreakdown" ? "People breakdown" : "Savings breakdown"}>
       {doc[key].map((b, i) => (
-        <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 200px 34px", gap: 8, marginBottom: 8 }}>
+        <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 160px 140px 34px", gap: 8, marginBottom: 8 }}>
           <Text value={b.label} onChange={(v) => setDoc({ ...doc, [key]: doc[key].map((x, j) => (j === i ? { ...x, label: v } : x)) })} />
           <Text value={b.value} onChange={(v) => setDoc({ ...doc, [key]: doc[key].map((x, j) => (j === i ? { ...x, value: v } : x)) })} />
+          <Text value={b.projectId || ""} placeholder="project id (optional)" onChange={(v) => setDoc({ ...doc, [key]: doc[key].map((x, j) => (j === i ? { ...x, projectId: v || undefined } : x)) })} />
           <Button variant="danger" onClick={() => setDoc({ ...doc, [key]: doc[key].filter((_, j) => j !== i) })} style={{ padding: "8px 0" }}>×</Button>
         </div>
       ))}

@@ -10,7 +10,10 @@
 
 import projectsRaw from "@content/projects.json";
 import experiencesRaw from "@content/experiences.json";
-import skillsRaw from "@content/skills.json";
+// Named import (not the default) so bundlers can tree-shake `categories` from
+// the admin-only `_comment`/`ignored` fields in the same file, keeping those
+// out of the production bundle.
+import { categories as skillCategories } from "@content/skills.json";
 import testimonialsRaw from "@content/testimonials.json";
 import aboutRaw from "@content/about.json";
 import metricsRaw from "@content/metrics.json";
@@ -44,7 +47,7 @@ export const experiences = [...experiencesRaw].sort(byRecency).map((e) => ({
 
 /* ------------------------------------------------------------------ skills */
 
-export const skillGroups = skillsRaw.categories;
+export const skillGroups = skillCategories;
 
 // Flat list, back-compatible with the original `skills` export.
 export const skills = skillGroups.flatMap((g) => g.items);

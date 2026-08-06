@@ -34,7 +34,7 @@ every display value.
 | `skills.json` | Skills grouped into the résumé's categories |
 | `testimonials.json` | Quote carousel |
 | `about.json` | About paragraphs, pull quote, highlight cards |
-| `metrics.json` | Hero counters and their breakdowns |
+| `metrics.json` | Hero counters and their breakdowns (a breakdown row's optional `projectId` makes it link to that project) |
 | `profile.json` | Name, contact details, education, résumé summary |
 
 ### Dates are structured, display strings are derived
@@ -81,6 +81,11 @@ Worth knowing:
 - **Placement** shows a live "position N of M" with neighbouring entries,
   computed with the same comparator the site uses, plus whether the entry
   clears the home page's top-six cut.
+- **Metrics breakdown rows** can carry an optional project id. Set one and
+  that row becomes a link on the live Hero: clicking it jumps straight to the
+  matching project's detail screen. Leave it blank for a plain, non-clickable
+  line (e.g. an aggregate like "Other Projects (9)" with no single project to
+  point at).
 - **Ids** track the title until a record is first saved, then freeze — they are
   React keys and cross-references, not display text.
 
