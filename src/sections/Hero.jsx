@@ -228,6 +228,10 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount }) {
           </div>
           <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", lineHeight: "15.95px", color: C.muted, textAlign: "right", marginTop: 48 })}>
             LOCATION: {contact.locationShort}
+            <br />
+            ID: {contact.email}
+            <br />
+            TEL: {contact.phoneDotted}
           </div>
         </div>
       </div>
@@ -244,7 +248,7 @@ export function Hero({ go, goIndex, metrics, metricsRef, unitCount }) {
           style={{ border: `1px solid ${C.ink}`, background: C.ink, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 1 }}
         >
           <MetricCard
-            label="People Helped"
+            label="People Impacted"
             value={metrics.peopleHelpedValue}
             sub="Students + Users Reached"
             expanded={metrics.peopleExpanded}

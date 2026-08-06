@@ -2,7 +2,7 @@
   "peopleHelped": 42459,
   "moneySaved": 200000,
   "peopleHelpedBreakdown": [
-    { "label": "Yber.ai", "value": "40,000 users" },
+    { "label": "Yber.ai", "value": "~40,000 CUSD students" },
     { "label": "Wi-Fi Tracking Portal (Yazaki)", "value": "2,000 users" },
     { "label": "Other Projects (9)", "value": "459 users" }
   ],

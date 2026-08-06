@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { C } from "@/lib/theme";
 import { useCountUp, useOnceInView } from "@/lib/util";
 import { Navbar } from "@/layout/Navbar";
-import { HudCorners, PaperGrain } from "@/components/Chrome";
+import { PaperGrain } from "@/components/Chrome";
 import { Hero } from "@/sections/Hero";
 import { About } from "@/sections/About";
 import { Projects } from "@/sections/Projects";
@@ -162,8 +162,6 @@ export default function App() {
         openMenu={() => setMenuOpen(true)}
         closeMenu={() => setMenuOpen(false)}
       />
-
-      <HudCorners show />
 
       {screen === "home" && (
         <div>
