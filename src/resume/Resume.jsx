@@ -1,31 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  profile,
-  contact,
-  education,
-  skillGroups,
-  experiences,
-  projects,
-} from "@/data";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { profile, contact, education } from "@/data";
 import { periodLabel, fmtYM } from "@/lib/dates";
+import { curatedSelection, deriveVisible, visibleContactKeys } from "./selection";
+import { ExportPanel } from "./ExportPanel";
 
-/* ------------------------------------------------------------- selection */
-
-// Real jobs, newest first (already sorted by the adapter).
-const workExperience = experiences.filter(
-  (e) => e.resume?.include && e.kind === "work"
-);
-
-// Projects flagged for the résumé, in explicit résumé order where given.
-const resumeProjects = projects
-  .filter((p) => p.resume?.include)
-  .sort((a, b) => (a.resume.order ?? Infinity) - (b.resume.order ?? Infinity));
-
-// Hackathons / competitions that no project record already covers — without
-// this they would vanish from the résumé entirely.
-const activities = experiences.filter(
-  (e) => e.resume?.include && e.kind !== "work"
-);
+// What the deployed page renders. The dev-only ExportPanel replaces this with
+// its own selection once mounted.
+const CURATED = curatedSelection();
 
 /* -------------------------------------------------------------- fragments */
 
@@ -100,9 +81,32 @@ function FitMeter({ pageRef }) {
 export function Resume() {
   const pageRef = useRef(null);
   const ed = education[0];
+  const [selection, setSelection] = useState(CURATED);
+  const v = deriveVisible(selection);
+
+  const shown = visibleContactKeys(selection);
+  const has = (k) => shown.includes(k);
+  const contactRows = [
+    [
+      has("phone") && { key: "phone", node: <a href={contact.phoneHref}>{contact.phone}</a> },
+      has("email") && { key: "email", node: <a href={`mailto:${contact.email}`}>{contact.email}</a> },
+      has("location") && { key: "location", node: contact.locationResume },
+    ].filter(Boolean),
+    [
+      has("linkedin") && { key: "linkedin", node: <a href={contact.linkedin.url}>{contact.linkedin.resumeLabel}</a> },
+      has("website") && { key: "website", node: <a href={contact.website.url}>{contact.website.resumeLabel}</a> },
+      has("github") && { key: "github", node: <a href={contact.github.url}>{contact.github.resumeLabel}</a> },
+    ].filter(Boolean),
+  ];
+  const interleave = (items) =>
+    items.flatMap((it, i) => [
+      ...(i === 0 ? [] : [<Sep key={`sep-${it.key}`} />]),
+      <Fragment key={it.key}>{it.node}</Fragment>,
+    ]);
 
   return (
     <>
+      {import.meta.env.DEV && <ExportPanel selection={selection} onChange={setSelection} />}
       <div className="r-toolbar no-print">
         {import.meta.env.DEV && <FitMeter pageRef={pageRef} />}
         <button className="r-btn" onClick={() => window.print()}>
@@ -115,19 +119,11 @@ export function Resume() {
         <header>
           <h1 className="r-name">{profile.name}</h1>
           <div className="r-contact">
-            <a href={contact.phoneHref}>{contact.phone}</a>
-            <Sep />
-            <a href={`mailto:${contact.email}`}>{contact.email}</a>
-            <Sep />
-            {contact.locationResume}
-            <br />
-            <a href={contact.linkedin.url}>{contact.linkedin.resumeLabel}</a>
-            <Sep />
-            <a href={contact.website.url}>{contact.website.resumeLabel}</a>
-            <Sep />
-            <a href={contact.github.url}>{contact.github.resumeLabel}</a>
+            {interleave(contactRows[0])}
+            {contactRows[0].length > 0 && contactRows[1].length > 0 && <br />}
+            {interleave(contactRows[1])}
           </div>
-          <p className="r-summary">{profile.resumeSummary}</p>
+          {v.showSummary && <p className="r-summary">{profile.resumeSummary}</p>}
         </header>
 
         {/* ------------------------------------------------------- education */}
@@ -148,7 +144,7 @@ export function Resume() {
             {ed.minor && ` · Minor: ${ed.minor}`}
             {ed.certificate && ` · Certificate: ${ed.certificate}`}
           </div>
-          {ed.coursework?.length > 0 && (
+          {v.showCoursework && ed.coursework?.length > 0 && (
             <div className="r-tech">
               <b>Relevant Coursework:</b> {ed.coursework.join(", ")}
             </div>
@@ -156,46 +152,58 @@ export function Resume() {
         </div>
 
         {/* ---------------------------------------------------------- skills */}
-        <h2 className="r-h2">Technical Skills</h2>
-        <div className="r-entry">
-          {skillGroups.map((g) => (
-            <div className="r-skillrow" key={g.id}>
-              <b>{g.label}:</b> {g.items.join(", ")}
+        {v.visibleSkillGroups.length > 0 && (
+          <>
+            <h2 className="r-h2">Technical Skills</h2>
+            <div className="r-entry">
+              {v.visibleSkillGroups.map((g) => (
+                <div className="r-skillrow" key={g.id}>
+                  <b>{g.label}:</b> {g.items.join(", ")}
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          </>
+        )}
 
         {/* ------------------------------------------------------ experience */}
-        <h2 className="r-h2">Experience</h2>
-        {workExperience.map((e) => (
-          <Entry
-            key={e.id}
-            title={e.role}
-            org={e.unit ? `${e.companyName} (${e.unit})` : e.companyName}
-            when={periodLabel(e.start, e.end, { title: true })}
-            bullets={e.bullets}
-            tech={e.tech}
-          />
-        ))}
+        {v.workExperience.length > 0 && (
+          <>
+            <h2 className="r-h2">Experience</h2>
+            {v.workExperience.map((e) => (
+              <Entry
+                key={e.id}
+                title={e.role}
+                org={e.unit ? `${e.companyName} (${e.unit})` : e.companyName}
+                when={periodLabel(e.start, e.end, { title: true })}
+                bullets={e.bullets}
+                tech={e.tech}
+              />
+            ))}
+          </>
+        )}
 
         {/* -------------------------------------------------------- projects */}
-        <h2 className="r-h2">Relevant Projects</h2>
-        {resumeProjects.map((p) => (
-          <Entry
-            key={p.id}
-            title={p.title}
-            org={p.category}
-            when={periodLabel(p.start, p.end, { title: true })}
-            bullets={p.bullets}
-            tech={p.tech}
-          />
-        ))}
+        {v.resumeProjects.length > 0 && (
+          <>
+            <h2 className="r-h2">Relevant Projects</h2>
+            {v.resumeProjects.map((p) => (
+              <Entry
+                key={p.id}
+                title={p.title}
+                org={p.category}
+                when={periodLabel(p.start, p.end, { title: true })}
+                bullets={p.bullets}
+                tech={p.tech}
+              />
+            ))}
+          </>
+        )}
 
         {/* ------------------------------------------ activities / awards */}
-        {activities.length > 0 && (
+        {v.activities.length > 0 && (
           <>
             <h2 className="r-h2">Activities &amp; Awards</h2>
-            {activities.map((e) => (
+            {v.activities.map((e) => (
               <Entry
                 key={e.id}
                 title={e.unit ? `${e.companyName} — ${e.unit}` : e.companyName}

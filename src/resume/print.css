@@ -48,6 +48,11 @@ body {
     background: #fff;
     box-shadow: 0 2px 24px rgba(22, 25, 15, 0.18);
   }
+  /* Scoped to @media screen so it can never reach the printed page — an
+     inline style here would beat the @media print rules below. */
+  body.has-export-panel {
+    padding-left: 320px;
+  }
 }
 
 @media print {
