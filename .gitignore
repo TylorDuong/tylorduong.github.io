@@ -39,3 +39,6 @@ out/
 # Misc caches
 .cache
 .parcel-cache
+
+# Rolling backups written by the local admin tool before each content save
+content/.backups/

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { C } from "@/lib/theme";
 import { useCountUp, useOnceInView } from "@/lib/util";
 import { Navbar } from "@/layout/Navbar";
-import { HudCorners, PaperGrain } from "@/components/Chrome";
+import { PaperGrain } from "@/components/Chrome";
 import { Hero } from "@/sections/Hero";
 import { About } from "@/sections/About";
 import { Projects } from "@/sections/Projects";
@@ -152,6 +152,13 @@ export default function App() {
     "UNIT " + String(pIdx + 1).padStart(2, "0") + " OF " + String(projects.length).padStart(2, "0");
 
   const goIndex = () => toScreen("index");
+  const openProject = useCallback(
+    (id) => {
+      const idx = projects.findIndex((p) => p.id === id);
+      if (idx >= 0) toScreen("project", idx);
+    },
+    [toScreen]
+  );
 
   return (
     <div style={{ position: "relative", zIndex: 0, minHeight: "100vh", background: C.paper, color: C.ink }}>
@@ -163,17 +170,15 @@ export default function App() {
         closeMenu={() => setMenuOpen(false)}
       />
 
-      <HudCorners show />
-
       {screen === "home" && (
         <div>
           <Hero
             go={scrollToSection}
             goIndex={goIndex}
+            openProject={openProject}
             metrics={metrics}
             metricsRef={setMetricsEl}
             unitCount={derived.unitCount}
-            tickerDur="48s"
           />
           <About innerRef={setSectionEl("about")} />
           <Projects
