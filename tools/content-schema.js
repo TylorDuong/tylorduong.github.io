@@ -24,6 +24,7 @@ export const EXPERIENCE_KINDS = ["work", "project", "hackathon", "competition", 
 export const ACCENT_PRESETS = [
   "#16b364", "#22c55e", "#2563eb", "#0284c7", "#f97316", "#0d9488",
   "#7c3aed", "#db2777", "#4f46e5", "#dc2626", "#b45309",
+  "#0891b2",
 ];
 
 /** URL/file-safe slug. Never run tech names through this ("C/C++", "C#"). */
