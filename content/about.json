@@ -19,7 +19,7 @@
     {
       "code": "CV",
       "title": "AI + Computer Vision",
-      "description": "Real-time form-correction and tracking pipelines using webcam input and CV models (YOLOv8, ViTPose++, OpenCV)."
+      "description": "Real-time form-correction and tracking pipelines using webcam input and CV models (YOLOv8, ViTPose++, OpenCV), extending into multimodal vision-language research on surgical video."
     },
     {
       "code": "ENT",

@@ -15,9 +15,20 @@
       "Engineered real-time predictive forecasting models designed to reduce food waste by an estimated 40% and combat $3B in annual industry operational losses.",
       "Designed a scalable platform to significantly reduce manual labor, eliminate human ordering errors, and protect venue profit margins."
     ],
-    "tech": ["React", "Next.js", "Node.js", "Python", "OpenCV", "IoT Sensors", "Vercel", "Supabase"],
+    "tech": [
+      "React",
+      "Next.js",
+      "Node.js",
+      "Python",
+      "OpenCV",
+      "IoT Sensors",
+      "Vercel",
+      "Supabase"
+    ],
     "projectId": "shelfsmart",
-    "resume": { "include": true }
+    "resume": {
+      "include": true
+    }
   },
   {
     "id": "leadyouth-yber",
@@ -35,9 +46,20 @@
       "Scaled and deployed for a partnership with Chandler Unified School District (40,000+ students).",
       "Designed and deployed a multi-layer agentic architecture to autonomously grade student submissions, provide precise feedback, create lessons, and announce student milestones on social media platforms."
     ],
-    "tech": ["GCP", "Gemini Agents", "React", "Node.js", "Supabase", "Vercel", "n8n", "OpenRouter"],
+    "tech": [
+      "GCP",
+      "Gemini Agents",
+      "React",
+      "Node.js",
+      "Supabase",
+      "Vercel",
+      "n8n",
+      "OpenRouter"
+    ],
     "projectId": "yber",
-    "resume": { "include": true }
+    "resume": {
+      "include": true
+    }
   },
   {
     "id": "yazaki-intern",
@@ -54,9 +76,18 @@
       "Automated Quotation Engine: Engineered an automated quotation engine by migrating legacy documents into a centralized database to parse customer specifications and precisely calculate labor, cost, and factory layout requirements.",
       "Enterprise Wi-Fi Reporting Portal: Won 1st Place in Process Improvement for developing a Wi-Fi reporting portal and real-time data visualization dashboard, enabling IT to instantly resolve network bottlenecks for 2,000+ office users."
     ],
-    "tech": ["Python", "LLMs", "SQL", "Azure", "Power Platform", "SharePoint"],
+    "tech": [
+      "Python",
+      "LLMs",
+      "SQL",
+      "Azure",
+      "Power Platform",
+      "SharePoint"
+    ],
     "projectId": "quotation-engine",
-    "resume": { "include": true }
+    "resume": {
+      "include": true
+    }
   },
   {
     "id": "epics-moveright",
@@ -73,9 +104,19 @@
       "Worked as an AI specialist developing a vision mode that offers real-time exercise tracking and form correction.",
       "Created a custom data annotation tool and dataset for human exercises for more accurate models."
     ],
-    "tech": ["React", "Next.js", "Tailwind CSS", "React Webcam", "FastAPI", "YOLOv8", "ViTPose++"],
+    "tech": [
+      "React",
+      "Next.js",
+      "Tailwind CSS",
+      "React Webcam",
+      "FastAPI",
+      "YOLOv8",
+      "ViTPose++"
+    ],
     "projectId": "moveright",
-    "resume": { "include": false }
+    "resume": {
+      "include": false
+    }
   },
   {
     "id": "devhacks-oratori",
@@ -92,9 +133,17 @@
       "Built a Unity2D daily speaking companion to practice speaking out loud.",
       "Used Vosk for speech-to-text and the Gemini API for curated responses."
     ],
-    "tech": ["Unity2D", "C#", "Vosk", "Gemini API", "Blender"],
+    "tech": [
+      "Unity2D",
+      "C#",
+      "Vosk",
+      "Gemini API",
+      "Blender"
+    ],
     "projectId": "oratori",
-    "resume": { "include": false }
+    "resume": {
+      "include": false
+    }
   },
   {
     "id": "devilsinvent-assemblisim",
@@ -111,9 +160,16 @@
       "Created a system that turns factory layout images into a simulation for monitoring discrepancies.",
       "Built a responsive React + Tailwind + TypeScript interface supporting image upload, webcam capture, and real-time preview."
     ],
-    "tech": ["React", "TypeScript", "Tailwind CSS", "Unity2D"],
+    "tech": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Unity2D"
+    ],
     "projectId": "assemblisim",
-    "resume": { "include": false }
+    "resume": {
+      "include": false
+    }
   },
   {
     "id": "devhacks-fit2u",
@@ -130,9 +186,16 @@
       "Built a sustainable digital-closet ecosystem to organize wardrobes and generate outfits.",
       "Connected users with local donation centers and secondhand alternatives."
     ],
-    "tech": ["React", "Tailwind CSS", "Weather APIs", "SQL"],
+    "tech": [
+      "React",
+      "Tailwind CSS",
+      "Weather APIs",
+      "SQL"
+    ],
     "projectId": "fit2u",
-    "resume": { "include": false }
+    "resume": {
+      "include": false
+    }
   },
   {
     "id": "soda-code-challenge",
@@ -148,9 +211,14 @@
     "bullets": [
       "Competed as part of a 3-person team, solving algorithmic and programming challenges in Java under time constraints."
     ],
-    "tech": ["Java", "Problem Solving"],
+    "tech": [
+      "Java",
+      "Problem Solving"
+    ],
     "projectId": null,
-    "resume": { "include": true }
+    "resume": {
+      "include": true
+    }
   },
   {
     "id": "devilsinvent-vibe",
@@ -167,9 +235,16 @@
       "Created a Unity3D VR training demo for defect detection in aerospace parts.",
       "Built interactive models with real-time accuracy assessment."
     ],
-    "tech": ["Unity3D", "C#", "VR", "Blender"],
+    "tech": [
+      "Unity3D",
+      "C#",
+      "VR",
+      "Blender"
+    ],
     "projectId": "vibe",
-    "resume": { "include": false }
+    "resume": {
+      "include": false
+    }
   },
   {
     "id": "sunhacks-post-pals",
@@ -186,8 +261,42 @@
       "Built an AI Adobe plugin concept to enhance design workflows.",
       "Added design analysis, font pairing suggestions, clip art recommendations, and theme-based enhancements."
     ],
-    "tech": ["Hackathon", "AI", "Design Tools"],
+    "tech": [
+      "Hackathon",
+      "AI",
+      "Design Tools"
+    ],
     "projectId": null,
-    "resume": { "include": true }
+    "resume": {
+      "include": true
+    }
+  },
+  {
+    "id": "asu-capstone-surgical-vlm",
+    "role": "Capstone Researcher",
+    "company": "Arizona State University",
+    "unit": "Neurosurgery Vision-Language Research",
+    "location": "Tempe, AZ",
+    "start": "2026-08",
+    "end": null,
+    "pin": null,
+    "kind": "project",
+    "description": "Two-semester capstone research, advised by Yalin Wang, applying vision-language models to neurosurgery video. Developing end-to-end pipelines that recognize surgical workflows and instruments from real operative video and generate textual descriptions of a procedure, working toward captioning and video question-answering prototypes.",
+    "bullets": [
+      "Developed end-to-end vision-language pipelines in PyTorch and Hugging Face to recognize surgical workflows and instruments in neurosurgery video.",
+      "Evaluated baseline against fine-tuned VLMs on surgical video captioning and question-answering tasks."
+    ],
+    "tech": [
+      "Python",
+      "PyTorch",
+      "Hugging Face",
+      "Transformers",
+      "LLaVA",
+      "VLMs"
+    ],
+    "projectId": "surgical-video-vlm",
+    "resume": {
+      "include": false
+    }
   }
 ]

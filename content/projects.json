@@ -346,5 +346,37 @@
       "include": false,
       "order": null
     }
+  },
+  {
+    "id": "surgical-video-vlm",
+    "code": "SV",
+    "kind": "personal",
+    "accent": "#0891b2",
+    "title": "Surgical Video VLM",
+    "category": "RESEARCH / MEDICAL AI",
+    "start": "2026-08",
+    "end": null,
+    "pin": null,
+    "summary": "Vision-language models that read neurosurgery video.",
+    "description": "Two-semester ASU capstone research, advised by Yalin Wang, applying vision-language models to neurosurgery video analysis. Building end-to-end pipelines that recognize surgical workflows and instruments and generate textual descriptions of what happens during a procedure, working from real surgical video data. In progress: establishing baseline and fine-tuned VLM performance before building captioning and video question-answering prototypes.",
+    "bullets": [
+      "Built end-to-end vision-language pipelines in PyTorch and Hugging Face to recognize surgical workflows and instruments in neurosurgery video.",
+      "Evaluated baseline against fine-tuned VLMs on surgical video captioning and question-answering tasks."
+    ],
+    "image": "/projects/surgical-video-vlm.png",
+    "tech": [
+      "Python",
+      "PyTorch",
+      "Hugging Face",
+      "Transformers",
+      "LLaVA",
+      "VLMs"
+    ],
+    "link": "https://github.com/TylorDuong",
+    "github": "https://github.com/TylorDuong",
+    "resume": {
+      "include": false,
+      "order": null
+    }
   }
 ]
