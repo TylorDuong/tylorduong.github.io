@@ -1,6 +1,7 @@
 import { F, C, mono, sectionH2 } from "@/lib/theme";
 import { Mark } from "@/lib/Mark";
 import { Hover } from "@/lib/Hover";
+import { Gallery } from "@/components/Gallery";
 
 function NavLink({ onClick, children }) {
   return (
@@ -30,11 +31,7 @@ export function ProjectDetail({ project, counter, onPrev, onNext, goIndex }) {
       </div>
 
       <div data-r="pd-grid" style={{ display: "grid", gridTemplateColumns: "1fr 380px", gap: 24, marginTop: 48, alignItems: "start" }}>
-        <div
-          role="img"
-          aria-label={p.title}
-          style={{ border: `6px solid ${C.ink}`, backgroundColor: C.tan, aspectRatio: "16/9", backgroundImage: `url(${p.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
-        />
+        <Gallery slides={p.gallery} title={p.title} accent={p.accent} />
         <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
           <div style={{ background: C.card, border: `1px solid ${C.ink}`, padding: 20 }}>
             <div style={mono({ borderBottom: "1px solid rgba(22,25,15,0.42)", paddingBottom: 10, marginBottom: 14 })}>Unit File — {p.title}</div>

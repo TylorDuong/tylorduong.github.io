@@ -45,7 +45,7 @@ export function ProjectCard({ proj }) {
           {proj.title}
         </div>
         <div style={{ fontFamily: F.body, fontSize: 14, lineHeight: "19px", color: C.muted, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-          {proj.summary}
+          {proj.summary || proj.descriptionShort}
         </div>
         <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", color: C.muted })}>{proj.category}</div>
       </div>

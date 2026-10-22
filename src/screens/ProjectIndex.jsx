@@ -41,7 +41,7 @@ function IndexRow({ proj }) {
       />
       <div style={{ minWidth: 0 }}>
         <div style={{ fontFamily: F.tight, fontSize: 33.28, fontWeight: 500, lineHeight: "33.28px", letterSpacing: "-0.832px" }}>{proj.title}</div>
-        <div style={{ fontFamily: F.body, fontSize: 14, lineHeight: "19px", color: C.muted, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 4 }}>{proj.summary}</div>
+        <div style={{ fontFamily: F.body, fontSize: 14, lineHeight: "19px", color: C.muted, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", marginTop: 4 }}>{proj.summary || proj.descriptionShort}</div>
       </div>
       <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", color: C.muted })}>{proj.category}</div>
       <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", color: C.muted })}>{proj.stack}</div>

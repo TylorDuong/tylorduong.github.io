@@ -3,7 +3,8 @@ import { C } from "@/lib/theme";
 import { useCountUp, useOnceInView } from "@/lib/util";
 import { Navbar } from "@/layout/Navbar";
 import { PaperGrain } from "@/components/Chrome";
-import { Hero } from "@/sections/Hero";
+import { Hero, SkillsTools } from "@/sections/Hero";
+import { FeaturedProject } from "@/sections/FeaturedProject";
 import { About } from "@/sections/About";
 import { Projects } from "@/sections/Projects";
 import { Experience } from "@/sections/Experience";
@@ -12,7 +13,7 @@ import { Contact } from "@/sections/Contact";
 import { Footer } from "@/sections/Footer";
 import { ProjectIndex } from "@/screens/ProjectIndex";
 import { ProjectDetail } from "@/screens/ProjectDetail";
-import { projects, testimonials, metrics as metricsData } from "@/data";
+import { projects, testimonials, metrics as metricsData, featuredProject } from "@/data";
 
 const NAV_OFFSET = 96;
 const SECTION_ORDER = ["about", "projects", "experience", "testimonials", "contact"];
@@ -118,10 +119,20 @@ export default function App() {
     const previewPersonal = personal.slice(0, 6);
     const previewEnterprise = enterprise.slice(0, 3);
     const moreCount = Math.max(all.length - (previewPersonal.length + previewEnterprise.length), 0);
+    const featured = featuredProject
+      ? {
+          ...featuredProject,
+          open: () => {
+            const i = projects.findIndex((p) => p.id === featuredProject.id);
+            toScreen("project", i < 0 ? 0 : i);
+          },
+        }
+      : null;
     return {
       all,
       personal,
       enterprise,
+      featured,
       previewPersonal,
       previewEnterprise,
       unitCount: String(all.length).padStart(2, "0"),
@@ -180,7 +191,9 @@ export default function App() {
             metricsRef={setMetricsEl}
             unitCount={derived.unitCount}
           />
+          {derived.featured && <FeaturedProject project={derived.featured} />}
           <About innerRef={setSectionEl("about")} />
+          <SkillsTools />
           <Projects
             innerRef={setSectionEl("projects")}
             goIndex={goIndex}

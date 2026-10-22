@@ -118,7 +118,8 @@ button:focus-visible {
     grid-template-columns: 1fr !important;
     align-items: start !important;
   }
-  [data-r="pd-grid"] {
+  [data-r="pd-grid"],
+  [data-r="feat-grid"] {
     grid-template-columns: 1fr !important;
   }
   [data-r="contact-grid"] {

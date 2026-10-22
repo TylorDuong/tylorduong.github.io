@@ -378,5 +378,50 @@
       "include": false,
       "order": null
     }
+  },
+  {
+    "id": "hardware-planner",
+    "code": "SB",
+    "kind": "personal",
+    "accent": "#598b0d",
+    "title": "SparkBuild: Ignite your next tech project",
+    "category": "AI / HARDWARE",
+    "start": "2026-07",
+    "end": "2026-07",
+    "pin": null,
+    "summary": "Turns a hardware idea into a cited, sourced, 3D build plan.",
+    "description": "SparkBuild turns a plain-language hardware idea into a complete, cited build plan — research, a sourced bill of materials, and a self-paced build lesson — so anyone curious about hardware can get past \"I don't know where to start.\" A research agent returns a typed, cited proposal from your goal and constraints (budget, parts owned, experience level), while a security and relevance agent rejects off-topic or malicious requests up front. A ranked bill of materials maps every part to a real catalog entry with an image and shop link, preferring parts you already own, and a freely navigable Workshop walks each cited step with a clear completion condition, an inline skills library, a 3D guide, and a circuit diagram. The assembly is an interactive React/Three.js view where the LLM only makes schema-validated symbolic choices and a deterministic solver owns all spatial math, so parts and coordinates are never fabricated. It runs local-first: a deterministic fixture mode delivers the full idea-to-lesson flow with no Docker, GPU, or cloud, while the local stack adds pgvector retrieval, inventory, and background n8n ingestion behind a single allowlisted upsert endpoint — learner requests never leave the machine.",
+    "descriptionShort": "SparkBuild turns a plain-language hardware idea into a complete, cited build plan — research, a sourced bill of materials, and a self-paced 3D build lesson — so anyone curious about hardware can get past \"I don't know where to start.\"",
+    "bullets": [
+      "Built a local-first TypeScript monorepo (SparkBuild) that turns a plain-language hardware idea into a typed, cited plan across a four-tab Workshop: research, a sourced bill of materials, a self-paced lesson, and an interactive 3D assembly.",
+      "Enforced build accuracy by Zod-validating every cross-package boundary and letting the LLM make only symbolic, schema-validated choices while a deterministic solver owns all spatial transforms — no fabricated parts or coordinates.",
+      "Shipped a demo-safe deterministic fixture mode needing no cloud or GPU, then scaled to private on-device inference (Ollama) with PostgreSQL/pgvector retrieval and allowlisted n8n ingestion."
+    ],
+    "image": "/projects/buildspark.jpg",
+    "gallery": [
+      "https://www.youtube.com/watch?v=2Ho8h7qBpPI",
+      "/projects/buildspark.jpg",
+      "/projects/hardware-planner-2.jpg",
+      "/projects/hardware-planner-3.jpg",
+      "/projects/hardware-planner-4.jpg"
+    ],
+    "tech": [
+      "TypeScript",
+      "React",
+      "Three.js",
+      "Node.js",
+      "Zod",
+      "PostgreSQL",
+      "Ollama",
+      "OpenSCAD",
+      "Docker",
+      "n8n"
+    ],
+    "link": "https://devpost.com/software/guided-hardware-learning",
+    "github": "https://github.com/TylorDuong/Educational-Hardware-Builder",
+    "resume": {
+      "include": false,
+      "order": null
+    }
   }
 ]

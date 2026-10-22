@@ -24,6 +24,7 @@
         "React",
         "Next.js",
         "React Native",
+        "Three.js",
         "Tailwind CSS",
         "Styled Components",
         "Figma"
@@ -40,7 +41,8 @@
         "MySQL",
         "MongoDB",
         "Supabase",
-        "Firebase"
+        "Firebase",
+        "Zod"
       ]
     },
     {
@@ -70,7 +72,8 @@
         "VLMs",
         "Transformers",
         "Hugging Face",
-        "LLaVA"
+        "LLaVA",
+        "Ollama"
       ]
     },
     {
@@ -82,6 +85,7 @@
         "Raspberry Pi",
         "Altium Designer",
         "AutoCAD",
+        "OpenSCAD",
         "Blender"
       ]
     },

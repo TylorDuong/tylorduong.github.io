@@ -4,7 +4,7 @@ import { Hover } from "@/lib/Hover";
 import { byRecency } from "@/lib/dates";
 import { ENTITIES, validate, guessCategory } from "../tools/content-schema.js";
 import { api } from "./api";
-import { Button, Field, Text, Area, ListEditor, TagInput } from "./ui";
+import { Button, Field, Text, Area, ListEditor, TagInput, Select } from "./ui";
 import { input } from "./styles";
 import { ProjectForm, ExperienceForm, TestimonialForm } from "./forms";
 import { Publish } from "./Publish";
@@ -23,7 +23,7 @@ const TABS = [
 const blankProject = () => ({
   id: "", code: "", kind: "personal", accent: "#16b364", title: "", category: "",
   start: new Date().toISOString().slice(0, 7), end: null, pin: null,
-  summary: "", description: "", bullets: [], image: "", tech: [],
+  summary: "", description: "", descriptionShort: "", bullets: [], image: "", gallery: [], tech: [],
   link: "", github: "", resume: { include: true, order: null },
 });
 
@@ -249,7 +249,7 @@ export default function App() {
         {tab === "skills" && <SkillsPane doc={doc("skills")} setDoc={(v) => setDoc("skills", v)} />}
         {tab === "about" && <AboutPane doc={doc("about")} setDoc={(v) => setDoc("about", v)} />}
         {tab === "metrics" && <MetricsPane doc={doc("metrics")} setDoc={(v) => setDoc("metrics", v)} />}
-        {tab === "profile" && <ProfilePane doc={doc("profile")} setDoc={(v) => setDoc("profile", v)} />}
+        {tab === "profile" && <ProfilePane doc={doc("profile")} setDoc={(v) => setDoc("profile", v)} ctx={ctx} />}
         {tab === "publish" && <Publish dirty={dirty} onSaveAll={saveAll} />}
 
         {ENTITIES.includes(tab) && (
@@ -561,11 +561,13 @@ function MetricsPane({ doc, setDoc }) {
   );
 }
 
-function ProfilePane({ doc, setDoc }) {
+function ProfilePane({ doc, setDoc, ctx }) {
   const c = doc.contact;
   const setC = (delta) => setDoc({ ...doc, contact: { ...c, ...delta } });
   const ed = doc.education[0];
   const setEd = (delta) => setDoc({ ...doc, education: [{ ...ed, ...delta }, ...doc.education.slice(1)] });
+  const feat = doc.featured || { mode: "recent", projectId: null };
+  const setFeat = (delta) => setDoc({ ...doc, featured: { ...feat, ...delta } });
   const two = { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 };
 
   return (
@@ -573,6 +575,26 @@ function ProfilePane({ doc, setDoc }) {
       <div style={two}>
         <Field label="Name"><Text value={doc.name} onChange={(v) => setDoc({ ...doc, name: v })} /></Field>
         <Field label="Résumé URL"><Text value={doc.resumeUrl} onChange={(v) => setDoc({ ...doc, resumeUrl: v })} /></Field>
+      </div>
+
+      <div style={mono({ fontSize: 12, margin: "24px 0 12px", borderBottom: `2px solid ${C.ink}`, paddingBottom: 6 })}>Featured project</div>
+      <div style={two}>
+        <Field label="Which project" hint="Shown at the top of the home page.">
+          <Select
+            value={feat.mode}
+            onChange={(v) => setFeat({ mode: v, projectId: v === "recent" ? null : feat.projectId })}
+            options={[["recent", "Most recent project"], ["specific", "Choose a project"]]}
+          />
+        </Field>
+        {feat.mode === "specific" && (
+          <Field label="Project">
+            <Select
+              value={feat.projectId ?? ""}
+              onChange={(v) => setFeat({ projectId: v || null })}
+              options={[["", "— select —"], ...(ctx?.projectOptions || [])]}
+            />
+          </Field>
+        )}
       </div>
       <Field label="Hero lead"><Area value={doc.lead} rows={2} onChange={(v) => setDoc({ ...doc, lead: v })} /></Field>
       <Field label="Résumé summary" hint="The paragraph under your name on /resume/.">
