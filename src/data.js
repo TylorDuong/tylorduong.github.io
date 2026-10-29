@@ -20,6 +20,7 @@ import metricsRaw from "@content/metrics.json";
 import profileRaw from "@content/profile.json";
 
 import { byRecency, periodLabel, yearLabel, fmtYM } from "@/lib/dates";
+import { toGallery } from "@/lib/video";
 
 /* ---------------------------------------------------------------- projects */
 
@@ -28,8 +29,13 @@ import { byRecency, periodLabel, yearLabel, fmtYM } from "@/lib/dates";
 export const projects = [...projectsRaw].sort(byRecency).map((p) => ({
   ...p,
   year: yearLabel(p.start, p.end),
+  period: periodLabel(p.start, p.end, { title: true }),
   tags: p.tech,
   current: p.end == null,
+  // Normalized carousel slides (video + images). Always at least one slide,
+  // falling back to the thumbnail, so components never special-case gallery-less
+  // projects. See src/lib/video.js (toGallery) and components/Gallery.jsx.
+  gallery: toGallery(p.gallery, p.image),
 }));
 
 /* ------------------------------------------------------------- experiences */
@@ -72,6 +78,22 @@ export const education = profileRaw.education;
 export const educationLine = education
   .map((ed) => [ed.degree, ed.school, fmtYM(ed.end)].join(" — ").toUpperCase())
   .join("  /  ");
+
+/* -------------------------------------------------------- featured project */
+
+// The single project spotlighted at the top of the home page. `mode: "recent"`
+// tracks the most recent project automatically (projects[0], already sorted by
+// byRecency); `mode: "specific"` pins it to a chosen id. The section renders
+// the project's derived `gallery` (video-first carousel), so no extra media
+// derivation is needed here.
+export const featuredProject = (() => {
+  const cfg = profileRaw.featured || { mode: "recent", projectId: null };
+  const pick =
+    cfg.mode === "specific" && cfg.projectId
+      ? projects.find((p) => p.id === cfg.projectId)
+      : projects[0];
+  return pick || projects[0] || null;
+})();
 
 /* ------------------------------------------------------- passthrough content */
 

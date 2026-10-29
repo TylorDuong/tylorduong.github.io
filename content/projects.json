@@ -139,7 +139,7 @@
     "title": "MoveRight",
     "category": "AI / COMPUTER VISION",
     "start": "2025-01",
-    "end": null,
+    "end": "2025-05",
     "pin": null,
     "summary": "Corrects your workout form in real time using AI.",
     "description": "AI fitness coach offering real-time exercise tracking and form correction from webcam input. Built a custom data-annotation tool and dataset of human exercises for more accurate models, integrating CV models (YOLOv8, ViTPose++) through FastAPI with a responsive React (Next.js) + Tailwind UI.",
@@ -374,6 +374,86 @@
     ],
     "link": "https://github.com/TylorDuong",
     "github": "https://github.com/TylorDuong",
+    "resume": {
+      "include": false,
+      "order": null
+    }
+  },
+  {
+    "id": "hardware-planner",
+    "code": "SB",
+    "kind": "personal",
+    "accent": "#598b0d",
+    "title": "SparkBuild: Ignite your next tech project",
+    "category": "AI / HARDWARE",
+    "start": "2026-07",
+    "end": "2026-07",
+    "pin": null,
+    "summary": "Turns a hardware idea into a cited, sourced, 3D build plan.",
+    "description": "SparkBuild turns a plain-language hardware idea into a complete, cited build plan — research, a sourced bill of materials, and a self-paced build lesson — so anyone curious about hardware can get past \"I don't know where to start.\" A research agent returns a typed, cited proposal from your goal and constraints (budget, parts owned, experience level), while a security and relevance agent rejects off-topic or malicious requests up front. A ranked bill of materials maps every part to a real catalog entry with an image and shop link, preferring parts you already own, and a freely navigable Workshop walks each cited step with a clear completion condition, an inline skills library, a 3D guide, and a circuit diagram. The assembly is an interactive React/Three.js view where the LLM only makes schema-validated symbolic choices and a deterministic solver owns all spatial math, so parts and coordinates are never fabricated. It runs local-first: a deterministic fixture mode delivers the full idea-to-lesson flow with no Docker, GPU, or cloud, while the local stack adds pgvector retrieval, inventory, and background n8n ingestion behind a single allowlisted upsert endpoint — learner requests never leave the machine.",
+    "descriptionShort": "SparkBuild turns a plain-language hardware idea into a complete, cited build plan — research, a sourced bill of materials, and a self-paced 3D build lesson — so anyone curious about hardware can get past \"I don't know where to start.\"",
+    "bullets": [
+      "Built a local-first TypeScript monorepo (SparkBuild) that turns a plain-language hardware idea into a typed, cited plan across a four-tab Workshop: research, a sourced bill of materials, a self-paced lesson, and an interactive 3D assembly.",
+      "Enforced build accuracy by Zod-validating every cross-package boundary and letting the LLM make only symbolic, schema-validated choices while a deterministic solver owns all spatial transforms — no fabricated parts or coordinates.",
+      "Shipped a demo-safe deterministic fixture mode needing no cloud or GPU, then scaled to private on-device inference (Ollama) with PostgreSQL/pgvector retrieval and allowlisted n8n ingestion."
+    ],
+    "image": "/projects/buildspark.jpg",
+    "gallery": [
+      "https://www.youtube.com/watch?v=2Ho8h7qBpPI",
+      "/projects/buildspark.jpg",
+      "/projects/hardware-planner-2.jpg",
+      "/projects/hardware-planner-3.jpg",
+      "/projects/hardware-planner-4.jpg"
+    ],
+    "tech": [
+      "TypeScript",
+      "React",
+      "Three.js",
+      "Node.js",
+      "Zod",
+      "PostgreSQL",
+      "Ollama",
+      "OpenSCAD",
+      "Docker",
+      "n8n"
+    ],
+    "link": "https://devpost.com/software/guided-hardware-learning",
+    "github": "https://github.com/TylorDuong/Educational-Hardware-Builder",
+    "resume": {
+      "include": false,
+      "order": null
+    }
+  },
+  {
+    "id": "agat",
+    "code": "AG",
+    "kind": "personal",
+    "accent": "#d915e0",
+    "title": "AGAT: Affordable General Aviation TCAS",
+    "category": "AVIATION / IOT",
+    "start": "2026-10",
+    "end": "2026-10",
+    "pin": null,
+    "summary": "Collision avoidance for small aircraft at 0.5% the cost.",
+    "description": "Built in under 48 hours at the DevilsInvent: Future-Ready Avionics hackathon (sponsored by Honeywell Aerospace), AGAT brings TCAS-style collision avoidance to general aviation, where commercial systems cost $200,000+ and price out small pilots. The concept listens to existing ADS-B broadcasts and a peer-to-peer LoRa link to map nearby aircraft and predict collisions, then integrates with the autopilot to automatically fly coordinated avoidance maneuvers — all from ~$900 of off-the-shelf parts (~$5,000 installed, roughly 0.5% of a commercial unit). The working prototype demonstrates the full pipeline with two ESP32 boards: each measures the gap with an ultrasonic sensor and relays alerts over ESP-NOW, while a Node.js server fuses the readings through a Kalman filter and TCAS II v7.1 threat logic, driving dual TCAS traffic displays (one per aircraft POV) and a 3D traffic view.",
+    "bullets": [
+      "Built AGAT, a peer-to-peer collision-avoidance system for general aviation, in under 48 hours at the DevilsInvent x Honeywell hackathon — delivering TCAS-style protection at ~$5,000 installed, roughly 0.5% of a commercial system's $200,000+ cost.",
+      "Engineered a real-time prototype of two ESP32 boards streaming ultrasonic range over WebSockets and ESP-NOW into a Node.js Kalman filter and TCAS II v7.1 threat logic, rendered as dual TCAS displays and a 3D traffic view.",
+      "Designed automatic avoidance around existing ADS-B and autopilot systems to execute coordinated climb/descend maneuvers the moment a collision became imminent."
+    ],
+    "image": "/projects/agat.png",
+    "tech": [
+      "ESP32",
+      "Arduino",
+      "C/C++",
+      "Node.js",
+      "WebSockets",
+      "ESP-NOW",
+      "Three.js",
+      "Kalman Filter"
+    ],
+    "link": "https://docs.google.com/presentation/d/1cyP18bHPDd41PhyBOLNViasxUkKzBmiHQFGkWZ5C2nY/edit?usp=sharing",
+    "github": "https://github.com/TylorDuong/collision-avoidance-simulation-demo",
     "resume": {
       "include": false,
       "order": null

@@ -133,7 +133,7 @@ export function Contact({ innerRef, goIndex }) {
           <Hover as="button" onClick={goIndex}
             style={{ background: "none", border: "none", padding: 0, cursor: "pointer", ...mono({ color: C.rust, textDecoration: "underline", textUnderlineOffset: "3px" }) }}
             hoverStyle={{ color: C.rustDark }}>
-            Next: Project Index →
+            Next: Project Gallery →
           </Hover>
         </div>
       </div>

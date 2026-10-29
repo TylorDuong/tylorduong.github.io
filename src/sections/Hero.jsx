@@ -342,7 +342,7 @@ export function Hero({ go, goIndex, openProject, metrics, metricsRef, unitCount 
               Projects + Ventures Live
             </div>
             <div style={mono({ fontSize: 11, letterSpacing: "0.88px", color: C.rust, textDecoration: "underline", textUnderlineOffset: "3px", marginTop: "auto", paddingTop: 16 })}>
-              Browse Project Index →
+              Browse Project Gallery →
             </div>
           </Hover>
         </div>
@@ -355,65 +355,72 @@ export function Hero({ go, goIndex, openProject, metrics, metricsRef, unitCount 
       <div style={{ maxWidth: 1400, margin: "64px auto 0", padding: "0 40px" }} data-r="wrap">
         <Linescape count={16} wMax={7} wMin={1} masked />
       </div>
+    </div>
+  );
+}
 
-      {/* CAPABILITY MATRIX */}
-      <div
-        data-r="wrap"
-        style={{
-          maxWidth: 1400,
-          margin: "0 auto",
-          padding: "32px 40px",
-          borderTop: "1px solid rgba(22,25,15,0.18)",
-          borderBottom: "1px solid rgba(22,25,15,0.18)",
-        }}
-      >
-        <div style={mono({ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 })}>
-          <Mark name="dotgrid" size={14} color={C.rust} />
-          Tools — Capability Matrix
-        </div>
-
-        <div style={{ borderBottom: `3px solid ${C.ink}` }} />
-
-        {skillGroups.map((group, i) => {
-          const color = CATEGORY_COLORS[group.id] ?? C.rust;
-          return (
-            <Hover
-              key={group.id}
-              as="div"
-              data-r="skill-row"
-              style={{
-                display: "grid",
-                gridTemplateColumns: SKILL_GRID,
-                gap: "0 24px",
-                padding: "16px 0",
-                alignItems: "start",
-                borderBottom: "1px solid rgba(22,25,15,0.18)",
-                boxShadow: `inset 3px 0 0 ${color}`,
-                background: "transparent",
-              }}
-              hoverStyle={{ background: withAlpha(color, 0.1) }}
-            >
-              <div style={mono({ fontSize: 12, fontWeight: 700, letterSpacing: "0.6px", color, textTransform: "none" })}>
-                {String(i + 1).padStart(2, "0")}
-              </div>
-              <div style={mono({ fontSize: 12, letterSpacing: "0.6px", lineHeight: "17.4px", display: "flex", alignItems: "center", gap: 8 })}>
-                <span style={{ width: 8, height: 8, background: color, display: "inline-block", flexShrink: 0 }} />
-                {group.label}
-              </div>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignContent: "flex-start" }}>
-                {group.items.map((item) => (
-                  <span key={item} style={chipStyle(color)}>
-                    {item}
-                  </span>
-                ))}
-              </div>
-              <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", color: C.muted, textAlign: "right" })}>
-                {group.items.length} ITEMS
-              </div>
-            </Hover>
-          );
-        })}
+// Skills & Tools table. Lives beside Hero so it can share the category color
+// map and chip styling, but renders as its own section (App orders it after
+// the featured project).
+export function SkillsTools({ innerRef }) {
+  return (
+    <div
+      ref={innerRef}
+      data-r="wrap"
+      style={{
+        maxWidth: 1400,
+        margin: "0 auto",
+        padding: "32px 40px",
+        borderTop: "1px solid rgba(22,25,15,0.18)",
+        borderBottom: "1px solid rgba(22,25,15,0.18)",
+      }}
+    >
+      <div style={mono({ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 })}>
+        <Mark name="dotgrid" size={14} color={C.rust} />
+        Skills and Tools
       </div>
+
+      <div style={{ borderBottom: `3px solid ${C.ink}` }} />
+
+      {skillGroups.map((group, i) => {
+        const color = CATEGORY_COLORS[group.id] ?? C.rust;
+        return (
+          <Hover
+            key={group.id}
+            as="div"
+            data-r="skill-row"
+            style={{
+              display: "grid",
+              gridTemplateColumns: SKILL_GRID,
+              gap: "0 24px",
+              padding: "16px 0",
+              alignItems: "start",
+              borderBottom: "1px solid rgba(22,25,15,0.18)",
+              boxShadow: `inset 3px 0 0 ${color}`,
+              background: "transparent",
+            }}
+            hoverStyle={{ background: withAlpha(color, 0.1) }}
+          >
+            <div style={mono({ fontSize: 12, fontWeight: 700, letterSpacing: "0.6px", color, textTransform: "none" })}>
+              {String(i + 1).padStart(2, "0")}
+            </div>
+            <div style={mono({ fontSize: 12, letterSpacing: "0.6px", lineHeight: "17.4px", display: "flex", alignItems: "center", gap: 8 })}>
+              <span style={{ width: 8, height: 8, background: color, display: "inline-block", flexShrink: 0 }} />
+              {group.label}
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignContent: "flex-start" }}>
+              {group.items.map((item) => (
+                <span key={item} style={chipStyle(color)}>
+                  {item}
+                </span>
+              ))}
+            </div>
+            <div style={mono({ fontSize: 11, fontWeight: 400, letterSpacing: "0.88px", color: C.muted, textAlign: "right" })}>
+              {group.items.length} ITEMS
+            </div>
+          </Hover>
+        );
+      })}
     </div>
   );
 }

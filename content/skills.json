@@ -24,6 +24,7 @@
         "React",
         "Next.js",
         "React Native",
+        "Three.js",
         "Tailwind CSS",
         "Styled Components",
         "Figma"
@@ -36,11 +37,13 @@
         "Node.js",
         "Express.js",
         "FastAPI",
+        "WebSockets",
         "PostgreSQL",
         "MySQL",
         "MongoDB",
         "Supabase",
-        "Firebase"
+        "Firebase",
+        "Zod"
       ]
     },
     {
@@ -70,7 +73,9 @@
         "VLMs",
         "Transformers",
         "Hugging Face",
-        "LLaVA"
+        "LLaVA",
+        "Ollama",
+        "Kalman Filter"
       ]
     },
     {
@@ -79,9 +84,12 @@
       "items": [
         "Unity",
         "Arduino",
+        "ESP32",
+        "ESP-NOW",
         "Raspberry Pi",
         "Altium Designer",
         "AutoCAD",
+        "OpenSCAD",
         "Blender"
       ]
     },

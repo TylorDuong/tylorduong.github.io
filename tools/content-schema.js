@@ -25,6 +25,8 @@ export const ACCENT_PRESETS = [
   "#16b364", "#22c55e", "#2563eb", "#0284c7", "#f97316", "#0d9488",
   "#7c3aed", "#db2777", "#4f46e5", "#dc2626", "#b45309",
   "#0891b2",
+  "#598b0d",
+  "#d915e0",
 ];
 
 /** URL/file-safe slug. Never run tech names through this ("C/C++", "C#"). */
@@ -110,6 +112,22 @@ export function validate(entity, doc) {
         if (!HEX_RE.test(p.accent || "")) out.push(err(`${at}.accent`, "accent must be #rrggbb"));
         if (p.image && !String(p.image).startsWith("/")) {
           out.push(err(`${at}.image`, "image must be a site-root path starting with /"));
+        }
+        if (p.descriptionShort != null && typeof p.descriptionShort !== "string") {
+          out.push(err(`${at}.descriptionShort`, "descriptionShort must be a string"));
+        }
+        if (p.gallery != null) {
+          if (!Array.isArray(p.gallery)) {
+            out.push(err(`${at}.gallery`, "gallery must be an array of image paths or video URLs"));
+          } else {
+            p.gallery.forEach((g, gi) => {
+              if (typeof g !== "string" || !g.trim()) {
+                out.push(err(`${at}.gallery[${gi}]`, "gallery items must be non-empty strings"));
+              } else if (!g.startsWith("/") && !/^https?:\/\//i.test(g)) {
+                out.push(err(`${at}.gallery[${gi}]`, "gallery item must be a site-root image path (/…) or a video URL (http…)"));
+              }
+            });
+          }
         }
         if (!Array.isArray(p.tech) || p.tech.length === 0) {
           out.push(err(`${at}.tech`, "at least one technology is required"));
@@ -208,6 +226,15 @@ export function validate(entity, doc) {
           if (!ed.school?.trim()) out.push(err(`${at}.school`, "school is required"));
           checkPeriod(ed, at, out);
         });
+      }
+      if (doc?.featured != null) {
+        const f = doc.featured;
+        if (!["recent", "specific"].includes(f.mode)) {
+          out.push(err("featured.mode", 'mode must be "recent" or "specific"'));
+        }
+        if (f.mode === "specific" && !f.projectId?.trim()) {
+          out.push(err("featured.projectId", "choose a project when mode is specific"));
+        }
       }
       break;
     }

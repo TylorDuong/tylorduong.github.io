@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { C } from "@/lib/theme";
+import { C, mono } from "@/lib/theme";
 import { Hover } from "@/lib/Hover";
 import { yearLabel } from "@/lib/dates";
 import {
@@ -9,12 +9,61 @@ import {
   slugify,
   initials,
 } from "../tools/content-schema.js";
-import { Field, Text, Area, Select, TagInput, ListEditor, Button, MonthInput } from "./ui";
+import { Field, Text, Area, Select, TagInput, ListEditor, Button, MonthInput, MiniBtn } from "./ui";
 import { input } from "./styles";
 import { ImageDrop } from "./ImageDrop";
 import { Placement } from "./Placement";
 
 const two = { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 };
+
+const isVideoUrl = (v) => /^https?:\/\//i.test(String(v || "").trim());
+
+/**
+ * Ordered mix of image uploads and video links that becomes a project's
+ * carousel (src/lib/video.js → toGallery). An item is a video when it reads
+ * like a URL, otherwise an uploaded image path; type is inferred from the value
+ * so the stored form stays a flat array of strings. The first item leads the
+ * carousel.
+ */
+function GalleryEditor({ value = [], onChange, titleSlug }) {
+  const set = (i, v) => onChange(value.map((x, j) => (j === i ? v : x)));
+  const move = (i, d) => {
+    const next = [...value];
+    const j = i + d;
+    if (j < 0 || j >= next.length) return;
+    [next[i], next[j]] = [next[j], next[i]];
+    onChange(next);
+  };
+  const remove = (i) => onChange(value.filter((_, j) => j !== i));
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+      {value.map((v, i) => (
+        <div key={i} style={{ display: "flex", gap: 6, alignItems: "flex-start", border: "1px solid rgba(22,25,15,0.42)", padding: 8 }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={mono({ fontSize: 10, fontWeight: 700, color: C.muted, marginBottom: 6, textTransform: "none", letterSpacing: "0.4px" })}>
+              {`Slide ${i + 1} — ${isVideoUrl(v) ? "Video" : "Image"}`}
+            </div>
+            {isVideoUrl(v) ? (
+              <Text value={v} onChange={(nv) => set(i, nv)} placeholder="https://youtube.com/watch?v=…" />
+            ) : (
+              <ImageDrop value={v} onChange={(nv) => set(i, nv)} kind="projects" suggestedName={`${titleSlug}-${i + 1}`} />
+            )}
+          </div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+            <MiniBtn onClick={() => move(i, -1)} disabled={i === 0} title="Move up">↑</MiniBtn>
+            <MiniBtn onClick={() => move(i, 1)} disabled={i === value.length - 1} title="Move down">↓</MiniBtn>
+            <MiniBtn onClick={() => remove(i)} title="Remove" danger>×</MiniBtn>
+          </div>
+        </div>
+      ))}
+      <div style={{ display: "flex", gap: 8 }}>
+        <Button onClick={() => onChange([...value, ""])}>+ Add image</Button>
+        <Button onClick={() => onChange([...value, "https://"])}>+ Add video</Button>
+      </div>
+    </div>
+  );
+}
 
 function Swatches({ value, onChange }) {
   return (
@@ -118,6 +167,10 @@ export function ProjectForm({ rec, all, patch, ctx }) {
         <Area value={rec.description} onChange={(v) => patch({ description: v })} rows={4} />
       </Field>
 
+      <Field label="Abridged description" hint="Optional. Shown in the Featured highlight (with a Read more toggle revealing the full text) and as a preview fallback when there's no summary. Blank auto-truncates the full description.">
+        <Area value={rec.descriptionShort} onChange={(v) => patch({ descriptionShort: v })} rows={3} />
+      </Field>
+
       <Field label="Image" error={errs["image"]}>
         <ImageDrop
           value={rec.image}
@@ -145,6 +198,14 @@ export function ProjectForm({ rec, all, patch, ctx }) {
           <Text value={rec.github} onChange={(v) => patch({ github: v })} placeholder="https://github.com/…" />
         </Field>
       </div>
+
+      <Field label="Gallery" hint="Carousel shown on the project page and Featured section. Add images and video links in order — the first slide leads (a demo video works well). Blank falls back to the image above.">
+        <GalleryEditor
+          value={rec.gallery || []}
+          onChange={(v) => patch({ gallery: v })}
+          titleSlug={slugify(rec.title || rec.id || "project")}
+        />
+      </Field>
 
       <Field label="Résumé bullets" hint="Used on /resume/ only. Leave empty to omit this project from the résumé body.">
         <ListEditor value={rec.bullets || []} onChange={(v) => patch({ bullets: v })} placeholder="Achievement, with a number if you have one." />

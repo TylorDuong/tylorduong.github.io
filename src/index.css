@@ -72,25 +72,8 @@ button:focus-visible {
    visibly once columns collapse to 1fr on narrow screens. Letting every
    [data-r] grid/row item shrink to 0 makes width:100% + ellipsis actually
    truncate instead of overflow. */
-[data-r$="-grid"] > *,
-[data-r="idx-row"] > * {
+[data-r$="-grid"] > * {
   min-width: 0;
-}
-
-/* The catalog table's fixed-width columns (No./Thumb/Category/Stack/Year)
-   plus the Project column's own minmax(220px,1fr) floor add up to more
-   than the shared 860px breakpoint leaves room for — stack it earlier so
-   the row never gets clipped/squeezed in that gap. */
-@media (max-width: 1100px) {
-  [data-r="idx-head"] {
-    display: none !important;
-  }
-  [data-r="idx-row"] {
-    grid-template-columns: 1fr !important;
-    gap: 4px 0 !important;
-    padding: 18px 0 !important;
-    align-items: start !important;
-  }
 }
 
 /* ============ RESPONSIVE LAYER (desktop unchanged) ============ */
@@ -118,7 +101,8 @@ button:focus-visible {
     grid-template-columns: 1fr !important;
     align-items: start !important;
   }
-  [data-r="pd-grid"] {
+  [data-r="pd-grid"],
+  [data-r="feat-grid"] {
     grid-template-columns: 1fr !important;
   }
   [data-r="contact-grid"] {
@@ -143,7 +127,8 @@ button:focus-visible {
   [data-r="contact-orb"] {
     display: none !important;
   }
-  [data-r="nav-links"] {
+  [data-r="nav-links"],
+  [data-r="nav-cta"] {
     display: none !important;
   }
   [data-r="nav-hamburger"] {
