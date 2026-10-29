@@ -26,6 +26,7 @@ export const ACCENT_PRESETS = [
   "#7c3aed", "#db2777", "#4f46e5", "#dc2626", "#b45309",
   "#0891b2",
   "#598b0d",
+  "#d915e0",
 ];
 
 /** URL/file-safe slug. Never run tech names through this ("C/C++", "C#"). */

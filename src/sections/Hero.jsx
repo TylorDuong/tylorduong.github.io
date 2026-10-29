@@ -342,7 +342,7 @@ export function Hero({ go, goIndex, openProject, metrics, metricsRef, unitCount 
               Projects + Ventures Live
             </div>
             <div style={mono({ fontSize: 11, letterSpacing: "0.88px", color: C.rust, textDecoration: "underline", textUnderlineOffset: "3px", marginTop: "auto", paddingTop: 16 })}>
-              Browse Project Index →
+              Browse Project Gallery →
             </div>
           </Hover>
         </div>

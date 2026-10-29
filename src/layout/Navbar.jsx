@@ -1,4 +1,4 @@
-import { F, C } from "@/lib/theme";
+import { F, C, CLIP } from "@/lib/theme";
 import { Hover } from "@/lib/Hover";
 import { contact } from "@/data";
 
@@ -11,8 +11,27 @@ const LINKS = [
   ["contact", "Contact"],
 ];
 
-export function Navbar({ active, go, menuOpen, openMenu, closeMenu }) {
+export function Navbar({ active, go, onGallery, galleryActive, menuOpen, openMenu, closeMenu }) {
   const linkColor = (key) => (active === key ? C.rust : C.paper);
+
+  // The gallery lives on its own screen, not a scroll anchor, so it gets a
+  // highlighted deckplate chip set apart from the section links rather than
+  // another plain text item. Active (on the gallery) inverts to paper/ink.
+  const galleryChip = {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: 8,
+    border: "none",
+    cursor: "pointer",
+    clipPath: CLIP,
+    fontFamily: F.mono,
+    fontWeight: 700,
+    letterSpacing: "1.04px",
+    textTransform: "uppercase",
+    background: galleryActive ? C.paper : C.rust,
+    color: galleryActive ? C.ink : C.paper,
+  };
+  const galleryDot = galleryActive ? C.rust : C.paper;
 
   return (
     <>
@@ -53,30 +72,45 @@ export function Navbar({ active, go, menuOpen, openMenu, closeMenu }) {
             <span style={{ width: 9, height: 9, background: C.rust, display: "inline-block" }} />
           </button>
 
-          <div
-            data-r="nav-links"
-            style={{ display: "flex", alignItems: "center", gap: 28, flexWrap: "wrap" }}
-          >
-            {LINKS.map(([key, label]) => (
-              <button
-                key={key}
-                onClick={() => go(key)}
-                className="dp-underline-hover"
-                style={{
-                  background: "none",
-                  border: "none",
-                  padding: 0,
-                  cursor: "pointer",
-                  fontFamily: F.body,
-                  fontSize: 15,
-                  fontWeight: 400,
-                  color: linkColor(key),
-                  transition: "color 0.25s",
-                }}
-              >
-                {label}
-              </button>
-            ))}
+          <div style={{ display: "flex", alignItems: "center", gap: 28 }}>
+            <div
+              data-r="nav-links"
+              style={{ display: "flex", alignItems: "center", gap: 28, flexWrap: "wrap" }}
+            >
+              {LINKS.map(([key, label]) => (
+                <button
+                  key={key}
+                  onClick={() => go(key)}
+                  className="dp-underline-hover"
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    cursor: "pointer",
+                    fontFamily: F.body,
+                    fontSize: 15,
+                    fontWeight: 400,
+                    color: linkColor(key),
+                    transition: "color 0.25s",
+                  }}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+
+            <Hover
+              as="button"
+              data-r="nav-cta"
+              onClick={onGallery}
+              aria-current={galleryActive ? "page" : undefined}
+              style={{ ...galleryChip, fontSize: 12, padding: "9px 16px" }}
+              hoverStyle={galleryActive ? {} : { background: C.rustDark }}
+            >
+              <span style={{ width: 8, height: 8, background: galleryDot }} />
+              Gallery
+              <span aria-hidden="true">→</span>
+            </Hover>
           </div>
 
           <button
@@ -154,6 +188,25 @@ export function Navbar({ active, go, menuOpen, openMenu, closeMenu }) {
             ✕
           </button>
         </div>
+        <button
+          onClick={() => {
+            closeMenu();
+            onGallery();
+          }}
+          aria-current={galleryActive ? "page" : undefined}
+          style={{
+            ...galleryChip,
+            alignSelf: "flex-start",
+            fontSize: 13,
+            padding: "14px 22px",
+            marginBottom: 24,
+          }}
+        >
+          <span style={{ width: 9, height: 9, background: galleryDot }} />
+          Gallery
+          <span aria-hidden="true">→</span>
+        </button>
+
         <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
           {LINKS.map(([key, label], i) => (
             <button

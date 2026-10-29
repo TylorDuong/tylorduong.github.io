@@ -37,6 +37,7 @@
         "Node.js",
         "Express.js",
         "FastAPI",
+        "WebSockets",
         "PostgreSQL",
         "MySQL",
         "MongoDB",
@@ -73,7 +74,8 @@
         "Transformers",
         "Hugging Face",
         "LLaVA",
-        "Ollama"
+        "Ollama",
+        "Kalman Filter"
       ]
     },
     {
@@ -82,6 +84,8 @@
       "items": [
         "Unity",
         "Arduino",
+        "ESP32",
+        "ESP-NOW",
         "Raspberry Pi",
         "Altium Designer",
         "AutoCAD",

@@ -23,7 +23,7 @@ export function ProjectDetail({ project, counter, onPrev, onNext, goIndex }) {
         <Mark name="twins" size={52} color={C.ink} style={{ opacity: 0.7, display: "block" }} />
       </div>
 
-      <NavLink onClick={goIndex}>← Back to Index</NavLink>
+      <NavLink onClick={goIndex}>← Back to Gallery</NavLink>
 
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginTop: 40, flexWrap: "wrap", gap: 16 }}>
         <h1 data-r="h2" style={sectionH2}>{p.title}</h1>

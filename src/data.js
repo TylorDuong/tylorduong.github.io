@@ -29,6 +29,7 @@ import { toGallery } from "@/lib/video";
 export const projects = [...projectsRaw].sort(byRecency).map((p) => ({
   ...p,
   year: yearLabel(p.start, p.end),
+  period: periodLabel(p.start, p.end, { title: true }),
   tags: p.tech,
   current: p.end == null,
   // Normalized carousel slides (video + images). Always at least one slide,

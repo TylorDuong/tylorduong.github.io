@@ -96,7 +96,7 @@
     "unit": "AI Fitness Coach",
     "location": "Tempe, AZ",
     "start": "2025-01",
-    "end": null,
+    "end": "2025-05",
     "pin": null,
     "kind": "project",
     "description": "Developing MoveRight, a responsive AI-powered fitness web app with real-time exercise tracking and form correction. Built the UI with React (Next.js) + Tailwind, used React Webcam, and integrated CV models (YOLOv8, ViTPose++) via FastAPI. Created a dataset annotation tool for custom model training.",
@@ -295,6 +295,36 @@
       "VLMs"
     ],
     "projectId": "surgical-video-vlm",
+    "resume": {
+      "include": false
+    }
+  },
+  {
+    "id": "devilsinvent-agat",
+    "role": "Software Engineer",
+    "company": "DevilsInvent x Honeywell",
+    "unit": "AGAT",
+    "location": "Tempe, AZ",
+    "start": "2026-10",
+    "end": "2026-10",
+    "pin": null,
+    "kind": "hackathon",
+    "description": "Built AGAT, an affordable peer-to-peer TCAS for general aviation, in under 48 hours at DevilsInvent: Future-Ready Avionics (sponsored by Honeywell Aerospace). Engineered a real-time prototype of two ESP32 boards streaming ultrasonic range over WebSockets and ESP-NOW into a Node.js server that fuses readings with a Kalman filter and TCAS II v7.1 threat logic, rendered as dual TCAS displays and a 3D traffic view.",
+    "bullets": [
+      "Built a peer-to-peer collision-avoidance prototype for general aviation delivering TCAS-style protection at ~$5,000 installed, roughly 0.5% of a commercial system's $200,000+ cost.",
+      "Engineered the server and firmware: two ESP32 boards relaying ultrasonic range over WebSockets and ESP-NOW into a Node.js Kalman filter and TCAS II v7.1 threat logic, with dual TCAS displays and a 3D traffic view."
+    ],
+    "tech": [
+      "ESP32",
+      "Arduino",
+      "C/C++",
+      "Node.js",
+      "WebSockets",
+      "ESP-NOW",
+      "Three.js",
+      "Kalman Filter"
+    ],
+    "projectId": "agat",
     "resume": {
       "include": false
     }

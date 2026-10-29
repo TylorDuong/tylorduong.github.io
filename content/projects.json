@@ -139,7 +139,7 @@
     "title": "MoveRight",
     "category": "AI / COMPUTER VISION",
     "start": "2025-01",
-    "end": null,
+    "end": "2025-05",
     "pin": null,
     "summary": "Corrects your workout form in real time using AI.",
     "description": "AI fitness coach offering real-time exercise tracking and form correction from webcam input. Built a custom data-annotation tool and dataset of human exercises for more accurate models, integrating CV models (YOLOv8, ViTPose++) through FastAPI with a responsive React (Next.js) + Tailwind UI.",
@@ -419,6 +419,41 @@
     ],
     "link": "https://devpost.com/software/guided-hardware-learning",
     "github": "https://github.com/TylorDuong/Educational-Hardware-Builder",
+    "resume": {
+      "include": false,
+      "order": null
+    }
+  },
+  {
+    "id": "agat",
+    "code": "AG",
+    "kind": "personal",
+    "accent": "#d915e0",
+    "title": "AGAT: Affordable General Aviation TCAS",
+    "category": "AVIATION / IOT",
+    "start": "2026-10",
+    "end": "2026-10",
+    "pin": null,
+    "summary": "Collision avoidance for small aircraft at 0.5% the cost.",
+    "description": "Built in under 48 hours at the DevilsInvent: Future-Ready Avionics hackathon (sponsored by Honeywell Aerospace), AGAT brings TCAS-style collision avoidance to general aviation, where commercial systems cost $200,000+ and price out small pilots. The concept listens to existing ADS-B broadcasts and a peer-to-peer LoRa link to map nearby aircraft and predict collisions, then integrates with the autopilot to automatically fly coordinated avoidance maneuvers — all from ~$900 of off-the-shelf parts (~$5,000 installed, roughly 0.5% of a commercial unit). The working prototype demonstrates the full pipeline with two ESP32 boards: each measures the gap with an ultrasonic sensor and relays alerts over ESP-NOW, while a Node.js server fuses the readings through a Kalman filter and TCAS II v7.1 threat logic, driving dual TCAS traffic displays (one per aircraft POV) and a 3D traffic view.",
+    "bullets": [
+      "Built AGAT, a peer-to-peer collision-avoidance system for general aviation, in under 48 hours at the DevilsInvent x Honeywell hackathon — delivering TCAS-style protection at ~$5,000 installed, roughly 0.5% of a commercial system's $200,000+ cost.",
+      "Engineered a real-time prototype of two ESP32 boards streaming ultrasonic range over WebSockets and ESP-NOW into a Node.js Kalman filter and TCAS II v7.1 threat logic, rendered as dual TCAS displays and a 3D traffic view.",
+      "Designed automatic avoidance around existing ADS-B and autopilot systems to execute coordinated climb/descend maneuvers the moment a collision became imminent."
+    ],
+    "image": "/projects/agat.png",
+    "tech": [
+      "ESP32",
+      "Arduino",
+      "C/C++",
+      "Node.js",
+      "WebSockets",
+      "ESP-NOW",
+      "Three.js",
+      "Kalman Filter"
+    ],
+    "link": "https://docs.google.com/presentation/d/1cyP18bHPDd41PhyBOLNViasxUkKzBmiHQFGkWZ5C2nY/edit?usp=sharing",
+    "github": "https://github.com/TylorDuong/collision-avoidance-simulation-demo",
     "resume": {
       "include": false,
       "order": null

@@ -176,6 +176,8 @@ export default function App() {
       <Navbar
         active={screen === "home" ? activeSection : null}
         go={scrollToSection}
+        onGallery={goIndex}
+        galleryActive={screen === "index"}
         menuOpen={menuOpen}
         openMenu={() => setMenuOpen(true)}
         closeMenu={() => setMenuOpen(false)}
