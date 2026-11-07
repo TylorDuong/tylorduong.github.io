@@ -1,0 +1,98 @@
+{
+  "active": "general",
+  "profiles": [
+    {
+      "id": "general",
+      "name": "General",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "yber",
+          "shelfsmart",
+          "wifi-portal",
+          "quotation-engine",
+          "sir-model",
+          "mud",
+          "surgical-video-vlm",
+          "hardware-planner",
+          "agat"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "asu-capstone-surgical-vlm",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {},
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    },
+    {
+      "id": "riot-games-swe-intern",
+      "name": "Software Engineering Intern @ Riot Games",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "yber",
+          "shelfsmart",
+          "wifi-portal",
+          "quotation-engine",
+          "moveright",
+          "fit2u",
+          "sir-model",
+          "surgical-video-vlm",
+          "hardware-planner"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "sunhacks-post-pals",
+          "asu-capstone-surgical-vlm",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {
+          "languages": ["HTML", "CSS"],
+          "frontend": ["React Native", "Tailwind CSS", "Styled Components", "Figma"],
+          "backend": ["Supabase", "Firebase", "Zod"],
+          "cloud": ["Vercel"],
+          "ai": [
+            "PyTorch",
+            "OpenCV",
+            "Pandas",
+            "NumPy",
+            "Gemini API",
+            "OpenRouter",
+            "LLMs",
+            "VLMs",
+            "Transformers",
+            "Hugging Face",
+            "LLaVA",
+            "Ollama",
+            "Kalman Filter"
+          ],
+          "hardware": [
+            "Arduino",
+            "ESP32",
+            "ESP-NOW",
+            "Raspberry Pi",
+            "Altium Designer",
+            "AutoCAD",
+            "OpenSCAD"
+          ],
+          "enterprise": ["Power Platform", "Power BI", "Power Apps", "n8n", "SharePoint"]
+        },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    }
+  ]
+}

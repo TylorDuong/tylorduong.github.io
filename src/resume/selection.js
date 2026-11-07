@@ -4,7 +4,7 @@
 // the empty selection and content added after a preset was saved appears
 // automatically instead of being silently excluded.
 
-import { projects, experiences, skillGroups } from "@/data";
+import { projects, experiences, skillGroups, resumeProfiles } from "@/data";
 
 export const CONTACT_ORDER = ["phone", "email", "location", "linkedin", "website", "github"];
 
@@ -49,6 +49,14 @@ export function curatedSelection() {
     hiddenProjects: projects.filter((p) => !p.resume?.include).map((p) => p.id),
     hiddenExperiences: experiences.filter((e) => !e.resume?.include).map((e) => e.id),
   };
+}
+
+// The selection a named résumé profile resolves to. Falls back to the curated
+// `resume.include` set when the id names no profile, so a stale/empty active id
+// never blanks the page. This is what the live /resume/ page renders.
+export function profileSelection(id) {
+  const p = resumeProfiles.find((x) => x.id === id);
+  return p ? normalizeSelection(p.selection) : curatedSelection();
 }
 
 const strings = (v) => (Array.isArray(v) ? v.filter((x) => typeof x === "string") : []);

@@ -1,12 +1,18 @@
 import { Fragment, useEffect, useRef, useState } from "react";
-import { profile, contact, education } from "@/data";
+import { profile, contact, education, activeResumeProfileId } from "@/data";
 import { periodLabel, fmtYM } from "@/lib/dates";
-import { curatedSelection, deriveVisible, visibleContactKeys } from "./selection";
-import { ExportPanel } from "./ExportPanel";
+import { profileSelection, deriveVisible, visibleContactKeys } from "./selection";
 
-// What the deployed page renders. The dev-only ExportPanel replaces this with
-// its own selection once mounted.
-const CURATED = curatedSelection();
+// Which résumé profile this page renders. `?profile=<id>` overrides the active
+// one — the admin Résumé tab opens that link to preview/print a specific
+// profile without having to make it live first.
+function initialSelection() {
+  const override =
+    typeof window !== "undefined"
+      ? new URLSearchParams(window.location.search).get("profile")
+      : null;
+  return profileSelection(override || activeResumeProfileId);
+}
 
 /* -------------------------------------------------------------- fragments */
 
@@ -81,7 +87,7 @@ function FitMeter({ pageRef }) {
 export function Resume() {
   const pageRef = useRef(null);
   const ed = education[0];
-  const [selection, setSelection] = useState(CURATED);
+  const [selection] = useState(initialSelection);
   const v = deriveVisible(selection);
 
   const shown = visibleContactKeys(selection);
@@ -106,7 +112,6 @@ export function Resume() {
 
   return (
     <>
-      {import.meta.env.DEV && <ExportPanel selection={selection} onChange={setSelection} />}
       <div className="r-toolbar no-print">
         {import.meta.env.DEV && <FitMeter pageRef={pageRef} />}
         <button className="r-btn" onClick={() => window.print()}>

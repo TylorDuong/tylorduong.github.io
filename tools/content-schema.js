@@ -11,6 +11,7 @@ export const ENTITIES = [
   "about",
   "metrics",
   "profile",
+  "resume-profiles",
 ];
 
 export const YM_RE = /^\d{4}-(0[1-9]|1[0-2])$/;
@@ -235,6 +236,50 @@ export function validate(entity, doc) {
         if (f.mode === "specific" && !f.projectId?.trim()) {
           out.push(err("featured.projectId", "choose a project when mode is specific"));
         }
+      }
+      break;
+    }
+
+    case "resume-profiles": {
+      if (typeof doc !== "object" || doc == null || Array.isArray(doc)) {
+        return [err("", "resume-profiles must be an object")];
+      }
+      if (typeof doc.active !== "string") {
+        out.push(err("active", "active must be a string (the id of the live profile)"));
+      }
+      if (!Array.isArray(doc.profiles)) {
+        return [err("profiles", "profiles must be an array")];
+      }
+      const ids = new Set();
+      doc.profiles.forEach((p, i) => {
+        const at = `profiles[${i}]`;
+        if (!p?.id?.trim()) out.push(err(`${at}.id`, "id is required"));
+        else if (ids.has(p.id)) out.push(err(`${at}.id`, `duplicate profile id "${p.id}"`));
+        ids.add(p.id);
+        if (!p?.name?.trim()) out.push(err(`${at}.name`, "name is required"));
+
+        const s = p?.selection;
+        if (typeof s !== "object" || s == null || Array.isArray(s)) {
+          out.push(err(`${at}.selection`, "selection must be an object"));
+          return;
+        }
+        for (const k of ["hiddenProjects", "hiddenExperiences", "hiddenContact"]) {
+          if (s[k] != null && !Array.isArray(s[k])) {
+            out.push(err(`${at}.selection.${k}`, `${k} must be an array`));
+          }
+        }
+        if (s.hiddenSkills != null && (typeof s.hiddenSkills !== "object" || Array.isArray(s.hiddenSkills))) {
+          out.push(err(`${at}.selection.hiddenSkills`, "hiddenSkills must be an object"));
+        }
+        for (const k of ["hideSummary", "hideCoursework"]) {
+          if (s[k] != null && typeof s[k] !== "boolean") {
+            out.push(err(`${at}.selection.${k}`, `${k} must be a boolean`));
+          }
+        }
+      });
+      // active may be "" only while there are no profiles yet.
+      if (doc.active && !ids.has(doc.active)) {
+        out.push(err("active", `active "${doc.active}" matches no profile id`));
       }
       break;
     }

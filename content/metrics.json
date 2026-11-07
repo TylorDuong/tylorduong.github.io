@@ -1,12 +1,13 @@
 {
   "peopleHelped": 42459,
-  "moneySaved": 200000,
+  "moneySaved": 300000,
   "peopleHelpedBreakdown": [
     { "label": "Yber.ai", "value": "~40,000 CUSD students", "projectId": "yber" },
     { "label": "Wi-Fi Tracking Portal (Yazaki)", "value": "2,000 users", "projectId": "wifi-portal" },
     { "label": "Other Projects (9)", "value": "459 users" }
   ],
   "moneySavedBreakdown": [
-    { "label": "Enterprise Wi-Fi Portal", "value": "$200,000 / yr", "projectId": "wifi-portal" }
+    { "label": "Enterprise Wi-Fi Portal", "value": "$200,000 / yr", "projectId": "wifi-portal" },
+    { "label": "Automated Quotation Engine", "value": "$100,000 / yr", "projectId": "quotation-engine" }
   ]
 }

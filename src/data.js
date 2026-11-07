@@ -18,6 +18,7 @@ import testimonialsRaw from "@content/testimonials.json";
 import aboutRaw from "@content/about.json";
 import metricsRaw from "@content/metrics.json";
 import profileRaw from "@content/profile.json";
+import resumeProfilesRaw from "@content/resume-profiles.json";
 
 import { byRecency, periodLabel, yearLabel, fmtYM } from "@/lib/dates";
 import { toGallery } from "@/lib/video";
@@ -94,6 +95,16 @@ export const featuredProject = (() => {
       : projects[0];
   return pick || projects[0] || null;
 })();
+
+/* -------------------------------------------------------- résumé profiles */
+
+// Named résumé selections authored in the admin's Résumé tab. `active` names
+// the profile the live /resume/ page renders; the shape of each `selection`
+// is the "store what is HIDDEN" model defined in src/resume/selection.js.
+// Kept as a raw passthrough here (not resolved into a selection) because
+// selection.js imports from this module — resolving it here would be a cycle.
+export const resumeProfiles = resumeProfilesRaw.profiles ?? [];
+export const activeResumeProfileId = resumeProfilesRaw.active ?? "";
 
 /* ------------------------------------------------------- passthrough content */
 

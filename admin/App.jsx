@@ -8,6 +8,7 @@ import { Button, Field, Text, Area, ListEditor, TagInput, Select } from "./ui";
 import { input } from "./styles";
 import { ProjectForm, ExperienceForm, TestimonialForm } from "./forms";
 import { Publish } from "./Publish";
+import { ResumePane } from "./ResumePane";
 
 const TABS = [
   ["projects", "Projects"],
@@ -17,6 +18,7 @@ const TABS = [
   ["about", "About"],
   ["metrics", "Metrics"],
   ["profile", "Profile"],
+  ["resume-profiles", "Résumé"],
   ["publish", "Publish"],
 ];
 
@@ -250,6 +252,7 @@ export default function App() {
         {tab === "about" && <AboutPane doc={doc("about")} setDoc={(v) => setDoc("about", v)} />}
         {tab === "metrics" && <MetricsPane doc={doc("metrics")} setDoc={(v) => setDoc("metrics", v)} />}
         {tab === "profile" && <ProfilePane doc={doc("profile")} setDoc={(v) => setDoc("profile", v)} ctx={ctx} />}
+        {tab === "resume-profiles" && <ResumePane doc={doc("resume-profiles")} setDoc={(v) => setDoc("resume-profiles", v)} />}
         {tab === "publish" && <Publish dirty={dirty} onSaveAll={saveAll} />}
 
         {ENTITIES.includes(tab) && (
@@ -326,7 +329,6 @@ function Header({ tabs, tab, setTab, dirty, onSaveAll, anyDirty }) {
         ))}
         <div style={{ marginLeft: "auto", display: "flex", gap: 10, alignItems: "center" }}>
           <a href="/" target="_blank" rel="noreferrer" style={{ ...mono({ fontSize: 10 }), color: "rgba(241,237,226,0.6)", textDecoration: "none" }}>SITE ↗</a>
-          <a href="/resume/" target="_blank" rel="noreferrer" style={{ ...mono({ fontSize: 10 }), color: "rgba(241,237,226,0.6)", textDecoration: "none" }}>RÉSUMÉ ↗</a>
           <Button variant="primary" onClick={onSaveAll} disabled={!anyDirty} style={{ margin: "8px 0" }}>
             Save all
           </Button>
