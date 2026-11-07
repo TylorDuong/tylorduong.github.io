@@ -93,6 +93,135 @@
         "hideCoursework": false,
         "hiddenContact": []
       }
+    },
+    {
+      "id": "intel-software-engineering-intern",
+      "name": "Software Engineering Intern @ Intel",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "yber",
+          "wifi-portal",
+          "quotation-engine",
+          "oratori",
+          "fit2u",
+          "vibe",
+          "sir-model",
+          "mud",
+          "surgical-video-vlm"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "sunhacks-post-pals",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {
+          "languages": ["HTML", "CSS"],
+          "frontend": ["React Native", "Tailwind CSS", "Styled Components", "Figma"],
+          "backend": ["Express.js", "MySQL", "MongoDB", "Supabase", "Firebase"],
+          "cloud": ["Vercel"],
+          "ai": ["Gemini API", "OpenRouter", "LLaVA", "Ollama"],
+          "hardware": ["Blender"],
+          "enterprise": ["Power Platform", "Power Apps", "n8n", "SharePoint"]
+        },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    },
+    {
+      "id": "garmin-software-engineering-intern",
+      "name": "Software Engineering Intern @ Garmin",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "yber",
+          "wifi-portal",
+          "quotation-engine",
+          "moveright",
+          "oratori",
+          "fit2u",
+          "sir-model",
+          "surgical-video-vlm",
+          "hardware-planner"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "sunhacks-post-pals",
+          "asu-capstone-surgical-vlm",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {
+          "languages": ["HTML", "CSS"],
+          "frontend": ["Tailwind CSS", "Styled Components", "Figma"],
+          "backend": ["Express.js", "MySQL", "MongoDB", "Supabase", "Firebase", "Zod"],
+          "cloud": ["Vercel"],
+          "ai": [
+            "PyTorch",
+            "Pandas",
+            "Gemini API",
+            "OpenRouter",
+            "LLMs",
+            "VLMs",
+            "Transformers",
+            "Hugging Face",
+            "LLaVA",
+            "Ollama"
+          ],
+          "hardware": ["AutoCAD", "OpenSCAD", "Blender"],
+          "enterprise": ["Power Platform", "Power BI", "Power Apps", "n8n", "SharePoint"]
+        },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    },
+    {
+      "id": "waymo-ml-accelerator-kernels-intern",
+      "name": "ML Accelerator Kernels Intern @ Waymo",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "yber",
+          "shelfsmart",
+          "wifi-portal",
+          "quotation-engine",
+          "assemblisim",
+          "oratori",
+          "fit2u",
+          "vibe",
+          "sir-model",
+          "mud"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "sunhacks-post-pals",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {
+          "languages": ["SQL", "HTML", "CSS"],
+          "frontend": ["React Native", "Tailwind CSS", "Styled Components", "Figma"],
+          "backend": ["Express.js", "MySQL", "MongoDB", "Supabase", "Firebase"],
+          "cloud": ["Vercel"],
+          "hardware": ["Unity", "ESP-NOW", "AutoCAD", "OpenSCAD", "Blender"],
+          "enterprise": ["Power Platform", "Power BI", "Power Apps", "n8n", "SharePoint"]
+        },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
     }
   ]
 }

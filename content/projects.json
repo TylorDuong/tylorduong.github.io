@@ -358,9 +358,9 @@
     "end": null,
     "pin": null,
     "summary": "Vision-language models that read neurosurgery video.",
-    "description": "Two-semester ASU capstone research, advised by Yalin Wang, applying vision-language models to neurosurgery video analysis. Building end-to-end pipelines that recognize surgical workflows and instruments and generate textual descriptions of what happens during a procedure, working from real surgical video data. In progress: establishing baseline and fine-tuned VLM performance before building captioning and video question-answering prototypes.",
+    "description": "Two-semester ASU capstone research in partnership with Barrow Neurological Institute, advised by Professor Yalin Wang (ASU School of Computing and Augmented Intelligence), applying vision-language models to neurosurgery video analysis. Building end-to-end pipelines that recognize surgical workflows and instruments and generate textual descriptions of what happens during a procedure, working from real surgical video data. In progress: establishing baseline and fine-tuned VLM performance before building captioning and video question-answering prototypes.",
     "bullets": [
-      "Built end-to-end vision-language pipelines in PyTorch and Hugging Face to recognize surgical workflows and instruments in neurosurgery video.",
+      "Built end-to-end vision-language pipelines in PyTorch and Hugging Face to recognize surgical workflows and instruments in neurosurgery video — an ASU capstone in partnership with Barrow Neurological Institute, advised by Prof. Yalin Wang.",
       "Evaluated baseline against fine-tuned VLMs on surgical video captioning and question-answering tasks."
     ],
     "image": "/projects/surgical-video-vlm.png",

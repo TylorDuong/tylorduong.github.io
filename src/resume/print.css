@@ -32,7 +32,9 @@ body {
 
 @page {
   size: Letter;
-  margin: 0.5in;
+  /* Zero margin so Chrome doesn't inject its URL/date header & footer into the
+     page margin. The 0.5in inset is applied to .r-page padding in print below. */
+  margin: 0;
 }
 
 /* On screen, mimic a sheet of Letter paper so what you see matches print. */
@@ -58,12 +60,12 @@ body {
   body {
     background: #fff;
   }
-  /* @page owns the margin; the sheet simulation must collapse. */
+  /* @page margin is 0 (no browser header/footer); .r-page owns the inset. */
   .r-page {
     width: auto;
     min-height: 0;
     margin: 0;
-    padding: 0;
+    padding: 0.5in;
     box-shadow: none;
   }
   body {
