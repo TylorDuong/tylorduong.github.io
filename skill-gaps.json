@@ -1,0 +1,808 @@
+{
+  "version": 1,
+  "updated": "2026-11-14",
+  "runs": [
+    {
+      "date": "2026-11-08",
+      "company": "Qualcomm",
+      "role": "Software Engineering Intern",
+      "profileId": "qualcomm-software-engineering-intern",
+      "score": 79,
+      "breakdown": {
+        "stack": 23,
+        "impact": 23,
+        "domain": 9,
+        "ats": 15,
+        "education": 9
+      },
+      "topGaps": [
+        "RTOS",
+        "Embedded Linux / Yocto",
+        "ARM assembly",
+        "Bare-metal firmware & device drivers",
+        "Multithreading primitives (mutexes, semaphores)"
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "company": "Honeywell Aerospace",
+      "role": "Software Engineering Intern",
+      "profileId": "honeywell-aerospace-software-engineering-intern",
+      "score": 85,
+      "breakdown": {
+        "stack": 24,
+        "impact": 24,
+        "domain": 13,
+        "ats": 15,
+        "education": 9
+      },
+      "topGaps": [
+        "DO-178C / safety-critical avionics SDLC",
+        "RTOS (VxWorks / INTEGRITY / Deos)",
+        "Avionics architectures (ARINC 653 / IMA)",
+        "Requirements-based verification & testing",
+        "Advanced DSA (segment trees, graphs, DP)"
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "company": "PayPal",
+      "role": "Software Engineer Intern",
+      "profileId": "paypal-software-engineer-intern",
+      "score": 85,
+      "breakdown": {
+        "stack": 25,
+        "impact": 24,
+        "domain": 12,
+        "ats": 15,
+        "education": 9
+      },
+      "topGaps": [
+        "Spring Boot",
+        "Distributed systems & high-availability at scale",
+        "Kafka (message queueing)",
+        "Java concurrency & internals",
+        "Payments / fintech domain (idempotency)"
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "company": "PayPal",
+      "role": "Machine Learning Engineer Intern",
+      "profileId": "paypal-machine-learning-engineer-intern",
+      "score": 86,
+      "breakdown": {
+        "stack": 26,
+        "impact": 24,
+        "domain": 12,
+        "ats": 15,
+        "education": 9
+      },
+      "topGaps": [
+        "scikit-learn",
+        "Fraud / Risk Modeling (imbalanced data)",
+        "MLOps / Model Deployment & Monitoring",
+        "TensorFlow",
+        "Statistics & Probability"
+      ]
+    },
+    {
+      "date": "2026-11-13",
+      "company": "PayPal",
+      "role": "Mobile Engineer Intern",
+      "profileId": "paypal-mobile-engineer-intern",
+      "score": 81,
+      "breakdown": {
+        "stack": 23,
+        "impact": 24,
+        "domain": 10,
+        "ats": 15,
+        "education": 9
+      },
+      "topGaps": [
+        "Swift",
+        "Kotlin",
+        "Native Mobile Development (iOS/Android SDK)",
+        "Objective-C",
+        "Core Data"
+      ]
+    },
+    {
+      "date": "2026-11-14",
+      "company": "Amazon",
+      "role": "SDE Intern",
+      "profileId": "amazon-software-development-engineer-intern",
+      "score": 87,
+      "breakdown": {
+        "stack": 26,
+        "impact": 25,
+        "domain": 12,
+        "ats": 15,
+        "education": 9
+      },
+      "topGaps": [
+        "Amazon Leadership Principles (STAR behavioral)",
+        "CI/CD & operational excellence (on-call, monitoring)",
+        "AWS cloud services (Lambda/DynamoDB/S3/EC2)",
+        "Distributed systems & high-availability design at scale",
+        "Advanced DSA (segment trees, graphs, DP)"
+      ]
+    },
+    {
+      "date": "2026-11-14",
+      "company": "Amazon Robotics",
+      "role": "System Development Engineer Intern",
+      "profileId": "amazon-system-development-engineer-intern-robotics",
+      "score": 86,
+      "breakdown": {
+        "stack": 25,
+        "impact": 25,
+        "domain": 12,
+        "ats": 15,
+        "education": 9
+      },
+      "topGaps": [
+        "Linux / Unix systems programming & shell scripting",
+        "TCP/IP networking & IP protocols (DNS, DHCP, NTP, SMTP, SNMP)",
+        "ROS / robotics middleware",
+        "CI/CD & operational excellence (on-call, monitoring)",
+        "Amazon Leadership Principles (STAR behavioral)"
+      ]
+    }
+  ],
+  "gaps": [
+    {
+      "skill": "Advanced DSA (segment trees, graphs, DP)",
+      "category": "languages",
+      "demandCount": 3,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-14",
+      "roles": [
+        "Software Engineering Intern @ Honeywell Aerospace",
+        "SDE Intern @ Amazon",
+        "System Development Engineer Intern @ Amazon Robotics"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Amazon's coding OA + technical loop are medium/hard LeetCode (BFS/DFS, trees, DP, heaps, sliding window); candidate has DSA fundamentals + competition exposure but should drill contest-level algorithms."
+    },
+    {
+      "skill": "Distributed systems & high-availability design at scale",
+      "category": "backend",
+      "demandCount": 3,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-14",
+      "roles": [
+        "Software Engineer Intern @ PayPal",
+        "SDE Intern @ Amazon",
+        "System Development Engineer Intern @ Amazon Robotics"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Preferred qual asks for distributed computing programs and systems; candidate has a deployed 40k-user product (Yber) and real-time multi-node work (AGAT) but no large-scale HA distributed infra design."
+    },
+    {
+      "skill": "Amazon Leadership Principles (STAR behavioral)",
+      "category": "enterprise",
+      "demandCount": 2,
+      "firstSeen": "2026-11-14",
+      "lastSeen": "2026-11-14",
+      "roles": [
+        "SDE Intern @ Amazon",
+        "System Development Engineer Intern @ Amazon Robotics"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Workstyles assessment + roughly half the interview loop score against the 16 Leadership Principles; disciplined STAR stories (Ownership, Dive Deep, Customer Obsession) are the biggest lever and don't appear on the portfolio."
+    },
+    {
+      "skill": "AWS cloud services (Lambda/DynamoDB/S3/EC2)",
+      "category": "cloud",
+      "demandCount": 2,
+      "firstSeen": "2026-11-14",
+      "lastSeen": "2026-11-14",
+      "roles": [
+        "SDE Intern @ Amazon",
+        "System Development Engineer Intern @ Amazon Robotics"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "jd",
+      "note": "SysDE builds and operates on AWS primitives; candidate's hosting is GCP/Supabase/Vercel and the AWS skill tag is nominal — no hands-on Lambda/DynamoDB/S3/EC2 service depth."
+    },
+    {
+      "skill": "CI/CD & operational excellence (on-call, monitoring)",
+      "category": "cloud",
+      "demandCount": 2,
+      "firstSeen": "2026-11-14",
+      "lastSeen": "2026-11-14",
+      "roles": [
+        "SDE Intern @ Amazon",
+        "System Development Engineer Intern @ Amazon Robotics"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "jd",
+      "note": "JD centers on building systems/processes that enable other builders through automation, plus operating a supportable service; candidate deploys via Vercel/GitHub but shows no CI/CD pipelines, observability, or on-call/operational experience."
+    },
+    {
+      "skill": "Spring Boot",
+      "category": "backend",
+      "demandCount": 2,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-14",
+      "roles": [
+        "Software Engineer Intern @ PayPal",
+        "System Development Engineer Intern @ Amazon Robotics"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "JD names Spring as an example open-source technology; candidate has Java (competition-level) but no Spring/Spring Boot."
+    },
+    {
+      "skill": "Open-source contributions",
+      "category": "cloud",
+      "demandCount": 2,
+      "firstSeen": "2026-11-14",
+      "lastSeen": "2026-11-14",
+      "roles": [
+        "SDE Intern @ Amazon",
+        "System Development Engineer Intern @ Amazon Robotics"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "jd",
+      "note": "Basic qual expects experience with open-source technologies (Linux/Spring/React); candidate uses React and has public repos but no visible contributions to external open-source projects."
+    },
+    {
+      "skill": "ARM assembly",
+      "category": "languages",
+      "demandCount": 1,
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "roles": [
+        "Software Engineering Intern @ Qualcomm"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "ARMv7/v8 assembly literacy expected; no assembly on the portfolio."
+    },
+    {
+      "skill": "Bare-metal firmware & device drivers",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "roles": [
+        "Software Engineering Intern @ Qualcomm"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "ISRs, hardware/software interfaces — the daily work of the role; portfolio embedded work is app-level."
+    },
+    {
+      "skill": "DO-178C / safety-critical avionics SDLC",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Software Engineering Intern @ Honeywell Aerospace"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Honeywell avionics software is developed/verified/documented under DO-178C; candidate has aviation prototypes (AGAT/VIBE) but no safety-critical certification process exposure."
+    },
+    {
+      "skill": "Embedded Linux / Yocto",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "roles": [
+        "Software Engineering Intern @ Qualcomm"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Kernel/driver + Yocto build system expected for Qualcomm platform software."
+    },
+    {
+      "skill": "Fraud / Risk Modeling (imbalanced data)",
+      "category": "ai",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Machine Learning Engineer Intern @ PayPal"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "PayPal's signature ML application — supervised classification on highly imbalanced payments data; absent from the portfolio."
+    },
+    {
+      "skill": "Java concurrency & internals",
+      "category": "languages",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Software Engineer Intern @ PayPal"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Interviews press HashMap internals, Collections framework, GC tuning, and multithreading; candidate's Java is competition-level only."
+    },
+    {
+      "skill": "Kafka (message queueing)",
+      "category": "backend",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Software Engineer Intern @ PayPal"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Named in research as a core PayPal distributed pattern for async/event-driven payment flows; not in the portfolio."
+    },
+    {
+      "skill": "Kotlin",
+      "category": "languages",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Mobile Engineer Intern @ PayPal"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "jd",
+      "note": "Android track's named proficiency (Kotlin or Java); candidate has Java but no Kotlin/Android."
+    },
+    {
+      "skill": "Linux / Unix systems programming & shell scripting",
+      "category": "backend",
+      "demandCount": 1,
+      "firstSeen": "2026-11-14",
+      "lastSeen": "2026-11-14",
+      "roles": [
+        "System Development Engineer Intern @ Amazon Robotics"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "jd",
+      "note": "Basic qual names Linux as the open-source expectation and the preferred quals ask for OOP on Unix-like OS; SysDE work is Linux-native (services, shell automation, troubleshooting). Candidate uses Linux SBCs (Raspberry Pi) but shows no systems programming, services, or shell/ops depth."
+    },
+    {
+      "skill": "MLOps / Model Deployment & Monitoring",
+      "category": "cloud",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Machine Learning Engineer Intern @ PayPal"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "jd",
+      "note": "JD asks for scalable ML pipelines + production deployment/monitoring; candidate deploys apps but shows no model serving/monitoring/feature-store tooling."
+    },
+    {
+      "skill": "Multithreading primitives (mutexes, semaphores, context switching)",
+      "category": "languages",
+      "demandCount": 1,
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "roles": [
+        "Software Engineering Intern @ Qualcomm"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "jd",
+      "note": "JD names multi-threaded programming; no concurrency-primitive work shown."
+    },
+    {
+      "skill": "Native Mobile Development (iOS/Android SDK)",
+      "category": "frontend",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Mobile Engineer Intern @ PayPal"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "jd",
+      "note": "The role builds native iOS/Android apps; candidate's mobile exposure is React Native + responsive web only — no UIKit/SwiftUI/Jetpack."
+    },
+    {
+      "skill": "ROS / robotics middleware",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-14",
+      "lastSeen": "2026-11-14",
+      "roles": [
+        "System Development Engineer Intern @ Amazon Robotics"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Amazon Robotics SysDE teams build around ROS / robotics middleware; candidate has robotics-adjacent perception (YOLOv8/ViTPose++) and state estimation (Kalman) but no ROS, robotics frameworks, or manipulation stack."
+    },
+    {
+      "skill": "RTOS",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "roles": [
+        "Software Engineering Intern @ Qualcomm"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "FreeRTOS/VxWorks/ThreadX — core to Qualcomm embedded SWE; absent from the JD but central at interview."
+    },
+    {
+      "skill": "RTOS (VxWorks / INTEGRITY / Deos)",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Software Engineering Intern @ Honeywell Aerospace"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Avionics runs on real-time OSes; candidate's embedded work is bare-metal ESP32/Arduino with no RTOS."
+    },
+    {
+      "skill": "scikit-learn",
+      "category": "ai",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Machine Learning Engineer Intern @ PayPal"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "jd",
+      "note": "Named ML framework in the JD; candidate's ML is all PyTorch/HF deep learning — no classical/tabular ML toolkit."
+    },
+    {
+      "skill": "Swift",
+      "category": "languages",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Mobile Engineer Intern @ PayPal"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "jd",
+      "note": "iOS track's named proficiency and a Minimum Qualification; candidate has only React Native, no native iOS."
+    },
+    {
+      "skill": "TCP/IP networking & IP protocols (DNS, DHCP, NTP, SMTP, SNMP)",
+      "category": "backend",
+      "demandCount": 1,
+      "firstSeen": "2026-11-14",
+      "lastSeen": "2026-11-14",
+      "roles": [
+        "System Development Engineer Intern @ Amazon Robotics"
+      ],
+      "priority": "high",
+      "status": "not-started",
+      "source": "jd",
+      "note": "Preferred qual lists TCP/IP fundamentals + DNS/DHCP/NTP/SMTP/SNMP; this is a core SysDE pillar (Linux/networking troubleshooting). Candidate's networking is app-level (WebSockets, ESP-NOW) with no IP-protocol operations."
+    },
+    {
+      "skill": "Avionics architectures (ARINC 653 / IMA / ARINC 429)",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Software Engineering Intern @ Honeywell Aerospace"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "JD/research value knowledge of avionics architectures and platforms; not in candidate's background."
+    },
+    {
+      "skill": "Bit manipulation & memory management",
+      "category": "languages",
+      "demandCount": 1,
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "roles": [
+        "Software Engineering Intern @ Qualcomm"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Qualcomm interviews over-index on bit-ops and memory vs peers; worth drilling."
+    },
+    {
+      "skill": "Caching strategies (Redis)",
+      "category": "backend",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Software Engineer Intern @ PayPal"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Distributed caching for scalability/performance is an emphasized interview + design topic; not present."
+    },
+    {
+      "skill": "Core Data",
+      "category": "backend",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Mobile Engineer Intern @ PayPal"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "iOS persistence; recurring PayPal iOS interview topic (research), not in the JD text."
+    },
+    {
+      "skill": "JTAG / GDB low-level debugging",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "roles": [
+        "Software Engineering Intern @ Qualcomm"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Hardware debugging with JTAG/GDB is a repeated interview theme."
+    },
+    {
+      "skill": "Linux networking (bridging, routing)",
+      "category": "backend",
+      "demandCount": 1,
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "roles": [
+        "Software Engineering Intern @ Qualcomm"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "jd",
+      "note": "JD explicitly lists bridging/routing in Linux; ESP-NOW/WebSockets is app-level networking only."
+    },
+    {
+      "skill": "Microservices & REST API design at scale",
+      "category": "backend",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Software Engineer Intern @ PayPal"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Candidate has REST (FastAPI/Express) but not microservice architecture or API design for high-throughput systems."
+    },
+    {
+      "skill": "MISRA C / bare-metal driver development",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Software Engineering Intern @ Honeywell Aerospace"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Production embedded avionics C follows MISRA coding standards and driver-level discipline; candidate has C/C++ but not safety-coding-standard practice."
+    },
+    {
+      "skill": "Motion planning & controls",
+      "category": "ai",
+      "demandCount": 1,
+      "firstSeen": "2026-11-14",
+      "lastSeen": "2026-11-14",
+      "roles": [
+        "System Development Engineer Intern @ Amazon Robotics"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "jd",
+      "note": "Preferred robotics qual (motion planning, controls, path planning, autonomous navigation); candidate's AGAT collision-avoidance (TCAS + Kalman) is adjacent but not formal planning/control algorithms."
+    },
+    {
+      "skill": "Multi-core / multi-processor systems",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "roles": [
+        "Software Engineering Intern @ Qualcomm"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "jd",
+      "note": "JD preferred qual; SoC multi-core scheduling not demonstrated."
+    },
+    {
+      "skill": "Multithreaded / Async Programming",
+      "category": "languages",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Mobile Engineer Intern @ PayPal"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "jd",
+      "note": "iOS track asks for multithreaded, asynchronous code (GCD/async-await); no explicit concurrency evidence."
+    },
+    {
+      "skill": "ORM (Hibernate / JPA)",
+      "category": "backend",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Mobile Engineer Intern @ PayPal"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "jd",
+      "note": "Named DB/ORM frameworks for the iOS track; candidate uses query/ODM layers but no Hibernate/JPA."
+    },
+    {
+      "skill": "Payments / fintech domain (idempotency, transaction integrity)",
+      "category": "backend",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Software Engineer Intern @ PayPal"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Idempotency in payment processing and transaction integrity are core to PayPal's domain; no fintech experience in the portfolio."
+    },
+    {
+      "skill": "Requirements-based verification & testing",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Software Engineering Intern @ Honeywell Aerospace"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "DO-178C work is test- and documentation-heavy (requirements-based V&V, structural coverage); candidate shows prototyping but little formal test/V&V."
+    },
+    {
+      "skill": "Statistics & Probability",
+      "category": "ai",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Machine Learning Engineer Intern @ PayPal"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "jd",
+      "note": "JD min qual names statistical concepts + data analysis; no explicit statistics/experiment-design evidence."
+    },
+    {
+      "skill": "System performance optimization (cache/micro-arch)",
+      "category": "hardware",
+      "demandCount": 1,
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "roles": [
+        "Software Engineering Intern @ Qualcomm"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "jd",
+      "note": "JD asks for perf optimization; metrics shown are business, not latency/memory."
+    },
+    {
+      "skill": "TensorFlow",
+      "category": "ai",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Machine Learning Engineer Intern @ PayPal"
+      ],
+      "priority": "medium",
+      "status": "not-started",
+      "source": "jd",
+      "note": "Named alongside scikit-learn; PyTorch is an accepted 'or similar' but TF is explicitly listed."
+    },
+    {
+      "skill": "Big Data (Spark / Hadoop / Hive)",
+      "category": "ai",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Machine Learning Engineer Intern @ PayPal"
+      ],
+      "priority": "low",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "PayPal ML at scale touches Hadoop/MapReduce/Hive/Spark for data processing; nice-to-have for an intern."
+    },
+    {
+      "skill": "Bitbucket / formal change management",
+      "category": "cloud",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Software Engineering Intern @ Honeywell Aerospace"
+      ],
+      "priority": "low",
+      "status": "not-started",
+      "source": "jd",
+      "note": "JD explicitly values software configuration management and change management practices; candidate has Git/GitHub but not Bitbucket or a formal change-management process."
+    },
+    {
+      "skill": "Objective-C",
+      "category": "languages",
+      "demandCount": 1,
+      "firstSeen": "2026-11-13",
+      "lastSeen": "2026-11-13",
+      "roles": [
+        "Mobile Engineer Intern @ PayPal"
+      ],
+      "priority": "low",
+      "status": "not-started",
+      "source": "jd",
+      "note": "Legacy iOS alternative to Swift named in the iOS track."
+    },
+    {
+      "skill": "Perforce",
+      "category": "cloud",
+      "demandCount": 1,
+      "firstSeen": "2026-11-08",
+      "lastSeen": "2026-11-08",
+      "roles": [
+        "Software Engineering Intern @ Qualcomm"
+      ],
+      "priority": "low",
+      "status": "not-started",
+      "source": "inferred",
+      "note": "Qualcomm uses Perforce alongside Git for version control."
+    }
+  ]
+}

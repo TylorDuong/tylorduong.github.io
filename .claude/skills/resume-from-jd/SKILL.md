@@ -9,16 +9,26 @@ The site keeps several **résumé profiles** in `content/resume-profiles.json` �
 selection of which projects, experiences, skills, and info blocks appear on `/resume/`. One
 profile is marked `active` and drives the live page and its Print / Save-PDF. This skill reads a
 job description and appends a new profile tailored to it. It is the automated counterpart to the
-admin's **Résumé** tab (`npm run admin`), which reads and writes the same JSON.
+admin's **Résumé** tab (`npm run admin`), which reads and writes the same JSON. It ends by running
+the `evaluate-job-accuracy` skill, so a single run yields the tailored profile **plus** a match
+score out of 100 and an update to the rolling `SKILL_GAPS.md`.
 
 Everything here is a JSON edit. Never touch JSX — the résumé is rendered from this data by
 `src/resume/Resume.jsx` via `src/resume/selection.js`.
 
-## 1. Get the job description
+## 1. Get the job description, then research the company + role
 
-Take it from the argument, or ask the user to paste it. Pull out: the role title, the company,
+Take the JD from the argument, or ask the user to paste it. Pull out: the role title, the company,
 the seniority, and the concrete tools/skills and domains it emphasizes (languages, frameworks,
 cloud, AI, hardware, domain words like "fintech", "computer vision", "IoT").
+
+**Then research beyond the posting (required).** Use WebSearch / WebFetch on the company + title
+(`"<company>" "<role>" tech stack / requirements / interview`, the engineering blog, levels.fyi,
+Glassdoor) to infer the **implicit "traditional hire" skills** a strong candidate is expected to
+have but the JD doesn't name. Fold those into the ranking below — they change which existing
+projects/skills you should emphasize (e.g. a Qualcomm JD that only says "C/C++" still rewards
+leading with embedded/RTOS/networking work). If research is blocked, say so and proceed on the JD
+alone. (`evaluate-job-accuracy` in step 6 reuses this same research for scoring and gap-finding.)
 
 ## 2. Read what's available
 
@@ -91,6 +101,17 @@ anything under `FAIL`. Then tell the user:
 - that they can preview and Save-as-PDF at `/resume/?profile=<id>` (run `npm run dev` if the
   server isn't up), and fine-tune the selection in the admin **Résumé** tab,
 - whether you set it live or left the active profile unchanged.
+
+## 6. Score the match and record gaps
+
+Now invoke the **`evaluate-job-accuracy`** skill (via the Skill tool), passing the same job
+description and the `profileId` you just created. It scores the tailored profile against the role's
+ideal candidate out of 100, reusing the step-1 research for the unwritten bar, and updates
+`SKILL_GAPS.md` with whatever the candidate is missing.
+
+Fold its result into your hand-off: the **total / 100** with the per-dimension breakdown, and the
+**top 3–5 gaps** (flagged JD vs inferred) the candidate should consider learning before this kind
+of role comes up again.
 
 ## Rules that will bite you
 

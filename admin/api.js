@@ -1,5 +1,13 @@
-// Thin client for the dev-only admin API.
-// Every mutating call carries x-admin: 1, which the server requires.
+// Admin backend selector.
+//
+// Local dev (`npm run admin`) talks to the loopback Vite plugin over
+// /__admin/api — it writes files and can run a deploy. The deployed /admin/ is
+// static, so there is no such server; it commits straight to GitHub instead
+// (github-api.js). `import.meta.env.PROD` is a build-time constant, so in the
+// production bundle the ternary folds to `githubApi` and the localApi branch
+// (and its "/__admin/api" string) is tree-shaken away.
+
+import { githubApi } from "./github-api";
 
 const BASE = "/__admin/api";
 
@@ -32,7 +40,7 @@ async function req(path, { method = "GET", body, raw, contentType } = {}) {
   return data;
 }
 
-export const api = {
+const localApi = {
   loadAll: () => req("/content"),
   load: (entity) => req(`/content/${entity}`),
   save: (entity, doc, mtimeMs) => req(`/content/${entity}`, { method: "PUT", body: { doc, mtimeMs } }),
@@ -60,3 +68,5 @@ export const api = {
     return () => es.close();
   },
 };
+
+export const api = import.meta.env.PROD ? githubApi : localApi;

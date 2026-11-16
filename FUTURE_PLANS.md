@@ -18,6 +18,10 @@ Difficulty is judged on *this* codebase — how many files a phase touches, whet
 | 10 | [Nested experience timeline](#phase-10--nested-experience-timeline) | ★★★★☆ | ~1–2 days | — |
 | 11 | [Generate a project from a GitHub repo (AI)](#phase-11--generate-a-project-from-a-github-repo) | ★★★★☆ | ~2 days | — |
 | 12 | [Placeholder thumbnail generator](#phase-12--placeholder-project-thumbnail-generator) | ★★☆☆☆ → ★★★★★ | ~4h / +2 days | 4 |
+| 13 | [JD→profile+score pipeline in n8n, from the admin](#phase-13--jdprofilescore-pipeline-in-n8n-from-the-admin) | ★★★★★ | ~3–4 days | 11 |
+| 14 | [Job registry + dedup (skip/update already-seen jobs)](#phase-14--job-registry--dedup) | ★★★☆☆ | ~1 day | — |
+| 15 | [Batch runner + triage + APPLICATIONS.md dashboard](#phase-15--batch-runner--triage--dashboard) | ★★★★☆ | ~2 days | 14 |
+| 16 | [Job-discovery sources + notifications (n8n)](#phase-16--job-discovery-sources--notifications) | ★★★★★ | ~3 days | 13, 15 |
 
 ---
 
@@ -730,3 +734,232 @@ If you specifically want photographic or illustrative splash art later:
 - Never overwrite an existing `image`. Generate to a new filename; `/upload` already de-duplicates with a `-2`, `-3` suffix.
 - Generated files land in `public/` and get pushed to `gh-pages` on every deploy. Keep the canvas output as PNG at 1200×750 (roughly 100–200 KB for flat vector-ish art) rather than something larger.
 - Pair with Phase 4 carefully: once a thumbnail exists, auto-accent can read it — but a card generated *from* the accent must not feed back into it. Skip auto-extraction when `image` points at a generated card, or you'll slowly drift the colour with each round trip.
+
+---
+
+## Phase 13 — JD→profile+score pipeline in n8n, from the admin
+
+**Difficulty ★★★★★ · ~3–4 days · depends on the `resume-from-jd` + `evaluate-job-accuracy` skills**
+
+Today the JD→tailored-profile→score→gap-file flow runs as two Claude Code skills on a dev machine.
+This phase makes it runnable from the **deployed `/admin/`** in the browser, with no Claude Code —
+paste a JD, get a committed profile plus a rubric score and a `SKILL_GAPS.md` update. Build the
+skills first and let their prompts settle; this phase transcribes proven logic into automation, it
+does not invent it.
+
+### Why it needs a server you don't currently have
+
+The deployed `/admin/` is static GitHub Pages. It holds only a GitHub PAT in localStorage and
+commits content via the Contents API (`admin/github-api.js`). It cannot run an LLM, and an
+LLM/search key can never live in a static bundle. So the browser must call out to a service that
+holds the secrets — **n8n**, which the stack already runs (Yber's agentic architecture, plus n8n
+in the skills). n8n becomes the proxy that does the thinking and the git write.
+
+### Architecture
+
+```
+/admin/ "Tailor & Score" panel (admin-only; never ships to the site)
+   │  POST { jd }  + shared bearer token (stored next to the PAT)
+   ▼
+n8n webhook  (LLM + search + GitHub PAT all live in n8n credentials)
+   ├─ fetch current content/*.json (raw.githubusercontent)
+   ├─ search node (Tavily / Brave / SerpAPI) → company+role research
+   ├─ LLM node (OpenRouter / Gemini) → two schema-validated JSON blobs:
+   │     1. tailored `selection` (hidden-model, per src/resume/selection.js)
+   │     2. rubric score + gaps (per evaluate-job-accuracy's rubric)
+   ├─ Function node mirroring validate("resume-profiles", …) from content-schema.js
+   ├─ GitHub Contents API: commit the profile into resume-profiles.json
+   │     + upsert skill-gaps.json on `main`  (same PUT flow as github-api.js save())
+   │     → push fires .github/workflows/deploy.yml → site redeploys
+   └─ respond { score, breakdown, gaps, profileId } → admin renders it
+```
+
+### Build notes / gotchas
+
+- **Keep the admin panel in `admin/` only.** It must not leak into the site bundle —
+  `grep -ril "__admin" dist/` stays empty, ESLint/`adminIsolationGuard()` still forbid
+  `src/`→`admin/`. The panel is a sibling of `DeployedPublish.jsx`, PROD-only.
+- **Secrets stay server-side.** LLM key, search key, and the repo-scoped GitHub PAT live in n8n
+  credentials. The browser sends only the JD + a shared webhook token. Never echo a token into a
+  response body.
+- **Single source of truth.** The n8n LLM prompt duplicates the two SKILL.md files. Factor the
+  rubric + the selection shape into one spec both reference (treat the SKILL.md as canonical), or
+  the browser path and the Claude path will silently drift.
+- **Web-research quality is lower than the agent's** — an LLM node + a search API is more brittle
+  than Claude doing it with judgment. Accept that as the cost of browser-triggered runs; keep the
+  Claude skills as the high-fidelity path.
+- **n8n must be always-on and reachable**, with CORS allowing the Pages domain and the webhook
+  gated by the shared token. A down n8n should surface a clear "pipeline offline" state in the
+  admin, not a cryptic fetch error.
+- **Reuse, don't re-derive:** the commit mechanics are exactly `admin/github-api.js`'s
+  `save()`/`upload()` (base64 PUT to `/contents/...`, blob-SHA concurrency); the validation is
+  `validate()` from `tools/content-schema.js`; the gap-merge rules are
+  `.claude/skills/evaluate-job-accuracy/scripts/gap-upsert.mjs` (port its upsert into a Function
+  node, or shell out if n8n runs with Node access).
+
+---
+
+## Phase 14 — Job registry + dedup
+
+**Difficulty ★★★☆☆ · ~1 day · needs the `resume-from-jd` + `evaluate-job-accuracy` skills**
+
+Right now nothing stops a pasted job from being tailored + scored twice — you'd get a duplicate
+profile and a second tracker run for the same posting. This phase adds an **identity layer** so the
+skills can recognize an already-seen job and ask whether to **skip, update, or create new**. It's
+the prerequisite that makes batch runs (Phase 15) safe and idempotent.
+
+### The job key
+
+`slugify(company-role)` is too coarse — two different "SWE Intern" reqs at one company collide. Derive
+a stable key from the source instead:
+
+- **From a link** — normalize to the ATS id: `greenhouse:{company}:{jobId}`,
+  `lever:{company}:{uuid}`, `ashby:{company}:{id}`, `linkedin:{id}`; otherwise `host+path` with
+  tracking params stripped.
+- **From pasted text** (no URL) — `text:{slug(company-role)}:{shortHash(jd)}`.
+- Plus a **content hash** (sha256 of the normalized JD text) to distinguish an *edited* posting from
+  an identical re-paste.
+
+### Data — new `applications.json` at the repo root
+
+Career meta, **not** site content — same rule as `skill-gaps.json`: it stays out of `content/` and
+out of `ENTITIES` so it never renders on the site or touches the build. One record per job:
+
+```json
+{
+  "jobKey": "greenhouse:acme:1234567",
+  "url": "https://boards.greenhouse.io/acme/jobs/1234567",
+  "source": "greenhouse",
+  "company": "Acme",
+  "role": "Software Engineering Intern",
+  "profileId": "acme-software-engineering-intern",
+  "contentHash": "sha256:…",
+  "firstSeen": "2026-11-13",
+  "lastRun": "2026-11-13",
+  "lastScore": 79,
+  "status": "tailored",
+  "history": [{ "date": "2026-11-13", "score": 79 }]
+}
+```
+
+### The dedup decision (wired into both skills' step 1)
+
+| Situation | Default | Offer |
+|---|---|---|
+| key match, **same** contentHash | skip | skip · re-run (score drift) |
+| key match, **different** contentHash | update | update · skip |
+| no key match, but a profile with the same company+role slug exists | ask | update that one · create new · skip |
+
+"Update" re-researches, overwrites that profile's `selection`, and appends a dated run (keeping score
+history). A new `scripts/app-registry.mjs` (zero-dep, CRLF-safe, mirrors `gap-upsert.mjs`) owns the
+lookup + upsert so the logic is deterministic and reusable by the n8n path later.
+
+### Watch out
+
+- The registry references `profileId`; if a profile is deleted in the admin, `app-registry.mjs`
+  should flag the orphan rather than crash.
+- Keep the content hash over *normalized* text (collapse whitespace, drop boilerplate EEO/legal
+  footers) or trivial edits will read as changes.
+- Don't fold this into `resume-profiles.json` — that's site content with its own `validate()`; job
+  metadata would bloat it and try to render.
+
+### Done when
+
+Re-pasting a job you've already done is recognized and you're asked skip/update, and the registry
+shows one record per real posting with its score history.
+
+---
+
+## Phase 15 — Batch runner + triage + dashboard
+
+**Difficulty ★★★★☆ · ~2 days · depends on Phase 14**
+
+Turn "paste one JD" into "paste a list" and make the output a job-hunt tool, not just a pile of
+profiles.
+
+### Batch run
+
+A list of links/text → for each: fetch (or accept pasted text for gated boards), dedup via Phase 14,
+then tailor + score. Sequential, with a per-item line and a final scoreboard. Leaves `active` on
+`general` — none set live.
+
+### Fit-gated triage
+
+Score *first*, then only auto-tailor jobs above a threshold (default ≥70); below that, record the
+score + gaps but skip building a full profile (flagged "low fit — tailor on request"). A 30-job list
+collapses to a ranked shortlist worth the effort.
+
+### `APPLICATIONS.md` — generated dashboard (sibling of `SKILL_GAPS.md`)
+
+Rendered by `app-registry.mjs` from `applications.json`:
+
+- **Scoreboard** — every job sorted by `lastScore` desc: role, company, score + per-dimension, status,
+  link to `/resume/?profile=<id>`.
+- **Status tracker** — `discovered → tailored → applied → interviewing → offer/rejected` (you edit
+  `status` in `applications.json`, same convention as the gap file).
+- **Learning ROI** (the payoff) — join `applications.json` × `skill-gaps.json`: rank each gap by
+  *how many of your target jobs name it* × priority, so "learn RTOS → appears in 8/12 postings" rises
+  to the top. Converts the gap list into a prioritized study plan.
+- **Score-drift** — because runs are dated, show trajectory after you ship a project/skill ("after
+  AGAT, avg embedded fit 62→71").
+
+### Optional: per-job outreach draft
+
+The research is already done during tailoring — reuse it + the matched projects to draft a tailored
+cover-letter / recruiter note per job. Keep it a separate opt-in step; don't auto-generate.
+
+### Watch out
+
+- Fetch reliability varies — LinkedIn/Workday/Eightfold are JS/bot-walled; fall back to pasted text
+  and never block the batch on one bad fetch.
+- The batch is research-heavy and sequential; a long list is many calls. Cap the first pass (e.g. 5)
+  so output can be sanity-checked before the whole list runs.
+
+### Done when
+
+One command takes a link list and produces a ranked scoreboard + an updated `APPLICATIONS.md`, with
+repeats handled by Phase 14 and low-fit jobs triaged out.
+
+---
+
+## Phase 16 — Job-discovery sources + notifications
+
+**Difficulty ★★★★★ · ~3 days · depends on Phase 13 + Phase 15**
+
+The autonomous front end: stop pasting links — let the pipeline *find* the jobs and ping you with the
+good ones. Extends the Phase 13 n8n service.
+
+### Sources (reliable, structured, mostly free)
+
+- **ATS board APIs — primary.** Per-company, structured JD JSON, no scraping:
+  `boards-api.greenhouse.io/v1/boards/{company}/jobs?content=true`,
+  `api.lever.co/v0/postings/{company}?mode=json`, Ashby/Workable/SmartRecruiters equivalents. You
+  maintain a target-company list; n8n HTTP nodes poll them.
+- **Adzuna** — free-tier keyword search for discovery beyond your known companies.
+- **Do not build on LinkedIn/Indeed scraping** — no clean public API, brittle, ToS risk.
+
+### Flow (n8n)
+
+```
+cron (daily) → for each target company: HTTP GET the ATS board
+   → diff against applications.json (Phase 14 dedup — only NEW/CHANGED jobs continue)
+   → research + rubric score (reuse Phase 13 LLM/search nodes; tailor only if fit ≥ threshold)
+   → commit profile + upsert skill-gaps + applications to `main` → deploy
+   → notify: email / Telegram / Slack (native n8n) with the top matches + one-click
+     /resume/?profile=<id> links
+```
+
+### Watch out
+
+- Dedup is what keeps the cron quiet — without Phase 14 it would re-notify the same jobs daily.
+- Keep keys (ATS tokens if any, Adzuna, LLM) in n8n credentials, never the browser (same rule as
+  Phase 13).
+- Rate-limit the company poll and cache board responses; most ATS boards are generous but not
+  infinite.
+- Notify only above the fit threshold, or the signal drowns — the point is the *top* matches, not
+  every req.
+
+### Done when
+
+A daily cron surfaces new, well-fit postings for your target companies straight to your phone, each
+with a tailored résumé already built and scored — no pasting, no manual run.

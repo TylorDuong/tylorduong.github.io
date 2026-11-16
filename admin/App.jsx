@@ -8,7 +8,14 @@ import { Button, Field, Text, Area, ListEditor, TagInput, Select } from "./ui";
 import { input } from "./styles";
 import { ProjectForm, ExperienceForm, TestimonialForm } from "./forms";
 import { Publish } from "./Publish";
+import { DeployedPublish } from "./DeployedPublish";
 import { ResumePane } from "./ResumePane";
+import { Login } from "./Login";
+import { hasToken, clearToken } from "./auth";
+
+// Deployed /admin/ is static and gated by a GitHub token; local dev uses the
+// loopback Vite API and needs no login.
+const DEPLOYED = import.meta.env.PROD;
 
 const TABS = [
   ["projects", "Projects"],
@@ -44,10 +51,18 @@ export default function App() {
   const [sel, setSel] = useState({});         // { entity: recordId }
   const [toast, setToast] = useState(null);
   const [errors, setErrors] = useState({});   // { entity: [ {path,message} ] }
+  const [authed, setAuthed] = useState(() => !DEPLOYED || hasToken());
 
   useEffect(() => {
+    if (!authed) return;
     api.loadAll().then(setStore).catch((e) => setToast({ bad: true, msg: e.message }));
-  }, []);
+  }, [authed]);
+
+  const logout = () => {
+    clearToken();
+    setStore(null);
+    setAuthed(false);
+  };
 
   const doc = useCallback((entity) => store?.[entity]?.doc, [store]);
 
@@ -163,6 +178,10 @@ export default function App() {
     return () => clearTimeout(t);
   }, [toast]);
 
+  if (!authed) {
+    return <Login onAuthed={() => setAuthed(true)} />;
+  }
+
   if (!store) {
     return <Shell><div style={mono({ padding: 40 })}>Loading content…</div></Shell>;
   }
@@ -193,6 +212,7 @@ export default function App() {
         dirty={dirty}
         onSaveAll={saveAll}
         anyDirty={Object.values(dirty).some(Boolean)}
+        onLogout={DEPLOYED ? logout : null}
       />
 
       {pendingSkills.length > 0 && tab !== "publish" && (
@@ -253,7 +273,9 @@ export default function App() {
         {tab === "metrics" && <MetricsPane doc={doc("metrics")} setDoc={(v) => setDoc("metrics", v)} />}
         {tab === "profile" && <ProfilePane doc={doc("profile")} setDoc={(v) => setDoc("profile", v)} ctx={ctx} />}
         {tab === "resume-profiles" && <ResumePane doc={doc("resume-profiles")} setDoc={(v) => setDoc("resume-profiles", v)} />}
-        {tab === "publish" && <Publish dirty={dirty} onSaveAll={saveAll} />}
+        {tab === "publish" && (DEPLOYED
+          ? <DeployedPublish dirty={dirty} onSaveAll={saveAll} />
+          : <Publish dirty={dirty} onSaveAll={saveAll} />)}
 
         {ENTITIES.includes(tab) && (
           <div style={{ position: "sticky", bottom: 0, display: "flex", gap: 12, padding: "16px 0", background: C.paper, borderTop: `1px solid ${C.hair}`, marginTop: 24 }}>
@@ -303,7 +325,7 @@ function Shell({ children }) {
   );
 }
 
-function Header({ tabs, tab, setTab, dirty, onSaveAll, anyDirty }) {
+function Header({ tabs, tab, setTab, dirty, onSaveAll, anyDirty, onLogout }) {
   return (
     <div style={{ position: "sticky", top: 0, zIndex: 40, background: C.ink, borderBottom: `3px solid ${C.ink}` }}>
       <div style={{ maxWidth: 1400, margin: "0 auto", padding: "0 32px", display: "flex", alignItems: "center", gap: 4, flexWrap: "wrap" }}>
@@ -329,6 +351,17 @@ function Header({ tabs, tab, setTab, dirty, onSaveAll, anyDirty }) {
         ))}
         <div style={{ marginLeft: "auto", display: "flex", gap: 10, alignItems: "center" }}>
           <a href="/" target="_blank" rel="noreferrer" style={{ ...mono({ fontSize: 10 }), color: "rgba(241,237,226,0.6)", textDecoration: "none" }}>SITE ↗</a>
+          {onLogout && (
+            <Hover
+              as="button"
+              onClick={onLogout}
+              title="Forget the token on this browser"
+              style={{ background: "none", border: "none", cursor: "pointer", padding: 0, ...mono({ fontSize: 10, color: "rgba(241,237,226,0.6)" }) }}
+              hoverStyle={{ color: C.paper }}
+            >
+              LOCK
+            </Hover>
+          )}
           <Button variant="primary" onClick={onSaveAll} disabled={!anyDirty} style={{ margin: "8px 0" }}>
             Save all
           </Button>

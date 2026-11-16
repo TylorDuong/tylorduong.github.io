@@ -21,11 +21,15 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      // Only these entries are crawled. Anything not reachable from them —
-      // notably admin/ — never enters the module graph or dist/.
+      // The deployed /admin/ is a GitHub-token-gated editor that commits content
+      // straight to the repo (admin/github-api.js), so it ships as its own
+      // entry. It is marked noindex and linked from nowhere — reachable only by
+      // typing /admin/. In the production bundle the local loopback-API branch
+      // (admin/api.js) tree-shakes out, since import.meta.env.PROD is constant.
       input: {
         main: path.resolve(__dirname, 'index.html'),
         resume: path.resolve(__dirname, 'resume/index.html'),
+        admin: path.resolve(__dirname, 'admin/index.html'),
       },
     },
   },

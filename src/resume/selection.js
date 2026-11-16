@@ -5,6 +5,7 @@
 // automatically instead of being silently excluded.
 
 import { projects, experiences, skillGroups, resumeProfiles } from "@/data";
+import { byRecency } from "@/lib/dates";
 
 export const CONTACT_ORDER = ["phone", "email", "location", "linkedin", "website", "github"];
 
@@ -95,9 +96,17 @@ export function deriveVisible(selection) {
     // Hackathons / competitions no project record already covers.
     activities: shownExp.filter((e) => e.kind !== "work"),
 
+    // Explicit resume.order leads where set (intentional manual override);
+    // everything else falls back to date (most recent first) rather than the
+    // projects array's incidental order.
     resumeProjects: projects
       .filter((p) => !selection.hiddenProjects.includes(p.id))
-      .sort((a, b) => (a.resume?.order ?? Infinity) - (b.resume?.order ?? Infinity)),
+      .sort((a, b) => {
+        const ao = a.resume?.order ?? Infinity;
+        const bo = b.resume?.order ?? Infinity;
+        if (ao !== bo) return ao - bo;
+        return byRecency(a, b);
+      }),
 
     visibleSkillGroups: skillGroups
       .map((g) => ({

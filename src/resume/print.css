@@ -32,9 +32,13 @@ body {
 
 @page {
   size: Letter;
-  /* Zero margin so Chrome doesn't inject its URL/date header & footer into the
-     page margin. The 0.5in inset is applied to .r-page padding in print below. */
-  margin: 0;
+  /* A real page margin so EVERY printed page gets the 0.5in inset — not just
+     page one. (Container padding only insets the first top and last bottom, so
+     a résumé that runs onto page 2 would otherwise print with its continuation
+     jammed against the top edge.) Chrome will only draw its URL/date header &
+     footer in this margin if "Headers and footers" is ticked in the print
+     dialog; leave it unticked (the setting persists) for a clean export. */
+  margin: 0.5in;
 }
 
 /* On screen, mimic a sheet of Letter paper so what you see matches print. */
@@ -60,12 +64,13 @@ body {
   body {
     background: #fff;
   }
-  /* @page margin is 0 (no browser header/footer); .r-page owns the inset. */
+  /* The 0.5in inset now lives on @page (so it repeats on every page); the
+     sheet itself fills the page box with no padding of its own. */
   .r-page {
     width: auto;
     min-height: 0;
     margin: 0;
-    padding: 0.5in;
+    padding: 0;
     box-shadow: none;
   }
   body {

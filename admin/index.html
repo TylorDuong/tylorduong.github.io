@@ -15,9 +15,10 @@
   </head>
   <body>
     <!--
-      NOT a build entry. vite.config.js lists only index.html and
-      resume/index.html in build.rollupOptions.input, so nothing under admin/
-      is ever crawled into the production bundle.
+      Shipped build entry (see vite.config.js). Reachable only by typing
+      /admin/ — it is noindex (above) and linked from nowhere on the site. On
+      the deployed site it is gated by a GitHub token and commits content
+      straight to the repo; locally it talks to the loopback Vite plugin.
     -->
     <div id="root"></div>
     <script type="module" src="/admin/main.jsx"></script>

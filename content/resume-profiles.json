@@ -8,14 +8,9 @@
         "version": 1,
         "hiddenProjects": [
           "yber",
-          "shelfsmart",
-          "wifi-portal",
-          "quotation-engine",
           "sir-model",
           "mud",
-          "surgical-video-vlm",
-          "hardware-planner",
-          "agat"
+          "fit2u"
         ],
         "hiddenExperiences": [
           "epics-moveright",
@@ -23,8 +18,10 @@
           "devilsinvent-assemblisim",
           "devhacks-fit2u",
           "devilsinvent-vibe",
-          "asu-capstone-surgical-vlm",
-          "devilsinvent-agat"
+          "devilsinvent-agat",
+          "sunhacks-post-pals",
+          "soda-code-challenge",
+          "asu-capstone-surgical-vlm"
         ],
         "hiddenSkills": {},
         "hideSummary": false,
@@ -59,10 +56,24 @@
           "devilsinvent-agat"
         ],
         "hiddenSkills": {
-          "languages": ["HTML", "CSS"],
-          "frontend": ["React Native", "Tailwind CSS", "Styled Components", "Figma"],
-          "backend": ["Supabase", "Firebase", "Zod"],
-          "cloud": ["Vercel"],
+          "languages": [
+            "HTML",
+            "CSS"
+          ],
+          "frontend": [
+            "React Native",
+            "Tailwind CSS",
+            "Styled Components",
+            "Figma"
+          ],
+          "backend": [
+            "Supabase",
+            "Firebase",
+            "Zod"
+          ],
+          "cloud": [
+            "Vercel"
+          ],
           "ai": [
             "PyTorch",
             "OpenCV",
@@ -87,7 +98,13 @@
             "AutoCAD",
             "OpenSCAD"
           ],
-          "enterprise": ["Power Platform", "Power BI", "Power Apps", "n8n", "SharePoint"]
+          "enterprise": [
+            "Power Platform",
+            "Power BI",
+            "Power Apps",
+            "n8n",
+            "SharePoint"
+          ]
         },
         "hideSummary": false,
         "hideCoursework": false,
@@ -120,13 +137,41 @@
           "devilsinvent-agat"
         ],
         "hiddenSkills": {
-          "languages": ["HTML", "CSS"],
-          "frontend": ["React Native", "Tailwind CSS", "Styled Components", "Figma"],
-          "backend": ["Express.js", "MySQL", "MongoDB", "Supabase", "Firebase"],
-          "cloud": ["Vercel"],
-          "ai": ["Gemini API", "OpenRouter", "LLaVA", "Ollama"],
-          "hardware": ["Blender"],
-          "enterprise": ["Power Platform", "Power Apps", "n8n", "SharePoint"]
+          "languages": [
+            "HTML",
+            "CSS"
+          ],
+          "frontend": [
+            "React Native",
+            "Tailwind CSS",
+            "Styled Components",
+            "Figma"
+          ],
+          "backend": [
+            "Express.js",
+            "MySQL",
+            "MongoDB",
+            "Supabase",
+            "Firebase"
+          ],
+          "cloud": [
+            "Vercel"
+          ],
+          "ai": [
+            "Gemini API",
+            "OpenRouter",
+            "LLaVA",
+            "Ollama"
+          ],
+          "hardware": [
+            "Blender"
+          ],
+          "enterprise": [
+            "Power Platform",
+            "Power Apps",
+            "n8n",
+            "SharePoint"
+          ]
         },
         "hideSummary": false,
         "hideCoursework": false,
@@ -160,10 +205,26 @@
           "devilsinvent-agat"
         ],
         "hiddenSkills": {
-          "languages": ["HTML", "CSS"],
-          "frontend": ["Tailwind CSS", "Styled Components", "Figma"],
-          "backend": ["Express.js", "MySQL", "MongoDB", "Supabase", "Firebase", "Zod"],
-          "cloud": ["Vercel"],
+          "languages": [
+            "HTML",
+            "CSS"
+          ],
+          "frontend": [
+            "Tailwind CSS",
+            "Styled Components",
+            "Figma"
+          ],
+          "backend": [
+            "Express.js",
+            "MySQL",
+            "MongoDB",
+            "Supabase",
+            "Firebase",
+            "Zod"
+          ],
+          "cloud": [
+            "Vercel"
+          ],
           "ai": [
             "PyTorch",
             "Pandas",
@@ -176,8 +237,18 @@
             "LLaVA",
             "Ollama"
           ],
-          "hardware": ["AutoCAD", "OpenSCAD", "Blender"],
-          "enterprise": ["Power Platform", "Power BI", "Power Apps", "n8n", "SharePoint"]
+          "hardware": [
+            "AutoCAD",
+            "OpenSCAD",
+            "Blender"
+          ],
+          "enterprise": [
+            "Power Platform",
+            "Power BI",
+            "Power Apps",
+            "n8n",
+            "SharePoint"
+          ]
         },
         "hideSummary": false,
         "hideCoursework": false,
@@ -211,13 +282,578 @@
           "devilsinvent-agat"
         ],
         "hiddenSkills": {
-          "languages": ["SQL", "HTML", "CSS"],
-          "frontend": ["React Native", "Tailwind CSS", "Styled Components", "Figma"],
-          "backend": ["Express.js", "MySQL", "MongoDB", "Supabase", "Firebase"],
-          "cloud": ["Vercel"],
-          "hardware": ["Unity", "ESP-NOW", "AutoCAD", "OpenSCAD", "Blender"],
-          "enterprise": ["Power Platform", "Power BI", "Power Apps", "n8n", "SharePoint"]
+          "languages": [
+            "SQL",
+            "HTML",
+            "CSS"
+          ],
+          "frontend": [
+            "React Native",
+            "Tailwind CSS",
+            "Styled Components",
+            "Figma"
+          ],
+          "backend": [
+            "Express.js",
+            "MySQL",
+            "MongoDB",
+            "Supabase",
+            "Firebase"
+          ],
+          "cloud": [
+            "Vercel"
+          ],
+          "hardware": [
+            "Unity",
+            "ESP-NOW",
+            "AutoCAD",
+            "OpenSCAD",
+            "Blender"
+          ],
+          "enterprise": [
+            "Power Platform",
+            "Power BI",
+            "Power Apps",
+            "n8n",
+            "SharePoint"
+          ]
         },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    },
+    {
+      "id": "qualcomm-software-engineering-intern",
+      "name": "Software Engineering Intern @ Qualcomm",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "yber",
+          "wifi-portal",
+          "quotation-engine",
+          "moveright",
+          "oratori",
+          "fit2u",
+          "vibe",
+          "sir-model",
+          "surgical-video-vlm"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "sunhacks-post-pals",
+          "asu-capstone-surgical-vlm",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {
+          "languages": [
+            "HTML",
+            "CSS"
+          ],
+          "frontend": [
+            "React Native",
+            "Tailwind CSS",
+            "Styled Components",
+            "Figma"
+          ],
+          "backend": [
+            "Express.js",
+            "MySQL",
+            "MongoDB",
+            "Supabase",
+            "Firebase",
+            "Zod"
+          ],
+          "cloud": [
+            "Vercel"
+          ],
+          "ai": [
+            "PyTorch",
+            "Gemini API",
+            "OpenRouter",
+            "LLMs",
+            "VLMs",
+            "Transformers",
+            "Hugging Face",
+            "LLaVA",
+            "Ollama"
+          ],
+          "hardware": [
+            "Altium Designer",
+            "AutoCAD",
+            "OpenSCAD",
+            "Blender"
+          ],
+          "enterprise": [
+            "Power Platform",
+            "Power BI",
+            "Power Apps",
+            "n8n",
+            "SharePoint"
+          ]
+        },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    },
+    {
+      "id": "honeywell-aerospace-software-engineering-intern",
+      "name": "Software Engineering Intern @ Honeywell Aerospace",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "yber",
+          "wifi-portal",
+          "quotation-engine",
+          "moveright",
+          "oratori",
+          "fit2u",
+          "sir-model",
+          "surgical-video-vlm",
+          "hardware-planner"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "sunhacks-post-pals",
+          "asu-capstone-surgical-vlm",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {
+          "languages": [
+            "HTML",
+            "CSS"
+          ],
+          "frontend": [
+            "React Native",
+            "Tailwind CSS",
+            "Styled Components",
+            "Figma"
+          ],
+          "backend": [
+            "Express.js",
+            "MySQL",
+            "MongoDB",
+            "Supabase",
+            "Firebase",
+            "Zod"
+          ],
+          "cloud": [
+            "Vercel"
+          ],
+          "ai": [
+            "Gemini API",
+            "OpenRouter",
+            "LLMs",
+            "VLMs",
+            "Transformers",
+            "Hugging Face",
+            "LLaVA",
+            "Ollama"
+          ],
+          "hardware": [
+            "AutoCAD",
+            "OpenSCAD",
+            "Blender"
+          ],
+          "enterprise": [
+            "Power Platform",
+            "Power BI",
+            "Power Apps",
+            "n8n",
+            "SharePoint"
+          ]
+        },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    },
+    {
+      "id": "paypal-software-engineer-intern",
+      "name": "Software Engineer Intern @ PayPal",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "wifi-portal",
+          "quotation-engine",
+          "assemblisim",
+          "oratori",
+          "fit2u",
+          "vibe",
+          "sir-model",
+          "mud",
+          "surgical-video-vlm"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "sunhacks-post-pals",
+          "asu-capstone-surgical-vlm",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {
+          "languages": [
+            "HTML",
+            "CSS"
+          ],
+          "frontend": [
+            "React Native",
+            "Three.js",
+            "Tailwind CSS",
+            "Styled Components",
+            "Figma"
+          ],
+          "backend": [
+            "Supabase",
+            "Firebase"
+          ],
+          "cloud": [
+            "Vercel"
+          ],
+          "ai": [
+            "PyTorch",
+            "OpenCV",
+            "Gemini API",
+            "OpenRouter",
+            "LLMs",
+            "VLMs",
+            "Transformers",
+            "Hugging Face",
+            "LLaVA",
+            "Ollama",
+            "Kalman Filter"
+          ],
+          "hardware": [
+            "Unity",
+            "Arduino",
+            "ESP32",
+            "ESP-NOW",
+            "Raspberry Pi",
+            "Altium Designer",
+            "AutoCAD",
+            "OpenSCAD",
+            "Blender"
+          ],
+          "enterprise": [
+            "Power Platform",
+            "Power BI",
+            "Power Apps",
+            "n8n",
+            "SharePoint"
+          ]
+        },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    },
+    {
+      "id": "paypal-machine-learning-engineer-intern",
+      "name": "ML Engineer @ PayPal",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "wifi-portal",
+          "quotation-engine",
+          "assemblisim",
+          "oratori",
+          "fit2u",
+          "vibe",
+          "sir-model",
+          "mud",
+          "agat"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "sunhacks-post-pals",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {
+          "languages": [
+            "HTML",
+            "CSS"
+          ],
+          "frontend": [
+            "React Native",
+            "Three.js",
+            "Tailwind CSS",
+            "Styled Components",
+            "Figma"
+          ],
+          "backend": [
+            "Supabase",
+            "Firebase",
+            "Zod"
+          ],
+          "cloud": [
+            "Vercel"
+          ],
+          "hardware": [
+            "Unity",
+            "Arduino",
+            "ESP32",
+            "ESP-NOW",
+            "Raspberry Pi",
+            "Altium Designer",
+            "AutoCAD",
+            "OpenSCAD",
+            "Blender"
+          ],
+          "enterprise": [
+            "Power Platform",
+            "Power BI",
+            "Power Apps",
+            "n8n",
+            "SharePoint"
+          ]
+        },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    },
+    {
+      "id": "paypal-mobile-engineer-intern",
+      "name": "Mobile Engineer @ PayPal",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "wifi-portal",
+          "quotation-engine",
+          "oratori",
+          "vibe",
+          "sir-model",
+          "mud",
+          "surgical-video-vlm",
+          "hardware-planner",
+          "agat"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "sunhacks-post-pals",
+          "asu-capstone-surgical-vlm",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {
+          "languages": [
+            "C/C++",
+            "C#"
+          ],
+          "ai": [
+            "VLMs",
+            "Transformers",
+            "Hugging Face",
+            "LLaVA",
+            "Ollama",
+            "Kalman Filter"
+          ],
+          "hardware": [
+            "Unity",
+            "Arduino",
+            "ESP32",
+            "ESP-NOW",
+            "Raspberry Pi",
+            "Altium Designer",
+            "AutoCAD",
+            "OpenSCAD",
+            "Blender"
+          ],
+          "enterprise": [
+            "Power Platform",
+            "Power BI",
+            "Power Apps",
+            "n8n",
+            "SharePoint"
+          ]
+        },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    },
+    {
+      "id": "amazon-software-development-engineer-intern",
+      "name": "SDE Intern @ Amazon",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "wifi-portal",
+          "quotation-engine",
+          "assemblisim",
+          "oratori",
+          "fit2u",
+          "vibe",
+          "sir-model",
+          "mud",
+          "surgical-video-vlm"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "sunhacks-post-pals",
+          "asu-capstone-surgical-vlm",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {
+          "languages": [
+            "HTML",
+            "CSS"
+          ],
+          "frontend": [
+            "React Native",
+            "Three.js",
+            "Tailwind CSS",
+            "Styled Components",
+            "Figma"
+          ],
+          "backend": [
+            "Supabase",
+            "Firebase"
+          ],
+          "cloud": [
+            "Vercel"
+          ],
+          "ai": [
+            "PyTorch",
+            "OpenCV",
+            "Gemini API",
+            "OpenRouter",
+            "LLMs",
+            "VLMs",
+            "Transformers",
+            "Hugging Face",
+            "LLaVA",
+            "Ollama",
+            "Kalman Filter"
+          ],
+          "hardware": [
+            "Unity",
+            "Arduino",
+            "ESP32",
+            "ESP-NOW",
+            "Raspberry Pi",
+            "Altium Designer",
+            "AutoCAD",
+            "OpenSCAD",
+            "Blender"
+          ],
+          "enterprise": [
+            "Power Platform",
+            "Power BI",
+            "Power Apps",
+            "n8n",
+            "SharePoint"
+          ]
+        },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    },
+    {
+      "id": "amazon-system-development-engineer-intern-robotics",
+      "name": "System Development Engineer Intern @ Amazon Robotics",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [
+          "wifi-portal",
+          "quotation-engine",
+          "assemblisim",
+          "oratori",
+          "fit2u",
+          "vibe",
+          "sir-model",
+          "mud",
+          "surgical-video-vlm"
+        ],
+        "hiddenExperiences": [
+          "epics-moveright",
+          "devhacks-oratori",
+          "devilsinvent-assemblisim",
+          "devhacks-fit2u",
+          "devilsinvent-vibe",
+          "sunhacks-post-pals",
+          "asu-capstone-surgical-vlm",
+          "devilsinvent-agat"
+        ],
+        "hiddenSkills": {
+          "languages": [
+            "C#",
+            "HTML",
+            "CSS"
+          ],
+          "frontend": [
+            "React Native",
+            "Tailwind CSS",
+            "Styled Components",
+            "Figma"
+          ],
+          "backend": [
+            "Supabase",
+            "Firebase",
+            "Zod"
+          ],
+          "cloud": [
+            "Vercel"
+          ],
+          "ai": [
+            "VLMs",
+            "Transformers",
+            "Hugging Face",
+            "LLaVA",
+            "Ollama"
+          ],
+          "hardware": [
+            "Unity",
+            "Altium Designer",
+            "AutoCAD",
+            "OpenSCAD",
+            "Blender"
+          ],
+          "enterprise": [
+            "Power Platform",
+            "Power BI",
+            "Power Apps",
+            "n8n",
+            "SharePoint"
+          ]
+        },
+        "hideSummary": false,
+        "hideCoursework": false,
+        "hiddenContact": []
+      }
+    },
+    {
+      "id": "profile-1794071192505",
+      "name": "CV",
+      "selection": {
+        "version": 1,
+        "hiddenProjects": [],
+        "hiddenExperiences": [],
+        "hiddenSkills": {},
         "hideSummary": false,
         "hideCoursework": false,
         "hiddenContact": []

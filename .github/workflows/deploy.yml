@@ -1,0 +1,42 @@
+name: Deploy
+
+# Rebuild and publish the site whenever main changes. The deployed /admin/
+# editor commits content/*.json to main via the GitHub API, which fires this
+# workflow — so saving in the editor publishes within a minute or two.
+# Also runnable by hand from the Actions tab (workflow_dispatch).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Needed to push the built site to the gh-pages branch.
+permissions:
+  contents: write
+
+# Never let two deploys race; a newer push supersedes an in-flight one.
+concurrency:
+  group: deploy-gh-pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+
+      # Publishes ./dist to the gh-pages branch (same target as `npm run
+      # deploy`). public/CNAME is copied into dist by the build, keeping the
+      # custom domain attached after the branch is replaced.
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: gh-pages
