@@ -2,7 +2,34 @@
 
 Working notes for Claude Code. Updated on task completion.
 
-## Last task — Amazon System Development Engineer (Robotics) Intern profile (resume-from-jd + evaluate)
+## Last task — Deployed Yber experience rewrite (commit + push to main → Actions deploy)
+
+Committed the reworked `yber` work entry in `content/experiences.json` (founding-developer framing,
+5 bullets, full-stack details, new tech tags: Next.js/TypeScript/Supabase/Vercel/LearnWorlds SSO/
+n8n/OpenRouter; dropped GCP/Gemini Agents/Node.js) and pushed to `origin/main` to trigger the
+Actions auto-deploy. Pre-flight: `check-content.mjs` OK (14 projects / 12 experiences valid — only
+pre-existing unfiled-tag notes plus the new `LearnWorlds SSO` tag, all non-fatal), `npm run lint`
+clean, `npm run build` clean, no `__admin` in `dist/`. The push fires `.github/workflows/deploy.yml`
+→ `gh-pages` (~1–2 min). Could not verify the Actions run from here (no `gh` CLI); check
+https://github.com/TylorDuong/tylorduong.github.io/actions.
+
+## Previous task — Published the site (commit + push to main → Actions deploy)
+
+Committed all outstanding work (deployed token-gated admin + `github-api`/`auth`/`Login`/
+`DeployedPublish`, the `.github/workflows/deploy.yml` auto-deploy workflow, the
+`evaluate-job-accuracy` skill + skill-gap tracker, the `resume-from-jd` research step, every new
+résumé profile, and the print-spacing/ordering fixes) as one commit `d50e213` and pushed to
+`origin/main`. Pre-flight before committing: `npm run lint` clean, `npm run build` clean, and no
+`__admin` string in `dist/` (isolation invariant holds). This was the **first push carrying the
+workflow**, so it should trigger the Actions build → `gh-pages` deploy (~1–2 min). Active résumé
+profile is still `general` (all the tailored profiles remain unpublished-as-active, by design).
+
+- Could NOT verify the Actions run from here: `gh` CLI isn't installed on this machine. Check
+  https://github.com/TylorDuong/tylorduong.github.io/actions.
+- Still USER-only (unverifiable here): GitHub → Settings → Pages must serve from `gh-pages`; the
+  deployed `/admin/` needs a fine-grained PAT (this repo → Contents: R/W) pasted at login.
+
+## Previous task — Amazon System Development Engineer (Robotics) Intern profile (resume-from-jd + evaluate)
 
 Appended profile `amazon-system-development-engineer-intern-robotics` ("System Development Engineer
 Intern @ Amazon Robotics") to `content/resume-profiles.json`. Active left as `general` (not

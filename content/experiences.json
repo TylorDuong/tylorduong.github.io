@@ -40,19 +40,21 @@
     "end": null,
     "pin": 2,
     "kind": "work",
-    "description": "Developed Yber, a gamified neuroinclusive education platform that helps the new generation practice social skills and build portfolio projects. Scaled and deployed through a partnership with Chandler Unified School District (40,000+ students), with a multi-layer agentic architecture that autonomously grades submissions, gives feedback, creates lessons, and announces student milestones on social media.",
+    "description": "Founding developer and sole technical lead of Yber, a gamified neuroinclusive education platform that helps the new generation practice social skills and build real portfolio projects. Built and shipped the full stack — Next.js on Vercel, Supabase Postgres, and LearnWorlds SSO — and scaled it to a Chandler Unified School District partnership (40,000+ students), including a career-and-technical-education program with role-based student, mentor, parent, and admin portals and a multi-layer agentic architecture that autonomously grades submissions, gives feedback, and announces student milestones.",
     "bullets": [
-      "Developed Yber, a gamified neuroinclusive education platform empowering the new generation to develop and practice social skills and build projects to prepare for the future job market.",
-      "Scaled and deployed for a partnership with Chandler Unified School District (40,000+ students).",
-      "Designed and deployed a multi-layer agentic architecture to autonomously grade student submissions, provide precise feedback, create lessons, and announce student milestones on social media platforms."
+      "Founded and single-handedly built Yber, a gamified neuroinclusive education platform empowering the new generation to develop social skills and build projects for the future job market — authoring ~80% of the codebase from first commit to production.",
+      "Scaled and deployed for a partnership with Chandler Unified School District (40,000+ students), architecting the full stack on Next.js, Supabase Postgres, and LearnWorlds SSO, deployed on Vercel.",
+      "Designed and shipped an end-to-end CTE cohort program — milestone tracking, rubric-based grading, file and link submissions, and a layered owner/admin/mentor/parent/school-admin permission model — across four role-specific portals.",
+      "Built a multi-layer agentic architecture (n8n + OpenRouter) that autonomously grades student submissions, provides precise feedback, generates lessons, and announces student milestones on social media platforms.",
+      "Engineered the authentication, gamification, and progress-sync systems: a LearnWorlds SSO identity bridge, one-time-code sign-in, an XP/tier/skill economy, and Supabase row-level-security data access."
     ],
     "tech": [
-      "GCP",
-      "Gemini Agents",
+      "Next.js",
+      "TypeScript",
       "React",
-      "Node.js",
       "Supabase",
       "Vercel",
+      "LearnWorlds SSO",
       "n8n",
       "OpenRouter"
     ],
