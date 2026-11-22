@@ -29,6 +29,7 @@ export default defineConfig({
       input: {
         main: path.resolve(__dirname, 'index.html'),
         resume: path.resolve(__dirname, 'resume/index.html'),
+        cv: path.resolve(__dirname, 'cv/index.html'),
         admin: path.resolve(__dirname, 'admin/index.html'),
       },
     },

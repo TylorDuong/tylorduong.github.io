@@ -1,12 +1,17 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import { profile, contact, education, activeResumeProfileId } from "@/data";
 import { periodLabel, fmtYM } from "@/lib/dates";
-import { profileSelection, deriveVisible, visibleContactKeys } from "./selection";
+import { profileSelection, deriveVisible, visibleContactKeys, allSelected } from "./selection";
 
 // Which résumé profile this page renders. `?profile=<id>` overrides the active
 // one — the admin Résumé tab opens that link to preview/print a specific
 // profile without having to make it live first.
-function initialSelection() {
+//
+// The `cv` variant ignores profiles entirely and renders the "show everything"
+// selection, so the CV always lists every project and experience (and any
+// added later) without per-record curation.
+function initialSelection(variant) {
+  if (variant === "cv") return allSelected();
   const override =
     typeof window !== "undefined"
       ? new URLSearchParams(window.location.search).get("profile")
@@ -84,10 +89,11 @@ function FitMeter({ pageRef }) {
 
 /* ------------------------------------------------------------------ page */
 
-export function Resume() {
+export function Resume({ variant = "resume" }) {
   const pageRef = useRef(null);
   const ed = education[0];
-  const [selection] = useState(initialSelection);
+  const isCv = variant === "cv";
+  const [selection] = useState(() => initialSelection(variant));
   const v = deriveVisible(selection);
 
   const shown = visibleContactKeys(selection);
@@ -113,7 +119,7 @@ export function Resume() {
   return (
     <>
       <div className="r-toolbar no-print">
-        {import.meta.env.DEV && <FitMeter pageRef={pageRef} />}
+        {import.meta.env.DEV && !isCv && <FitMeter pageRef={pageRef} />}
         <button className="r-btn" onClick={() => window.print()}>
           Print / Save PDF
         </button>
@@ -190,7 +196,7 @@ export function Resume() {
         {/* -------------------------------------------------------- projects */}
         {v.resumeProjects.length > 0 && (
           <>
-            <h2 className="r-h2">Relevant Projects</h2>
+            <h2 className="r-h2">{isCv ? "Projects" : "Relevant Projects"}</h2>
             {v.resumeProjects.map((p) => (
               <Entry
                 key={p.id}

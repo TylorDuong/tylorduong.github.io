@@ -2,7 +2,30 @@
 
 Working notes for Claude Code. Updated on task completion.
 
-## Last task — Deployed Yber experience rewrite (commit + push to main → Actions deploy)
+## Last task — Added a CV page (/cv/) + a CV download button on the main page
+
+Re-added a comprehensive CV, built by **reusing the résumé component** rather than a separate page
+tree (the old `src/cv/` was deleted earlier; this is leaner):
+- `src/resume/Resume.jsx` now takes a `variant` prop. `variant="cv"` renders `allSelected()` (the
+  "show everything" selection from `selection.js`), so the CV always lists **every** project and
+  experience — 14 projects + 12 experiences (3 work + 9 activities) — and auto-includes anything
+  added later, with no per-record curation. It also hides the one-page `FitMeter` (CV is multi-page
+  by design) and titles the projects section "Projects" (vs the résumé's "Relevant Projects").
+- `src/resume/cv-main.jsx` (new) renders `<Resume variant="cv" />`; `cv/index.html` (new) is its
+  shell (title "Tylor Duong — CV", script `/src/resume/cv-main.jsx`). Registered `cv:
+  cv/index.html` as a 4th `rollupOptions.input` in `vite.config.js`. Reuses `src/resume/print.css`
+  as-is, so `@page` margins repeat per page and Chrome's header/footer stay suppressed. Download =
+  the same "Print / Save PDF" toolbar button as the résumé.
+- `content/profile.json` → added `"cvUrl": "/cv/"` (passthrough via `profile` in `src/data.js`).
+- `src/sections/Hero.jsx` → added a **CV** button next to Résumé in the hero CTA row (same outline
+  style), linking to `profile.cvUrl`. (Footer still shows only "Résumé ↗" — left as-is.)
+- Verified: `npm run lint` clean, `npm run build` clean (`dist/cv/index.html` emitted), no `__admin`
+  in `dist/`. **Committed + pushed to `origin/main`** → fires `.github/workflows/deploy.yml` →
+  `gh-pages` (~1–2 min). Could not verify the Actions run from here (no `gh` CLI); check
+  https://github.com/TylorDuong/tylorduong.github.io/actions. NOT yet visually checked in a browser
+  — confirm `/cv/` renders + the main-page button on the live site.
+
+## Previous task — Deployed Yber experience rewrite (commit + push to main → Actions deploy)
 
 Committed the reworked `yber` work entry in `content/experiences.json` (founding-developer framing,
 5 bullets, full-stack details, new tech tags: Next.js/TypeScript/Supabase/Vercel/LearnWorlds SSO/

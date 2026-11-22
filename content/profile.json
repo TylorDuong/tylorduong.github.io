@@ -3,6 +3,7 @@
   "lead": "Computer Science 2028 early graduate with project experience in full-stack development, object-oriented programming, and game development.",
   "resumeSummary": "Versatile Software Engineer and startup founder specializing in full-stack development, AI integration, and interactive software. Proven ability to rapidly prototype and deploy robust applications, automate enterprise workflows, and engineer end-to-end IoT solutions.",
   "resumeUrl": "/resume/",
+  "cvUrl": "/cv/",
   "featured": {
     "mode": "specific",
     "projectId": "hardware-planner"
