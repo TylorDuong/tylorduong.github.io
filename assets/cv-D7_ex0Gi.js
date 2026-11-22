@@ -1,0 +1,1 @@
+import{b as e,x as t,y as n}from"./data-CUa4-2RD.js";import"./selection-BFpKIFQY.js";import{t as r}from"./print-DqVtwat4.js";var i=t(),a=e(),o=n();(0,a.createRoot)(document.getElementById(`root`)).render((0,o.jsx)(i.StrictMode,{children:(0,o.jsx)(r,{variant:`cv`})}));
